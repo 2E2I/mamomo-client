@@ -11,6 +11,7 @@ export const AngledSearchBar = () => {
         sx={{
           width: '960px',
           maxWidth: '100%',
+          padding: '0 10px 0px 10px'
         }}
       >
         <TextField

@@ -15,6 +15,7 @@ export const RoundSearchBar = () => {
           //margin: '60px',
           width: '960px',
           maxWidth: '100%',
+          padding: '0 10px 0px 10px'
         }}
       >
         <Paper
@@ -31,14 +32,14 @@ export const RoundSearchBar = () => {
             boxShadow: '0',
           }}
         >
+          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+            <SearchIcon />
+          </IconButton>
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="검색어를 입력하세요"
             inputProps={{ 'aria-label': '검색어를 입력하세요' }}
           />
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
         </Paper>
       </Box>
     </Grid>
