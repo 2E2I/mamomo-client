@@ -12,7 +12,7 @@ function App() {
       <button
         onClick={() => {
           axios
-            .get('/api/campaigns')
+            .get('http://localhost:8080/api/campaigns')
             .then((result) => {
               console.log(result.data);
             })
