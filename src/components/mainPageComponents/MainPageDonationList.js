@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, styled } from '@mui/material';
-import Card from './DonationCard';
+import Card from '../DonationCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 
 const CardList = () => {
@@ -25,23 +25,18 @@ export default CardList;
 const ListBox = styled(Box)(({ theme }) => ({
   justifyContent: 'center',
   alignItems: 'center',
+  display: 'flex',
   //반응형 작업
-  [theme.breakpoints.down('md')]: {
-    //backgroundColor: red[500],
-    display: 'flex',
-    flexWrap: 'wrap',
-  },
-  [theme.breakpoints.up('md')]: {
-    //backgroundColor: blue[500],
-    display: 'flex',
-  },
-  [theme.breakpoints.down('lg')]: {
-    //backgroundColor: blue[500],
-    //flexWrap: "wrap",
-  },
-  [theme.breakpoints.up('lg')]: {
-    //backgroundColor: green[500],
-  },
+  // [theme.breakpoints.down('md')]: {
+  //   display: 'flex',
+  //   flexWrap: 'wrap',
+  // },
+  // [theme.breakpoints.up('md')]: {
+  //   display: 'flex',
+  // },
+  // [theme.breakpoints.down('lg')]: { 
+  //   //flexWrap: "wrap",
+  // },
 }));
 
 const ListTitle = styled(Box)(() => ({

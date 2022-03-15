@@ -3,10 +3,10 @@ import { Box, Container } from '@mui/material';
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/RoundSearchBar';
 import AngledSearchBar from '../../components/AngledSearchBar';
-import CardList from '../../components/MainPageDonationList';
+import CardList from '../../components/mainPageComponents/MainPageDonationList';
 import Card from '../../components/DonationCard';
-import MainCarousel from '../../components/Carousel';
-import MainCategories from '../../components/MainCategories';
+import MainCarousel from '../../components/mainPageComponents/Carousel';
+import Categories from '../../components/Categories';
 
 const DesignTestPage = () => {
   return (
@@ -36,7 +36,7 @@ const DesignTestPage = () => {
       <AngledSearchBar />
       <hr />
       MainCategories
-      <MainCategories />
+      <Categories />
       <hr />
       CardList
       <CardList />

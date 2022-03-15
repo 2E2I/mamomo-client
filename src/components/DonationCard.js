@@ -89,24 +89,25 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
 const Root = styled(Paper)(({ theme }) => ({
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-//  반응형
-//   [theme.breakpoints.down('md')]: {
-//     maxWidth: '45%',
-//     maxHeight: '300px',
-//     minWidth: '45%',
-//     minHeight: '240px',
-//     margin: 5,
-//   },
-//  [theme.breakpoints.up('md')]: { 
-  [theme.breakpoints.up('xs')]: { 
-    maxWidth: 240,
-    maxHeight: 300,
-    minWidth: 240,
-    minHeight: 240,
-    margin: 10,
-  },
-  [theme.breakpoints.up('lg')]: {
-  },
+  width: 240,
+  margin: 10,
+  //  반응형
+  //   [theme.breakpoints.down('md')]: {
+  //     maxWidth: '45%',
+  //     maxHeight: '300px',
+  //     minWidth: '45%',
+  //     minHeight: '240px',
+  //     margin: 5,
+  //   },
+  //  [theme.breakpoints.up('md')]: {
+  //[theme.breakpoints.up('xs')]: {
+    // maxWidth: 240,
+    // maxHeight: 300,
+    // minWidth: 240,
+    // minHeight: 240,
+    // margin: 10,
+  //},
+  //[theme.breakpoints.up('lg')]: {},
 }));
 
 const InnerImage = styled(Box)(() => ({
