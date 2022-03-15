@@ -1,10 +1,10 @@
 import React from 'react';
 import Carousel from 'react-material-ui-carousel';
 import { Box, Typography } from '@mui/material';
-import sq1 from '../assets/images/ex1.jpg';
-import sq2 from '../assets/images/cat.jpg';
-import ex1 from '../assets/images/earth.PNG';
-import ex2 from '../assets/images/fire.PNG';
+import sq1 from '../../assets/images/ex1.jpg';
+import sq2 from '../../assets/images/cat.jpg';
+import ex1 from '../../assets/images/earth.PNG';
+import ex2 from '../../assets/images/fire.PNG';
 import { styled } from '@mui/system';
 
 const MainCarousel = (props) => {
