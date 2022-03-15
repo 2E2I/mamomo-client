@@ -2,23 +2,49 @@ import * as React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
 import { Paper, Box, Grid, IconButton, styled } from '@mui/material';
+import { useEffect } from 'react';
+import axios from 'axios';
+import { useState } from 'react';
 
 import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
 
-const Card = () => {
+const Card = ({ campaign }) => {
+  const [img, setImg] = useState('');
+  const [title, setTitle] = useState('');
+  const [organizationName, setorganizationName] = useState('');
+  const [targetPrice, settargetPrice] = useState(0);
+  const [statusPrice, setstatusPrice] = useState(0);
+
+  useEffect(() => {
+    setImg(campaign !== undefined && campaign.thumbnail);
+    setTitle(campaign !== undefined && campaign.title);
+    setorganizationName(campaign !== undefined && campaign.organizationName);
+    settargetPrice(campaign !== undefined && campaign.targetPrice);
+    setstatusPrice(campaign !== undefined && campaign.statusPrice);
+    return () => {};
+  }, []);
+
+  const customImgUrl = () => {
+    console.log('원본', img);
+    const modifyUrEnd = String(img).substring(String(img).indexOf(')') + 1);
+    const modifyUrlPre = String(img).substring(0, String(img).indexOf('('));
+
+    const resultUrl = `${modifyUrlPre}${modifyUrEnd}`;
+
+    return resultUrl;
+  };
+
   return (
     <Root elevation={0}>
-      <InnerImage />
-      <InnerTitleBox component="div">
-        "'재활'이 아닌 '예술'을 누리는 보통의 삶을 꿈꾸다!"
-      </InnerTitleBox>
-      <InnerOrganizationTitleBox>어린이재단</InnerOrganizationTitleBox>
+      <InnerImage img={customImgUrl()} />
+      <InnerTitleBox component="div">{title}</InnerTitleBox>
+      <InnerOrganizationTitleBox>{organizationName}</InnerOrganizationTitleBox>
       {/* <Box sx={{ display: { xs: 'none', sm: 'block' } }}> */}
       <Grid container spacing={1}>
         <Grid item xs={8}>
-          <InnerPriceBox>349000원</InnerPriceBox>
+          <InnerPriceBox>{statusPrice}</InnerPriceBox>
         </Grid>
         <IconGrid item xs={4}>
           <IconButton aria-label="add to favorites">
@@ -29,6 +55,7 @@ const Card = () => {
           </IconButton>
         </IconGrid>
       </Grid>
+
       {/* </Box> */}
       {/* 반응형 작업 
       <Grid container spacing={1}>
@@ -65,7 +92,7 @@ const Card = () => {
       </Grid> */}
       <BorderLinearProgress
         variant="determinate"
-        value={(349000 / 4970000) * 100}
+        value={(targetPrice / statusPrice) * 100}
       />
     </Root>
   );
@@ -101,18 +128,17 @@ const Root = styled(Paper)(({ theme }) => ({
   //   },
   //  [theme.breakpoints.up('md')]: {
   //[theme.breakpoints.up('xs')]: {
-    // maxWidth: 240,
-    // maxHeight: 300,
-    // minWidth: 240,
-    // minHeight: 240,
-    // margin: 10,
+  // maxWidth: 240,
+  // maxHeight: 300,
+  // minWidth: 240,
+  // minHeight: 240,
+  // margin: 10,
   //},
   //[theme.breakpoints.up('lg')]: {},
 }));
 
-const InnerImage = styled(Box)(() => ({
-  //backgroundImage: `url(${sq2})`,
-  backgroundImage: `url("https://mud-kage.kakaocdn.net/dn/TSBSF/btrubLNogFE/jcfHPjZskQgfLgxKEwz4aK/c360.jpg")`,
+const InnerImage = styled(Box)(({ img }) => ({
+  backgroundImage: `url(${img})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   borderRadius: '6px',
