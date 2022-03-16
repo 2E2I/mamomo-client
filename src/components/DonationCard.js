@@ -41,10 +41,9 @@ const Card = ({ campaign }) => {
       <InnerImage img={customImgUrl()} />
       <InnerTitleBox component="div">{title}</InnerTitleBox>
       <InnerOrganizationTitleBox>{organizationName}</InnerOrganizationTitleBox>
-      {/* <Box sx={{ display: { xs: 'none', sm: 'block' } }}> */}
       <Grid container spacing={1}>
         <Grid item xs={8}>
-          <InnerPriceBox>{statusPrice}</InnerPriceBox>
+          <InnerPriceBox>{statusPrice}원</InnerPriceBox>
         </Grid>
         <IconGrid item xs={4}>
           <IconButton aria-label="add to favorites">
@@ -55,44 +54,9 @@ const Card = ({ campaign }) => {
           </IconButton>
         </IconGrid>
       </Grid>
-
-      {/* </Box> */}
-      {/* 반응형 작업 
-      <Grid container spacing={1}>
-        <Grid item xs={5}>
-          <Box
-            sx={{
-              display: { xs: 'block', sm: 'none' },
-              direction: 'ltr',
-              fontWeight: 'bold',
-              mx: 0.5,
-              fontSize: 12,
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-            }}
-          >
-            100%
-          </Box>
-        </Grid>
-        <Grid item xs={7}>
-          <Box
-            sx={{
-              display: { xs: 'block', sm: 'none' },
-              direction: 'rtl',
-              fontWeight: 'bold',
-              mx: 0.5,
-              fontSize: 12,
-              textOverflow: 'ellipsis',
-              overflow: 'hidden',
-            }}
-          >
-            349000원
-          </Box>
-        </Grid>
-      </Grid> */}
       <BorderLinearProgress
         variant="determinate"
-        value={(targetPrice / statusPrice) * 100}
+        value={(statusPrice / targetPrice) * 100}
       />
     </Root>
   );
@@ -113,28 +77,11 @@ const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   },
 }));
 
-const Root = styled(Paper)(({ theme }) => ({
+const Root = styled(Paper)(() => ({
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   width: 240,
   margin: 10,
-  //  반응형
-  //   [theme.breakpoints.down('md')]: {
-  //     maxWidth: '45%',
-  //     maxHeight: '300px',
-  //     minWidth: '45%',
-  //     minHeight: '240px',
-  //     margin: 5,
-  //   },
-  //  [theme.breakpoints.up('md')]: {
-  //[theme.breakpoints.up('xs')]: {
-  // maxWidth: 240,
-  // maxHeight: 300,
-  // minWidth: 240,
-  // minHeight: 240,
-  // margin: 10,
-  //},
-  //[theme.breakpoints.up('lg')]: {},
 }));
 
 const InnerImage = styled(Box)(({ img }) => ({
@@ -148,17 +95,18 @@ const InnerImage = styled(Box)(({ img }) => ({
 const InnerTitleBox = styled(Box)(() => ({
   fontSize: 14,
   fontWeight: 'bold',
+  fontFamily: 'SCDream4',
   marginTop: 0.4,
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   maxHeight: 42,
-  //color: "yellow,"
+  minHeight: 42,
 }));
 
 const InnerOrganizationTitleBox = styled(Box)(() => ({
-  //display: { xs: "block", sm: "none" },
   direction: 'rtl',
-  fontWeight: 'bold',
+  fontWeight: 'Medium',
+  fontFamily: 'SCDream4',
   mx: 0.5,
   fontSize: 12,
   textOverflow: 'ellipsis',
@@ -167,7 +115,8 @@ const InnerOrganizationTitleBox = styled(Box)(() => ({
 
 const InnerPriceBox = styled(Box)(() => ({
   display: 'inline',
-  fontWeight: 'bold',
+  fontWeight: 'Medium',
+  fontFamily: 'SCDream4',
   mx: 0.5,
   fontSize: 12,
   textOverflow: 'ellipsis',

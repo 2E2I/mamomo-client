@@ -27,7 +27,9 @@ const CardList = (props) => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:8080/api/campaigns?category=${props.category}`)
+      .get(
+        `http://localhost:8080/api/campaigns?category=${props.category}&sort=due_date,asc`,
+      )
       .then((result) => {
         console.log('연결');
         setCampaign(result.data);
@@ -44,7 +46,6 @@ const CardList = (props) => {
   //     Object.entries(campaign)[0] !== undefined &&
   //     Object.entries(campaign)[0][1][0],
   // );
-
 
   return (
     <Container>
@@ -70,34 +71,17 @@ export default CardList;
 
 const ListBox = styled(Box)(({ theme }) => ({
   display: 'flex',
-  //반응형 작업
-  // [theme.breakpoints.down('md')]: {
-  //   display: 'flex',
-  //   flexWrap: 'wrap',
-  // },
-  // [theme.breakpoints.up('md')]: {
-  //   display: 'flex',
-  // },
-  // [theme.breakpoints.down('lg')]: {
-  //   //flexWrap: "wrap",
-  // },
 }));
 
 const ListTitle = styled(Box)(() => ({
   display: 'flex',
   maxWidth: '1200px',
   fontWeight: 'bold',
+  fontFamily: 'SCDream4',
   fontSize: 20,
   flexWrap: 'nowrap',
   paddingLeft: '40px',
   minWidth: '1200px',
-
-  //반응형
-  //   sx:{
-  //   flexWrap: { xs: 'wrap', md: 'nowrap' },
-  //   minWidth: { xs: '100%', md: '1200px' },
-  //   pl: { xs: 4, md: 11 },
-  //   }
 }));
 
 const ArrowForwardIosIc = styled(ArrowForwardIosIcon)(() => ({
