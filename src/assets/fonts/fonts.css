@@ -1,0 +1,23 @@
+@font-face {
+  /* 사용할 폰트의 이름 */
+  font-family: "SCDream4";
+  font-display: fallback;
+
+  src: url("./SCDream4.otf") format("truetype"), url("./SCDream4.eot?iefix") format("embedded-opentype");
+
+  /* 사용할 폰트의 기본 스타일 */
+  font-weight: 400;
+  font-style: normal;
+}
+
+@font-face {
+  /* 사용할 폰트의 이름 */
+  font-family: "SCDream3";
+  font-display: fallback;
+
+  src: url("./SCDream4.otf") format("truetype");
+
+  /* 사용할 폰트의 기본 스타일 */
+  font-weight: 400;
+  font-style: normal;
+}
