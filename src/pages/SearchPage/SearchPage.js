@@ -1,8 +1,8 @@
 import React from 'react';
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/RoundSearchBar';
-import TagTitle from '../../components/SearchPageTagTitle';
-import Tags from '../../components/SearchPageTags';
+import TagTitle from '../../components/searchPageComponents/SearchPageTagTitle';
+import Tags from '../../components/searchPageComponents/SearchPageTags';
 
 const SearchPage = () => {
     return (

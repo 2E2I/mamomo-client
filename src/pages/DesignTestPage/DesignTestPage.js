@@ -19,8 +19,7 @@ const DesignTestPage = () => {
         minWidth: '1200px',
       }}
       disableGutters={true}
-      container
-      justifyContent="center"
+      justify="center"
     >
       <hr />
       TopAppBar
