@@ -19,7 +19,6 @@ export const RoundSearchBar = () => {
         }}
       >
         <Paper
-          fullWidth
           component="form"
           variant="outlined"
           sx={{
