@@ -16,21 +16,21 @@ const Tags = () => {
   return (
     <div>
         <Grid container justifyContent="center">
-        <CategoriesBox component="ul">
-            {chipData.map((data) => {
-            let icon;
-            return (
-                <ListItem key={data.key}>
-                <CategorieChip
-                    color="primary"
-                    variant="outlined"
-                    icon={icon}
-                    label={<InnerFontBox>#{data.label}</InnerFontBox>}
-                />
-                </ListItem>
-            );
-            })}
-        </CategoriesBox>
+          <CategoriesBox component="ul">
+              {chipData.map((data) => {
+              let icon;
+              return (
+                  <ListItem key={data.key}>
+                  <CategorieChip
+                      color="primary"
+                      variant="outlined"
+                      icon={icon}
+                      label={<InnerFontBox>#{data.label}</InnerFontBox>}
+                  />
+                  </ListItem>
+              );
+              })}
+          </CategoriesBox>
         </Grid>
     </div>
   );
@@ -43,25 +43,19 @@ const ListItem = styled('li')(({ theme }) => ({
 }));
 
 const CategoriesBox = styled(Box)(() => ({
-  margin: '10px',
-  //paddingRight: { xs: 10, md: 5 },
-  //paddingLeft: { xs: 10, md: 5 },
   display: 'flex',
-  flexWrap: { xs: 'wrap', md: 'nowrap' },
+  flexDirection: 'row',
+  flexWrap: 'wrap',
   listStyle: 'none',
-  p: 0.4,
-  m: { xs: 2, md: 4 },
-  mr: 1,
-  ml: 1,
   boxShadow: '0',
-  justifyContent: 'center',
-  width: { xs: '340px', sm: '100%' },
+  alignItems: 'flex-start',
+  justifyContent: 'flex-start',
+  width: '970px',
+  maxWidth: '100%',
+  padding: '0 10px 0 10px',
 }));
 
 const CategorieChip = styled(Chip)(() => ({
-  //minWidth: { xs: '80px', md: '140px' },
-  //maxWidth: { xs: '100px', md: '140px' },
-  //width: '110px',
   padding: '5px',
   height: '40px',
   fontSize: { xs: 1, md: 1 },
