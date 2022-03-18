@@ -1,6 +1,7 @@
 import * as React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
 import ShareIcon from '@mui/icons-material/Share';
+import ImageIcon from '@mui/icons-material/Image';
 import { Paper, Box, Grid, IconButton, styled } from '@mui/material';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -42,15 +43,18 @@ const Card = ({ campaign }) => {
       <InnerTitleBox component="div">{title}</InnerTitleBox>
       <InnerOrganizationTitleBox>{organizationName}</InnerOrganizationTitleBox>
       <Grid container spacing={1}>
-        <Grid item xs={8}>
-          <InnerPriceBox>{statusPrice}원</InnerPriceBox>
+        <Grid item xs={6}>
+          <InnerPriceBox>{priceToString(statusPrice)}원</InnerPriceBox>
         </Grid>
-        <IconGrid item xs={4}>
+        <IconGrid item xs={6}>
           <IconButton aria-label="add to favorites">
             <FavoriteIc />
           </IconButton>
           <IconButton aria-label="share">
             <ShareIc />
+          </IconButton>
+          <IconButton aria-label="share">
+            <ImageIc />
           </IconButton>
         </IconGrid>
       </Grid>
@@ -63,6 +67,10 @@ const Card = ({ campaign }) => {
 };
 
 export default Card;
+
+function priceToString(price) {
+  return price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+}
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
   height: 8,
@@ -93,20 +101,21 @@ const InnerImage = styled(Box)(({ img }) => ({
 }));
 
 const InnerTitleBox = styled(Box)(() => ({
-  fontSize: 14,
-  fontWeight: 'bold',
-  fontFamily: 'SCDream4',
+  fontSize: 16,
+  fontWeight: 500,
+  fontFamily: 'Noto Sans KR',
   marginTop: 0.4,
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-  maxHeight: 42,
-  minHeight: 42,
+  maxHeight: 52,
+  minHeight: 52,
+  marginTop: 10,
 }));
 
 const InnerOrganizationTitleBox = styled(Box)(() => ({
   direction: 'rtl',
-  fontWeight: 'Medium',
-  fontFamily: 'SCDream4',
+  fontWeight: 100,
+  fontFamily: 'Noto Sans KR',
   mx: 0.5,
   fontSize: 12,
   textOverflow: 'ellipsis',
@@ -115,8 +124,8 @@ const InnerOrganizationTitleBox = styled(Box)(() => ({
 
 const InnerPriceBox = styled(Box)(() => ({
   display: 'inline',
-  fontWeight: 'Medium',
-  fontFamily: 'SCDream4',
+  fontWeight: 700,
+  fontFamily: 'Noto Sans KR',
   mx: 0.5,
   fontSize: 12,
   textOverflow: 'ellipsis',
@@ -128,6 +137,10 @@ const ShareIc = styled(ShareIcon)(() => ({
 }));
 
 const FavoriteIc = styled(FavoriteIcon)(() => ({
+  fontSize: 14,
+}));
+
+const ImageIc = styled(ImageIcon)(() => ({
   fontSize: 14,
 }));
 

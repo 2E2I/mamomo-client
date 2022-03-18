@@ -1,6 +1,6 @@
 import React from 'react';
 import { Box, Grid, styled, Container } from '@mui/material';
-import Card from './DonationCard';
+import Card2 from './DonationCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useEffect } from 'react';
 import axios from 'axios';
@@ -14,7 +14,7 @@ const CardList = (props) => {
   const menuList = menus.map(
     (menu, index) =>
       Object.keys(campaign) !== undefined && (
-        <Card
+        <Card2
           key={index}
           campaign={
             Object.keys(campaign) !== undefined &&
@@ -77,7 +77,7 @@ const ListTitle = styled(Box)(() => ({
   display: 'flex',
   maxWidth: '1200px',
   fontWeight: 'bold',
-  fontFamily: 'SCDream4',
+  fontFamily: 'Noto Sans KR',
   fontSize: 20,
   flexWrap: 'nowrap',
   paddingLeft: '40px',

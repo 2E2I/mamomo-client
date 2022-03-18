@@ -3,8 +3,9 @@ import { Box, Container } from '@mui/material';
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/RoundSearchBar';
 import AngledSearchBar from '../../components/AngledSearchBar';
-import CardList from '../../components/mainPageComponents/MainPageDonationList';
-import Card from '../../components/DonationCard';
+import CardList from '../../components/mainPageComponents/OldMainPageDonationList';
+import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
+import Card from '../../components/OldDonationCard';
 import MainCarousel from '../../components/mainPageComponents/Carousel';
 import Categories from '../../components/Categories';
 
@@ -39,6 +40,9 @@ const DesignTestPage = () => {
       <hr />
       CardList
       <CardList />
+      <hr />
+      CardList2
+      <CardList2 />
       <hr />
       Card
       <Card />
