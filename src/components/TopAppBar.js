@@ -19,23 +19,6 @@ const pages = ['기부모아', '배너제작', '도움말'];
 const settings = ['내 계정', '마이페이지', '로그아웃'];
 
 const TopAppBar = () => {
-  const [anchorElNav, setAnchorElNav] = React.useState(null);
-  const [anchorElUser, setAnchorElUser] = React.useState(null);
-
-  const handleOpenNavMenu = (event) => {
-    setAnchorElNav(event.currentTarget);
-  };
-  const handleOpenUserMenu = (event) => {
-    setAnchorElUser(event.currentTarget);
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-  };
-
-  const handleCloseUserMenu = () => {
-    setAnchorElUser(null);
-  };
 
   const theme = createTheme({
     palette: {
@@ -57,116 +40,71 @@ const TopAppBar = () => {
               component="div"
               sx={{
                 mr: 2,
-                display: { xs: 'none', md: 'flex' },
+                display: 'flex',
                 color: 'black',
               }}
             >
               <Box
                 sx={{
                   display: 'inline',
-                  fontWeight: 'bold',
+                  fontWeight: 300,
+                  fontFamily: 'Noto Sans KR',
                   mx: 0,
-                  fontSize: 20,
+                  fontSize: 24,
+                  color: '#f48fb1',
                 }}
               >
-                마음을모두모아
+                마음을
               </Box>
-            </Typography>
-
-            <Box sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
-              <IconButton
-                size="large"
-                aria-label="account of current user"
-                aria-controls="menu-appbar"
-                aria-haspopup="true"
-                onClick={handleOpenNavMenu}
-                color="inherit"
-              >
-                <MenuIcon />
-              </IconButton>
-              <Menu
-                id="menu-appbar"
-                anchorEl={anchorElNav}
-                anchorOrigin={{
-                  vertical: 'bottom',
-                  horizontal: 'left',
-                }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'left',
-                }}
-                open={Boolean(anchorElNav)}
-                onClose={handleCloseNavMenu}
+              <Box
                 sx={{
-                  display: { xs: 'block', md: 'none' },
+                  display: 'inline',
+                  fontWeight: 700,
+                  fontFamily: 'Noto Sans KR',
+                  mx: 0,
+                  fontSize: 24,
+                  color: '#f48fb1',
                 }}
               >
-                {pages.map((page) => (
-                  <MenuItem key={page} onClick={handleCloseNavMenu}>
-                    <Typography textAlign="center">{page}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
-            </Box>
-            <Typography
-              variant="h6"
-              noWrap
-              component="div"
-              sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}
-            >
-              MAMAMO
+                모두모아
+              </Box>
             </Typography>
             <Box
               sx={{
                 flexGrow: 1,
-                display: { xs: 'none', md: 'flex', marginLeft: '1%' },
+                display: 'flex',
               }}
             >
               {pages.map((page) => (
                 <Button
                   key={page}
-                  onClick={handleCloseNavMenu}
-                  sx={{ my: 2, color: 'black', display: 'block' }}
+                  sx={{
+                    my: 2,
+                    color: '#424242',
+                    display: 'block',
+                    fontWeight: 700,
+                    fontFamily: 'Noto Sans KR',
+                    fontSize: 16,
+                  }}
                 >
                   {page}
                 </Button>
               ))}
             </Box>
 
-            <Box sx={{ flexGrow: 0 }}>
-              <Tooltip title="Open settings">
-                <IconButton onClick={handleOpenUserMenu} sx={{ p: 0 }}>
-                  <Avatar
-                    alt="no"
-                    src="/static/images/avatar/2.jpg"
-                    sx={{ width: 40, height: 28, bgcolor: '#8bc34a' }}
-                    variant="rounded"
-                  />
-                </IconButton>
-              </Tooltip>
-              <Menu
-                sx={{ mt: '45px' }}
-                id="menu-appbar"
-                anchorEl={anchorElUser}
-                anchorOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
+            <Box>
+              <Button
+                sx={{
+                  my: 2,
+                  color: '#424242',
+                  display: 'block',
+                  fontSize: 16,
+                  fontWeight: 500,
+                  fontFamily: 'Noto Sans KR',
                 }}
-                keepMounted
-                transformOrigin={{
-                  vertical: 'top',
-                  horizontal: 'right',
-                }}
-                open={Boolean(anchorElUser)}
-                onClose={handleCloseUserMenu}
               >
-                {settings.map((setting) => (
-                  <MenuItem key={setting} onClick={handleCloseUserMenu}>
-                    <Typography textAlign="center">{setting}</Typography>
-                  </MenuItem>
-                ))}
-              </Menu>
+                마이페이지
+              </Button>
             </Box>
           </Toolbar>
         </Container>
