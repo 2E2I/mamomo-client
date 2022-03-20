@@ -16,13 +16,6 @@ const MainPageDonationList = () => {
 
   return (
     <div>
-      <button
-        onClick={() => {
-          console.log(categories);
-        }}
-      >
-        aaa
-      </button>
       <div>{CardLists}</div>;
     </div>
   );

@@ -160,7 +160,7 @@ const priceToString = (price) =>
   price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
 
 const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
-  height: 8,
+  height: 4,
   borderRadius: 4,
   [`&.${linearProgressClasses.colorPrimary}`]: {
     backgroundColor:
@@ -177,7 +177,7 @@ const Root = styled(Box)(() => ({
   overflow: 'hidden',
   backgroundSize: 'cover',
   borderRadius: '6px',
-  width: 240,
+  width: 300,
   height: 240,
   margin: 10,
   color: '#000',
@@ -198,7 +198,7 @@ const InnerImage = styled(Box)(({ img }) => ({
 
 const InnerTitleBox = styled(Box)(() => ({
   fontSize: 17,
-  fontWeight: 500,
+  fontWeight: 300,
   fontFamily: 'Noto Sans KR',
   marginTop: 0.4,
   textOverflow: 'ellipsis',
@@ -206,6 +206,7 @@ const InnerTitleBox = styled(Box)(() => ({
   maxHeight: 52,
   minHeight: 52,
   marginTop: 10,
+  color: '#424242',
 }));
 
 const ModalBox = styled(Box)(() => ({
@@ -234,6 +235,7 @@ const InnerOrganizationTitleBox = styled(Box)(() => ({
   fontSize: 12,
   textOverflow: 'ellipsis',
   overflow: 'hidden',
+  color: '#424242',
 }));
 
 const InnerPriceBox = styled(Box)(() => ({
@@ -244,6 +246,7 @@ const InnerPriceBox = styled(Box)(() => ({
   fontSize: 12,
   textOverflow: 'ellipsis',
   overflow: 'hidden',
+  color: '#424242',
 }));
 
 const ShareIc = styled(ShareIcon)(() => ({

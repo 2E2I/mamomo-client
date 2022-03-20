@@ -48,44 +48,42 @@ const CardList = (props) => {
   // );
 
   return (
-    <Container>
+    <>
       {Object.keys(campaign) !== undefined &&
         Object.entries(campaign)[0] !== undefined && (
           <>
-            <Container sx={{ mt: 2 }}>
+            <Box sx={{ mt: 1 }}>
               <ListTitle>
                 {campaign.campaigns[props.category].category}
                 <ArrowForwardIosIc />
               </ListTitle>
-            </Container>
+            </Box>
             <ListBox container justifyContent="center">
               {menuList}
             </ListBox>
           </>
         )}
-    </Container>
+    </>
   );
 };
 
 export default CardList;
 
-const ListBox = styled(Box)(({ theme }) => ({
+const ListBox = styled(Box)(() => ({
   display: 'flex',
 }));
 
 const ListTitle = styled(Box)(() => ({
   display: 'flex',
-  maxWidth: '1200px',
-  fontWeight: 'bold',
+  fontWeight: '500',
   fontFamily: 'Noto Sans KR',
   fontSize: 20,
   flexWrap: 'nowrap',
-  paddingLeft: '40px',
-  minWidth: '1200px',
+  marginLeft: '10px',
 }));
 
 const ArrowForwardIosIc = styled(ArrowForwardIosIcon)(() => ({
   marginTop: 5.5,
   marginLeft: 1,
-  fontSize: 18,
+  fontSize: 20,
 }));

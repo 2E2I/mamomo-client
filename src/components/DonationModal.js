@@ -156,7 +156,7 @@ const DonationModal = (img, title, body, url) => {
             color: '#f48fb1',
           }}
         >
-          <Box sx={{ margin: 'auto', marginBottom: 0 }}>마마모</Box>
+          <Box sx={{ margin: 'auto', marginBottom: 0 }}>MAMOMO</Box>
         </Box>
       </>
     );

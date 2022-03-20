@@ -5,12 +5,12 @@ import { Box, Grid } from '@mui/material';
 
 const Categorie = () => {
     const [chipData, setChipData] = React.useState([
-        { key: 0, label: '어린이' },
-        { key: 1, label: '여성' },
-        { key: 2, label: '어르신' },
-        { key: 3, label: '장애인' },
-        { key: 4, label: '우리사회' },
-        { key: 5, label: '지구촌' },
+        { key: 0, label: '#어린이' },
+        { key: 1, label: '#여성' },
+        { key: 2, label: '#어르신' },
+        { key: 3, label: '#장애인' },
+        { key: 4, label: '#우리사회' },
+        { key: 5, label: '#지구촌' },
       ]);
 
   return (
@@ -42,15 +42,12 @@ const ListItem = styled('li')(({ theme }) => ({
 
 const CategoriesBox = styled(Box)(() => ({
   margin: '30px',
+  marginTop: '10px',
   //paddingRight: { xs: 10, md: 5 },
   //paddingLeft: { xs: 10, md: 5 },
   display: 'flex',
   flexWrap: { xs: 'wrap', md: 'nowrap' },
   listStyle: 'none',
-  p: 0.4,
-  m: { xs: 2, md: 4 },
-  mr: 1,
-  ml: 1,
   boxShadow: '0',
   justifyContent: 'center',
   width: { xs: '340px', sm: '100%' },
@@ -60,11 +57,13 @@ const CategorieChip = styled(Chip)(() => ({
   //minWidth: { xs: '80px', md: '140px' },
   //maxWidth: { xs: '100px', md: '140px' },
   width: '110px',
-  height: '40px',
+  height: '60px',
   fontSize: { xs: 1, md: 1 },
-  borderRadius: 25,
+  borderRadius: 30,
 }));
 
 const InnerFontBox = styled(Box)(() => ({
-  fontSize: { xs: 13, md: 16 },
+  fontSize: 16,
+  fontWeight: '300',
+  fontFamily: 'Noto Sans KR',
 }));
