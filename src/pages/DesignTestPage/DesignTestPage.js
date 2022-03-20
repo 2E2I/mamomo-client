@@ -7,7 +7,7 @@ import CardList from '../../components/mainPageComponents/OldMainPageDonationLis
 import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
 import Card from '../../components/OldDonationCard';
 import MainCarousel from '../../components/mainPageComponents/Carousel';
-import Categories from '../../components/Categories';
+import Categories from '../../components/Tags';
 
 const DesignTestPage = () => {
   return (

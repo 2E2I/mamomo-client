@@ -5,7 +5,7 @@ import RoundSearchBar from '../../components/mainPageComponents/MainPageSearchBa
 import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
 import Card from '../../components/OldDonationCard';
 import MainCarousel from '../../components/mainPageComponents/Carousel2';
-import Categories from '../../components/Categories';
+import Categories from '../../components/Tags';
 
 const MainPage = () => {
     return (
