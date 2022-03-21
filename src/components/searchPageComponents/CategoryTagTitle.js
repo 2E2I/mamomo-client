@@ -3,7 +3,7 @@ import { Box, styled } from '@mui/material';
 import { useState } from 'react';
 
 const CategoryTagTitle = (props) => {
-  const [title, setTitle] = useState('카테고리 태그');
+  const [title, setTitle] = useState('모든 카테고리');
   return (
     <TitleBox>
       <InnerFontBox>
