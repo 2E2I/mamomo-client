@@ -1,29 +1,51 @@
 import * as React from 'react';
-import { Box, Grid, styled } from '@mui/material';
-import { ListStore } from '../../store/MainPageStore';
-import { useEffect } from 'react';
-import TagList from './TagList';
+import { Box, Chip, styled } from '@mui/material';
+import { useState, useEffect } from 'react';
+import axios from 'axios';
 
-const CategoryTagList = () => {
-  const { categories, setCategory } = ListStore();
-  const menus = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
-  const categoryList = categories.map((tags) => <TagList key={tags} category={tags} />)
+const Tag = () => {
+ const [tag, setTag] = useState('');
+ const [tagClick, setTagClick] = useState(false);
+ const categories = Object.values(tag);
+ const list = categories[0]
 
-  useEffect(() => {
-    setCategory(menus);
-    return ()=>{};
-  }, [])
+ const categoryList = list && list.map(
+   (tag, index) => (
+      <TagChip key={index}
+      label={
+        <InnerBox>#{tag}</InnerBox>
+      }
+      variant='outlined'
+      color='primary'
+      clickable
+      onClick={setTagClick}
+    />
+   )
+ )
 
-  return (
-    <Grid container justifyContent="center">
-      <TagBox>
-        {categoryList}
-      </TagBox>
-    </Grid>
-  );
-};
+useEffect(() => {
+  axios
+    .get(
+      `http://localhost:8080/api/categories`,
+    )
+    .then((result) => {
+      console.log('연결');
+      setTag(result.data);
+    })
+    .catch(() => {
+      console.log('연결실패');
+    });
+  return () => {};
+}, []);
 
-export default CategoryTagList;
+ return (
+   <TagBox>
+     {categoryList}
+   </TagBox>
+ )
+}
+
+export default Tag;
 
 const TagBox = styled(Box)(() => ({
   display: 'flex',
@@ -35,5 +57,18 @@ const TagBox = styled(Box)(() => ({
   justifyContent: 'flex-start',
   width: '970px',
   maxWidth: '100%',
-  padding: '0 10px 0 10px',
+  padding: '0 15px 0 15px',
 }));
+
+const TagChip = styled(Chip)(() => ({
+ padding: '5px',
+ height: '40px',
+ fontSize: { xs: 1, md: 1 },
+ borderColor: 'primary',
+ borderRadius: 25,
+ margin: '5px 5px 5px 0',
+}));
+
+const InnerBox = styled(Box)(() => ({
+ fontSize: { xs: 13, md: 16 },
+}))

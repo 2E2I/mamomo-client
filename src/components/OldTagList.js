@@ -2,7 +2,7 @@ import * as React from 'react';
 import { Box, Grid, styled} from '@mui/material';
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import Tag from './Tag';
+import Tag from './OldTag';
 
 const TagList = (props) => {
   const menus = [1];
