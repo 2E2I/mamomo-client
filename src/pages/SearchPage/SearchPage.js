@@ -1,11 +1,8 @@
 import React from 'react';
-import { Grid } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/RoundSearchBar';
-
-import OldTagTitle from '../../components/OldSearchPageTagTitle';
-import OldTags from '../../components/OldSearchPageTags';
 
 import CategoryTagTitle from '../../components/searchPageComponents/CategoryTagTitle';
 import CategoryTags from '../../components/searchPageComponents/CategoryTag'
@@ -15,11 +12,18 @@ import RecoTagTitle from '../../components/searchPageComponents/RecomendationTag
 
 const SearchPage = () => {
   return (
-    <div>
+    <Container
+      maxWidth={false} 
+      sx={{
+        width:"1000px",
+      }} 
+      disableGutters={true}
+      justify="center"
+    >
+
       <TopAppBar />
       <RoundSearchBar />
 
-      <hr/>수정 tag
       {/* 인기태그 top10 */}
       <Grid container justifyContent="center">
         <Top10TagTitle />
@@ -36,11 +40,7 @@ const SearchPage = () => {
         <CategoryTagTitle />
         <CategoryTags />
       </Grid>
-
-      <hr/>old tag
-      <OldTagTitle />
-      <OldTags />
-    </div>
+    </Container>
   )
 };
 
