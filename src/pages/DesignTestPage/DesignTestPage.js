@@ -7,21 +7,22 @@ import CardList from '../../components/mainPageComponents/OldMainPageDonationLis
 import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
 import Card from '../../components/OldDonationCard';
 import MainCarousel from '../../components/mainPageComponents/Carousel';
-import Categories from '../../components/Tags';
+import Tags from '../../components/Tags';
+import Categories from '../../components/Categories';
+
 
 const DesignTestPage = () => {
   return (
     <Container
       maxWidth={false}
       sx={{
-        //minWidth: { xs: '100%', md: '1200px' },
-        //maxWidth: { xs: '100%', md: '2560px' },
-        maxWidth: '100%',
-        minWidth: '1200px',
+        width: '1000px',
       }}
-      disableGutters={true}
+      disableGutters={true} //패딩 삭제
       justify="center"
     >
+      <hr />
+      <Categories />
       <hr />
       TopAppBar
       <TopAppBar />
