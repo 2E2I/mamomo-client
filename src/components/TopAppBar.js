@@ -1,22 +1,17 @@
 import * as React from 'react';
 import MenuIcon from '@mui/icons-material/Menu';
+import SearchIcon from '@mui/icons-material/Search';
 import { ThemeProvider, createTheme } from '@mui/material/styles';
 import {
   AppBar,
   Box,
   Toolbar,
-  IconButton,
   Typography,
-  Menu,
   Container,
-  Avatar,
   Button,
-  Tooltip,
-  MenuItem,
 } from '@mui/material';
 
 const pages = ['기부모아', '배너제작', '도움말'];
-const settings = ['내 계정', '마이페이지', '로그아웃'];
 
 const TopAppBar = () => {
 
@@ -95,7 +90,7 @@ const TopAppBar = () => {
             <Box>
               <Button
                 sx={{
-                  my: 2,
+                  mr: 1,
                   color: '#424242',
                   display: 'block',
                   fontSize: 16,
@@ -106,6 +101,7 @@ const TopAppBar = () => {
                 마이페이지
               </Button>
             </Box>
+            <SearchIcon sx={{fontSize: 34, mt:0.5}}/>
           </Toolbar>
         </Container>
       </AppBar>
