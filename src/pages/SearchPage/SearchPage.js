@@ -13,7 +13,7 @@ import RecoTagTitle from '../../components/searchPageComponents/RecomendationTag
 const SearchPage = () => {
   return (
     <Container
-      maxWidth={false} 
+      maxWidth={false}
       sx={{
         width:"1000px",
       }} 

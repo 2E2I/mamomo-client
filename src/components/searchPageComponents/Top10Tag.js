@@ -41,7 +41,6 @@ useEffect(() => {
  return (
    <TagBox>
      {top10List}
-     {console.log(list)}
    </TagBox>
  )
 }

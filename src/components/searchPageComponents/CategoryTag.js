@@ -1,27 +1,36 @@
 import * as React from 'react';
 import { Box, Chip, styled } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const Tag = () => {
- const [tag, setTag] = useState('');
- const [tagClick, setTagClick] = useState(false);
- const categories = Object.values(tag);
- const list = categories[0]
+  const [tag, setTag] = useState('');
+  const [num, setNum] = useState();
+  const categories = Object.values(tag);
+  const list = categories[0]
 
- const categoryList = list && list.map(
-   (tag, index) => (
-      <TagChip key={index}
-      label={
-        <InnerBox>#{tag}</InnerBox>
-      }
-      variant='outlined'
-      color='primary'
-      clickable
-      onClick={setTagClick}
-    />
+  const categoryList = list && list.map(
+    (tag, index) => (
+      <Link to= "/tags" style={{ textDecoration: 'none' }}>
+        <TagChip key={index}
+          label={
+            <InnerBox>#{tag}</InnerBox>
+          }
+          variant='outlined'
+          color='primary'
+          clickable
+          onClick={() =>
+            {
+              setNum(index);
+              console.log(index);
+              return () => {};
+            }
+          }
+        />
+      </Link>
    )
- )
+)
 
 useEffect(() => {
   axios
@@ -38,7 +47,7 @@ useEffect(() => {
   return () => {};
 }, []);
 
- return (
+  return (
    <TagBox>
      {categoryList}
    </TagBox>
@@ -46,6 +55,7 @@ useEffect(() => {
 }
 
 export default Tag;
+export const num = createContext(0);
 
 const TagBox = styled(Box)(() => ({
   display: 'flex',
