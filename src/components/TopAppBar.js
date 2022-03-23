@@ -10,6 +10,9 @@ import {
   Container,
   Button,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom';
+import SearchPage from '../pages/SearchPage/SearchPage';
 
 const pages = ['기부모아', '배너제작', '도움말'];
 
@@ -39,30 +42,32 @@ const TopAppBar = () => {
                 color: 'black',
               }}
             >
-              <Box
-                sx={{
-                  display: 'inline',
-                  fontWeight: 300,
-                  fontFamily: 'Noto Sans KR',
-                  mx: 0,
-                  fontSize: 24,
-                  color: '#f48fb1',
-                }}
-              >
-                마음을
-              </Box>
-              <Box
-                sx={{
-                  display: 'inline',
-                  fontWeight: 700,
-                  fontFamily: 'Noto Sans KR',
-                  mx: 0,
-                  fontSize: 24,
-                  color: '#f48fb1',
-                }}
-              >
-                모두모아
-              </Box>
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 300,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  마음을
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 700,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  모두모아
+                </Box>
+              </Link>
             </Typography>
             <Box
               sx={{
@@ -101,7 +106,9 @@ const TopAppBar = () => {
                 마이페이지
               </Button>
             </Box>
-            <SearchIcon sx={{fontSize: 34, mt:0.5}}/>
+            <Link to="/search" style={{color: 'inherit'}} >
+              <SearchIcon sx={{fontSize: 34, mt:0.5}}/>
+            </Link>
           </Toolbar>
         </Container>
       </AppBar>
