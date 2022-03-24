@@ -177,7 +177,7 @@ const Root = styled(Box)(() => ({
   overflow: 'hidden',
   backgroundSize: 'cover',
   borderRadius: '6px',
-  width: 300,
+  width: 230,
   height: 240,
   margin: 10,
   color: '#000',
