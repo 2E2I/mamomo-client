@@ -1,31 +1,44 @@
-import React from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { Box, Grid, styled, Container } from '@mui/material';
 import Card2 from './DonationCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
-import { useEffect } from 'react';
 import axios from 'axios';
-import { useState } from 'react';
+
+import { useInView } from 'react-intersection-observer';
 
 const DonationListByCategorie = () => {
-  const menus = [1, 2, 3, 4, 5, 6, 7, ,8 ,9, 10, 11, 12, 13, 14, 15, 16,];
-  const [category, setCategory] = useState('');
   const [campaign, setCampaign] = useState({});
 
-  const menuList = menus.map(
+
+
+  const [result, setResult] = useState([]);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [ref, inView] = useInView();
+
+  const fetchMoreData = async() => {
+    setLoading(true);
+    setResult(result.concat(items.slice(0,20)));
+    setItems(items.slice(20));
+    setLoading(false);
+  }
+
+  const menuList = result.map(
     (menu, index) =>
-      Object.keys(campaign) !== undefined && (
-        <Box sx={{mb:6,}}>
-          <Card2
-            key={index}
-            campaign={
-              Object.keys(campaign) !== undefined &&
-              Object.entries(campaign)[0] !== undefined &&
-              Object.entries(campaign)[0][1][menu]
-            }
-          />
+      Object.keys(result) !== undefined && (
+        <Box sx={{ mb: 6 }}>
+          <Card2 key={index} campaign={menu} />
         </Box>
       ),
   );
+
+    useEffect(() => {
+      // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+      if (inView && !loading) {
+        fetchMoreData();
+      }
+    }, [inView, loading]);
 
   useEffect(() => {
     axios
@@ -35,6 +48,13 @@ const DonationListByCategorie = () => {
       .then((result) => {
         console.log('연결');
         setCampaign(result.data);
+
+
+        let response = Object.entries(result.data)[0][1];
+        setResult(response.slice(0,20));
+        response = response.slice(20);
+        setItems(response);
+        setLoading(false);
       })
       .catch(() => {
         console.log('연결실패');
@@ -56,6 +76,7 @@ const DonationListByCategorie = () => {
             <ListBox container justifyContent="center">
               {menuList}
             </ListBox>
+            <div ref={ref}>로딩중... {inView.toString()}</div>
           </>
         )}
     </>
