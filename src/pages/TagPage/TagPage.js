@@ -1,6 +1,8 @@
-import React, { useEffect } from 'react';
-import { Container } from 'react-bootstrap';
+import React from 'react';
+import { Container, Grid } from '@mui/material';
+
 import TagPageDonationList from '../../components/tagPageComponents/TagPageDonationList'
+import TagTitle from '../../components/tagPageComponents/TagTitle';
 import TopAppBar from '../../components/TopAppBar';
 
 const TagPage = () => {
@@ -13,9 +15,13 @@ const TagPage = () => {
       disablegutters="true"
       justify="center"
       >
-        <TopAppBar />
-        <TagPageDonationList />
-  </Container>
+      
+      <TopAppBar />
+        <Grid container justifyContent="center">
+          <TagTitle/>
+          <TagPageDonationList />
+        </Grid>
+    </Container>
   )
 }
 
