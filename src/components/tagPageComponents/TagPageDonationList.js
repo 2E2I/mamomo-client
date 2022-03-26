@@ -1,12 +1,14 @@
-import React, { useState } from 'react';
-import { Box, Grid, styled, Container } from '@mui/material';
-import Card from '../DonationCard';
-import { useEffect } from 'react';
-import axios from 'axios';
+import React, { useState, useEffect } from 'react';
+import { Box, styled } from '@mui/material';
 
-const TagPageDonationList = (props) => {
+import Card from '../DonationCard';
+import axios from 'axios';
+import { SearchPageStore } from '../../store/SearchPageStore';
+
+const TagPageDonationList = () => {
   const menus = [1, 2, 3, 4];
   const [campaign, setCampaign] = useState('');
+  const { categoryIndex, setCategoryIndex } = SearchPageStore();
 
   const menuList = menus.map(
     (menu, index) =>
@@ -25,7 +27,7 @@ const TagPageDonationList = (props) => {
   useEffect(() => {
     axios
       .get(
-        `http://localhost:8080/api/campaigns?category=1`,
+        `http://localhost:8080/api/campaigns?category=${categoryIndex}`,
       )
       .then((result) => {
         console.log('연결');
@@ -42,11 +44,7 @@ const TagPageDonationList = (props) => {
       {Object.keys(campaign) !== undefined &&
         Object.entries(campaign)[0] !== undefined && (
           <>
-            <Box sx={{ mt: 1 }}>
-              {/* <ListTitle>
-                {props.campaign.campaigns[props.category].category}
-              </ListTitle> */}
-            </Box>
+            <Box sx={{ mt: 1 }} />
             <ListBox container justifyContent="center">
               {menuList}
             </ListBox>
@@ -60,13 +58,4 @@ export default TagPageDonationList;
 
 const ListBox = styled(Box)(() => ({
   display: 'flex',
-}));
-
-const ListTitle = styled(Box)(() => ({
-  display: 'flex',
-  fontWeight: '500',
-  fontFamily: 'Noto Sans KR',
-  fontSize: 20,
-  flexWrap: 'nowrap',
-  marginLeft: '10px',
 }));

@@ -3,16 +3,20 @@ import { Box, Chip, styled } from '@mui/material';
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
+import { Route } from 'react-router-dom/cjs/react-router-dom.min';
+
+import TagPageDonationList from '../../components/tagPageComponents/TagPageDonationList'
+import { SearchPageStore } from '../../store/SearchPageStore';
 
 const Tag = () => {
   const [tag, setTag] = useState('');
-  const [num, setNum] = useState();
   const categories = Object.values(tag);
-  const list = categories[0]
+  const list = categories[0];
+  const { setCategoryIndex, setTagName } = SearchPageStore();
 
   const categoryList = list && list.map(
     (tag, index) => (
-      <Link to= "/tags" style={{ textDecoration: 'none' }}>
+      <Link to={`tags/${tag}`} style={{ textDecoration: 'none' }}>
         <TagChip key={index}
           label={
             <InnerBox>#{tag}</InnerBox>
@@ -22,8 +26,8 @@ const Tag = () => {
           clickable
           onClick={() =>
             {
-              setNum(index);
-              console.log(index);
+              setCategoryIndex(index+1);
+              setTagName(list[index]);
               return () => {};
             }
           }
@@ -48,9 +52,13 @@ useEffect(() => {
 }, []);
 
   return (
-   <TagBox>
-     {categoryList}
-   </TagBox>
+    <>
+      <TagBox>
+      {categoryList}
+      </TagBox>
+      <Route path={`tags/:tag`} component={TagPageDonationList}/>
+    </>
+
  )
 }
 

@@ -17,7 +17,7 @@ function App() {
       <Route path="/test" exact={true} component={DesignTestPage} />
       <Route path="/test2" exact={true} component={MainPage2} />
       <Route path="/categorie" exact={true} component={CategoriePage} />
-      <Route path="/tags" exact={true} component={TagPage} />
+      <Route path="/tags/:tag" exact={true} component={TagPage} />
     </div>
   );
 }
