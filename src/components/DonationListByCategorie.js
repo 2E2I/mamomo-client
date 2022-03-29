@@ -5,11 +5,10 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import axios from 'axios';
 
 import { useInView } from 'react-intersection-observer';
+import { CategoryStore } from '../store/CategoryPageStore';
 
 const DonationListByCategorie = () => {
   const [campaign, setCampaign] = useState({});
-
-
 
   const [result, setResult] = useState([]);
   const [items, setItems] = useState([]);
@@ -17,12 +16,15 @@ const DonationListByCategorie = () => {
 
   const [ref, inView] = useInView();
 
-  const fetchMoreData = async() => {
+  const { category, setCategory } = CategoryStore(); //zustand
+  const { categoryList, setCategoryList } = CategoryStore(); //zustand
+
+  const fetchMoreData = async () => {
     setLoading(true);
-    setResult(result.concat(items.slice(0,20)));
+    setResult(result.concat(items.slice(0, 20)));
     setItems(items.slice(20));
     setLoading(false);
-  }
+  };
 
   const menuList = result.map(
     (menu, index) =>
@@ -33,25 +35,26 @@ const DonationListByCategorie = () => {
       ),
   );
 
-    useEffect(() => {
-      // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
-      if (inView && !loading) {
-        fetchMoreData();
-      }
-    }, [inView, loading]);
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      fetchMoreData();
+    }
+  }, [inView, loading]);
 
   useEffect(() => {
+    let a = `http://localhost:8080/api/campaigns?category=${category}&sort=due_date,asc`;
+    category == 0 &&
+      (a = `http://localhost:8080/api/campaigns?sort=due_date,asc`);
     axios
-      .get(
-        `http://localhost:8080/api/campaigns?category=${1}&sort=due_date,asc`,
-      )
+      .get(a)
       .then((result) => {
         console.log('연결');
+        console.log(Object.entries(result.data)[0][1]);
         setCampaign(result.data);
 
-
         let response = Object.entries(result.data)[0][1];
-        setResult(response.slice(0,20));
+        setResult(response.slice(0, 20));
         response = response.slice(20);
         setItems(response);
         setLoading(false);
@@ -59,8 +62,9 @@ const DonationListByCategorie = () => {
       .catch(() => {
         console.log('연결실패');
       });
+
     return () => {};
-  }, []);
+  }, [category]);
 
   return (
     <>
@@ -69,8 +73,9 @@ const DonationListByCategorie = () => {
           <>
             <Box sx={{ mt: 1 }}>
               <ListTitle>
-                {campaign.campaigns[1].category}
-                <ArrowForwardIosIc />
+                {/* {campaign.campaigns[1].category}
+                {categoryList[category]}
+                <ArrowForwardIosIc /> */}
               </ListTitle>
             </Box>
             <ListBox container justifyContent="center">
@@ -81,7 +86,7 @@ const DonationListByCategorie = () => {
         )}
     </>
   );
-};
+};;
 
 export default DonationListByCategorie;
 
