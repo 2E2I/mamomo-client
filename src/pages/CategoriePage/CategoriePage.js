@@ -3,7 +3,8 @@ import { Box, Container } from '@mui/material';
 import TopAppBar from '../../components/TopAppBar';
 import Categories from '../../components/Categories';
 import DonationListByCategorie from '../../components/DonationListByCategorie';
-
+import SortBox from '../../components/SortBox';
+import CategoryPageTest from '../../components/CategoryPageTest';
 
 const MainPage2 = () => {
   return (
@@ -18,11 +19,12 @@ const MainPage2 = () => {
       justify="center"
     >
       <TopAppBar />
+      <CategoryPageTest />
       <br />
-
       <Categories />
       <br />
       <br />
+      <SortBox />
 
       <DonationListByCategorie />
       <hr />

@@ -58,7 +58,7 @@ const Card = ({ campaign }) => {
     setSiteType(campaign !== undefined && campaign.siteType);
 
     return () => {};
-  }, []);
+  }, [campaign]);
 
   const customImgUrl = () => {
     const modifyUrEnd = String(img).substring(String(img).indexOf(')') + 1);
