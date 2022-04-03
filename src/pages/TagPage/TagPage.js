@@ -8,21 +8,20 @@ import TopAppBar from '../../components/TopAppBar';
 const TagPage = () => {
   return (
     <Container
-      maxwidth="false"
+      maxWidth={false}
       sx={{
-        width:"1000px",
-      }} 
-      disablegutters="true"
+        width: '1000px',
+      }}
+      disableGutters={true}
       justify="center"
-      >
-      
+    >
       <TopAppBar />
-        <Grid container justifyContent="center">
-          <TagTitle/>
-          <TagPageDonationList />
-        </Grid>
+      <Grid container justifyContent="center">
+        <TagTitle />
+        <TagPageDonationList />
+      </Grid>
     </Container>
-  )
+  );
 }
 
 export default TagPage;

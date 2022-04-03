@@ -4,50 +4,80 @@ import { Box, styled } from '@mui/material';
 import Card from '../DonationCard';
 import axios from 'axios';
 import { SearchPageStore } from '../../store/SearchPageStore';
+import { useInView } from 'react-intersection-observer';
 
 const TagPageDonationList = () => {
-  const menus = [1, 2, 3, 4];
-  const [campaign, setCampaign] = useState('');
-  const { categoryIndex, setCategoryIndex } = SearchPageStore();
+  const [campaign, setCampaign] = useState({});
 
-  const menuList = menus.map(
+  const [result, setResult] = useState([]);
+  const [items, setItems] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+  const [ref, inView] = useInView();
+
+  const { categoryIndex } = SearchPageStore(); //zustand
+
+  const fetchMoreData = async () => {
+    setLoading(true);
+    setResult(result.concat(items.slice(0, 20)));
+    setItems(items.slice(20));
+    setLoading(false);
+  };
+
+  const menuList = result.map(
     (menu, index) =>
-      Object.keys(campaign) !== undefined && (
-        <Card
-          key={index}
-          campaign={
-            Object.keys(campaign) !== undefined &&
-            Object.entries(campaign)[0] !== undefined &&
-            Object.entries(campaign)[0][1][menu]
-          }
-        />
+      Object.keys(result) !== undefined && (
+        <Box sx={{ mb: 6 }}>
+          <Card key={index} campaign={menu} />
+        </Box>
       ),
   );
 
   useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      fetchMoreData();
+    }
+  }, [inView, loading]);
+
+  useEffect(() => {
+    let a = `http://localhost:8080/api/campaigns?category=${categoryIndex}&sort=due_date,asc`;
     axios
-      .get(
-        `http://localhost:8080/api/campaigns?category=${categoryIndex}`,
-      )
+      .get(a)
       .then((result) => {
         console.log('연결');
+        console.log(Object.entries(result.data)[0][1]);
         setCampaign(result.data);
+
+        let response = Object.entries(result.data)[0][1];
+        setResult(response.slice(0, 20));
+        response = response.slice(20);
+        setItems(response);
+        setLoading(false);
       })
       .catch(() => {
         console.log('연결실패');
       });
+
     return () => {};
-  }, []);
+  }, [categoryIndex]);
 
   return (
     <>
       {Object.keys(campaign) !== undefined &&
         Object.entries(campaign)[0] !== undefined && (
           <>
-            <Box sx={{ mt: 1 }} />
+            <Box sx={{ mt: 1 }}>
+              <ListTitle>
+                {/* {campaign.campaigns[1].category}
+                {categoryList[category]}
+                <ArrowForwardIosIc /> */}
+              </ListTitle>
+            </Box>
             <ListBox container justifyContent="center">
               {menuList}
             </ListBox>
+            <div ref={ref}>로딩중... {inView.toString()}</div>
           </>
         )}
     </>
@@ -58,4 +88,15 @@ export default TagPageDonationList;
 
 const ListBox = styled(Box)(() => ({
   display: 'flex',
+  flexWrap: 'wrap',
 }));
+
+const ListTitle = styled(Box)(() => ({
+  display: 'flex',
+  fontWeight: '500',
+  fontFamily: 'Noto Sans KR',
+  fontSize: 20,
+  flexWrap: 'nowrap',
+  marginLeft: '10px',
+}));
+
