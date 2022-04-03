@@ -5,7 +5,6 @@ import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
-import TagPageDonationList from '../../components/tagPageComponents/TagPageDonationList'
 import { SearchPageStore } from '../../store/SearchPageStore';
 
 const Tag = () => {
@@ -14,33 +13,27 @@ const Tag = () => {
   const list = categories[0];
   const { setCategoryIndex, setTagName } = SearchPageStore();
 
-  const categoryList = list && list.map(
-    (tag, index) => (
+  const categoryList =
+    list &&
+    list.map((tag, index) => (
       <Link to={`tags/${tag}`} style={{ textDecoration: 'none' }}>
-        <TagChip key={index}
-          label={
-            <InnerBox>#{tag}</InnerBox>
-          }
-          variant='outlined'
-          color='primary'
-          clickable
-          onClick={() =>
-            {
-              setCategoryIndex(index+1);
+          <TagChip
+            key={index}
+            label={<InnerBox>#{tag}</InnerBox>}
+            variant="outlined"
+            color="primary"
+            clickable
+            onClick={() => {
+              setCategoryIndex(index + 1);
               setTagName(list[index]);
-              return () => {};
-            }
-          }
-        />
+            }}
+          />
       </Link>
-   )
-)
+    ));
 
 useEffect(() => {
   axios
-    .get(
-      `http://localhost:8080/api/categories`,
-    )
+    .get(`http://localhost:8080/api/categories`)
     .then((result) => {
       console.log('연결');
       setTag(result.data);
@@ -53,13 +46,12 @@ useEffect(() => {
 
   return (
     <>
-      <TagBox>
-      {categoryList}
-      </TagBox>
-      <Route path={`tags/:tag`} component={TagPageDonationList}/>
-    </>
+ 
+        <TagBox>{categoryList}</TagBox>
+        {/* <Route path={`tags/:tag`} component={TagPageDonationList}/> */}
 
- )
+    </>
+  );
 }
 
 export default Tag;
@@ -90,3 +82,7 @@ const TagChip = styled(Chip)(() => ({
 const InnerBox = styled(Box)(() => ({
  fontSize: { xs: 13, md: 16 },
 }))
+
+const Loading = () => {
+  return <>loading</>;
+};

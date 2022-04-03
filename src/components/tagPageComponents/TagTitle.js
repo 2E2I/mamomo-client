@@ -7,14 +7,6 @@ const TagTitle = () => {
   const { tagName } = SearchPageStore();
 
   return (
-    <Container
-      maxwidth="false"
-      sx={{
-        width:"1000px",
-      }} 
-      disablegutters="true"
-      justify="center"
-    >
       <Box
         sx={{
           display: 'flex',
@@ -38,7 +30,6 @@ const TagTitle = () => {
           #{tagName}
         </Box>
       </Box>
-    </Container>
   )
 }
 
