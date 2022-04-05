@@ -15,12 +15,30 @@ const CategoryStore = create((set) => ({
     '동물',
     '환경',
   ],
+  storePage: 0,
+
+  totalElements: 0,
+
+  pageSize: 0,
 
   setCategory(ap) {
     set(() => ({ category: ap }));
   },
   setCategoryList(ap) {
     set(() => ({ category: ap }));
+  },
+  setStorePage(ap) {
+    set(() => ({ storePage: ap }));
+  },
+  setTotlaPage(ap) {
+    set(() => ({ totalElements: ap }));
+  },
+  setPageSize(ap) {
+    set(() => ({ pageSize: ap }));
+  },
+
+  initializeStorePage(ap) {
+    set(() => ({ storePage: 0 }));
   },
 }));
 

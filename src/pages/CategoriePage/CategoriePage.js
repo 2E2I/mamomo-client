@@ -5,6 +5,7 @@ import Categories from '../../components/Categories';
 import DonationListByCategorie from '../../components/DonationListByCategorie';
 import SortBox from '../../components/SortBox';
 import CategoryPageTest from '../../components/CategoryPageTest';
+import Paging from '../../components/Paging';
 
 const MainPage2 = () => {
   return (
@@ -27,7 +28,10 @@ const MainPage2 = () => {
       <SortBox />
 
       <DonationListByCategorie />
-      <hr />
+      <Paging />
+      <br />
+      <br />
+      <br />
     </Container>
   );
 };
