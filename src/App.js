@@ -6,6 +6,7 @@ import SearchPage from './pages/SearchPage';
 import DesignTestPage from './pages/DesignTestPage/DesignTestPage';
 import TagPage from './pages/TagPage/TagPage';
 import CategoriePage from './pages/CategoriePage/CategoriePage';
+import SearchingPage from './pages/SearchingPage/SearchingPage';
 
 import { Link, Route, Switch } from 'react-router-dom';
 
@@ -18,6 +19,7 @@ function App() {
       <Route path="/test2" exact={true} component={MainPage2} />
       <Route path="/categorie" exact={true} component={CategoriePage} />
       <Route path="/tags/:tag" exact={true} component={TagPage} />
+      <Route path="/searching" exact={true} component={SearchingPage} />
     </div>
   );
 }

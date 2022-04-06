@@ -4,8 +4,14 @@ import { Box, Grid } from '@mui/material';
 import InputBase from '@mui/material/InputBase';
 import IconButton from '@mui/material/IconButton';
 import SearchIcon from '@mui/icons-material/Search';
+import { Link } from 'react-router-dom';
 
-export const RoundSearchBar = () => {
+import { SearchPageStore } from '../store/SearchPageStore';
+
+export const RoundSearchBar = ( { history } ) => {
+
+  let { setWord } = SearchPageStore();
+
   return (
     <Grid container justifyContent="center">
       <Box
@@ -31,13 +37,19 @@ export const RoundSearchBar = () => {
             boxShadow: '0',
           }}
         >
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-            <SearchIcon />
-          </IconButton>
+          <Link to='/searching'>
+            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
+              <SearchIcon />
+            </IconButton>
+          </Link>
+
           <InputBase
             sx={{ ml: 1, flex: 1 }}
             placeholder="검색어를 입력하세요"
             inputProps={{ 'aria-label': '검색어를 입력하세요' }}
+            onChange={ (e) => {
+              setWord(e.target.value)
+            }}
           />
         </Paper>
       </Box>
