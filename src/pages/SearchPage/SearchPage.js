@@ -1,5 +1,6 @@
 import React from 'react';
 import { Grid, Container } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/RoundSearchBar';
@@ -10,7 +11,23 @@ import Top10TagTitle from '../../components/searchPageComponents/Top10TagTitle';
 import Top10Tag from '../../components/searchPageComponents/Top10Tag';
 import RecoTagTitle from '../../components/searchPageComponents/RecomendationTagTitle'
 
+import { SearchPageStore } from '../../store/SearchPageStore';
+
 const SearchPage = () => {
+
+  let { word, setWord } = SearchPageStore();
+
+  const onClick = () => {
+    <Link to="/searching"></Link>
+  }
+
+  const onKeyPress = (e) => {
+    if (e.key === 'Enter') {
+      setWord(word);
+      onClick();
+    }
+  }
+
   return (
     <Container
       maxWidth={false}
@@ -22,7 +39,8 @@ const SearchPage = () => {
     >
 
       <TopAppBar />
-      <RoundSearchBar />
+      <RoundSearchBar onKeyPress={onKeyPress}>
+      </RoundSearchBar>
 
       {/* 인기태그 top10 */}
       <Grid container justifyContent="center">
@@ -40,6 +58,9 @@ const SearchPage = () => {
         <CategoryTagTitle />
         <CategoryTags />
       </Grid>
+
+      <hr/>{word}
+
     </Container>
   )
 };

@@ -16,6 +16,12 @@ const SearchPageStore = createStore(
       setTagName: (name) => {
         set(() => ({ tagName: name }));
       },
+
+      word: '',
+      setWord: (word) => {
+        set(() => ({ word: word }))
+      }
+
     }),
   ),
 );
