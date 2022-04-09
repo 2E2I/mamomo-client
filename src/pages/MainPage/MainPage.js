@@ -6,6 +6,8 @@ import CardList2 from '../../components/mainPageComponents/MainPageDonationList'
 import Card from '../../components/OldDonationCard';
 import MainCarousel from '../../components/mainPageComponents/Carousel2';
 import Categories from '../../components/Tags';
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const MainPage = () => {
     return (
@@ -21,9 +23,6 @@ const MainPage = () => {
       >
         <TopAppBar />
         <MainCarousel />
-        <br/>
-
-        <RoundSearchBar />
         <br />
         <Categories />
         
