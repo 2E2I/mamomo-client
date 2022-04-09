@@ -20,8 +20,12 @@ const Tag = () => {
   const [tag, setTag] = useState({});
   const [tag1, setTag1] = useState({});
   const [tagClick, setTagClick] = useState(false);
-  const { categoryLists, setCategoryList, initializeStorePage } =
-    CategoryStore(); //zustand
+  const {
+    categoryLists,
+    setCategoryList,
+    initializeStorePage,
+    initializeSortValue,
+  } = CategoryStore(); //zustand
   let categories = Object.values(tag);
   const list = categories[0];
   let b = [];
@@ -100,7 +104,13 @@ const Tag = () => {
 };;;
 
 function Test(props) {
-  const { category, setCategory, initializeStorePage } = CategoryStore();
+  const {
+    category,
+    setCategory,
+    initializeStorePage,
+    initializeSortValue,
+    initializeSortIndex,
+  } = CategoryStore();
   let color;
   if (props.index == category) {
     color = '#f8bbd0';
@@ -114,6 +124,8 @@ function Test(props) {
       onClick={() => {
         setCategory(props.index);
         initializeStorePage();
+        initializeSortValue();
+        initializeSortIndex();
         console.log(category);
       }}
       textAlign="center"

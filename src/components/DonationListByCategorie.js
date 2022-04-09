@@ -14,7 +14,7 @@ const DonationListByCategorie = () => {
   const [loading, setLoading] = useState(true);
 
   const { category, setCategory } = CategoryStore(); //zustand
-  const { categoryList, setCategoryList, setTotlaPage, setPageSize } =
+  const { categoryList, setCategoryList, setTotlaPage, setPageSize, sortValue } =
     CategoryStore(); //zustand
   const { storePage, setStorePage } = CategoryStore(); //zustand
 
@@ -35,15 +35,21 @@ const DonationListByCategorie = () => {
   );
 
   useEffect(() => {
-    let a = `http://localhost:8080/api/campaigns?page=${storePage}&size=20&category=${category}&sort=due_date,ASC`;
+    let a = `http://localhost:8080/api/campaigns?page=${storePage}&size=20&category=${category}&${sortValue}`;
+    console.log(sortValue);
     category == 0 &&
-      (a = `http://localhost:8080/api/campaigns?page=${storePage}&size=20&sort=due_date,ASC`);
+      (a = `http://localhost:8080/api/campaigns?page=${storePage}&${sortValue}`);
     axios
       .get(a)
       .then((result) => {
         console.log('연결');
         console.log('storePage'+ storePage);
-        console.log('ps' + Object.entries(result.data)[0][1].totalElements);
+        console.log(
+          'totalElements' + Object.entries(result.data)[0][1].totalElements,
+        );
+        console.log(
+          'pageSize' + Object.entries(result.data)[0][1].pageable.pageSize,
+        );
         setCampaign(result.data);
         setTotlaPage(Object.entries(result.data)[0][1].totalElements);
         setPageSize(Object.entries(result.data)[0][1].pageable.pageSize);
@@ -56,7 +62,7 @@ const DonationListByCategorie = () => {
       });
 
     return () => {};
-  }, [category, storePage]);
+  }, [category, storePage, sortValue]);
 
   return (
     <>

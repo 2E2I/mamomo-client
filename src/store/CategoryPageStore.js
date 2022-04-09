@@ -21,6 +21,10 @@ const CategoryStore = create((set) => ({
 
   pageSize: 0,
 
+  sortValue: 'heart=true',
+
+  sortIndex: 1,
+
   setCategory(ap) {
     set(() => ({ category: ap }));
   },
@@ -39,6 +43,22 @@ const CategoryStore = create((set) => ({
 
   initializeStorePage(ap) {
     set(() => ({ storePage: 0 }));
+  },
+
+  setSortValue(ap) {
+    set(() => ({ sortValue: ap }));
+  },
+
+  initializeSortValue(ap) {
+    set(() => ({ sortValue: 'heart=true' }));
+  },
+
+  setSortIndex(ap) {
+    set(() => ({ sortIndex: ap }));
+  },
+
+  initializeSortIndex(ap) {
+    set(() => ({ sortIndex: 1 }));
   },
 }));
 
