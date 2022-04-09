@@ -19,7 +19,7 @@ import {
   Modal,
   Backdrop,
   Fade,
-  Container
+  Container,
 } from '@mui/material';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -28,10 +28,12 @@ import { Link } from 'react-router-dom';
 import LinearProgress, {
   linearProgressClasses,
 } from '@mui/material/LinearProgress';
+import axios from 'axios';
 
 const pages = ['카카오톡', '페이스북', '트위터'];
 
 const Card = ({ campaign }) => {
+  const [id, setId] = useState('');
   const [img, setImg] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState(''); //쓸지 안쓸지 모름...
@@ -39,7 +41,9 @@ const Card = ({ campaign }) => {
   const [targetPrice, settargetPrice] = useState(0);
   const [statusPrice, setstatusPrice] = useState(0);
   const [url, setUrl] = useState('');
-  const [siteType, setSiteType] = useState('');
+  const [isHeart, setIsHeart] = useState('');
+  const [heartCount, setheartCount] = useState('');
+  const [siteType, setsiteType] = useState('');
 
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [open, setOpen] = useState(false);
@@ -47,7 +51,13 @@ const Card = ({ campaign }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [flag, setFlag] = React.useState(true);
+  const handleClick = () => {
+    setFlag(!flag);
+  };
+
   useEffect(() => {
+    setId(campaign !== undefined && campaign.id);
     setImg(campaign !== undefined && campaign.thumbnail);
     setTitle(campaign !== undefined && campaign.title);
     setBody(campaign !== undefined && campaign.body);
@@ -55,7 +65,9 @@ const Card = ({ campaign }) => {
     settargetPrice(campaign !== undefined && campaign.targetPrice);
     setstatusPrice(campaign !== undefined && campaign.statusPrice);
     setUrl(campaign !== undefined && campaign.url);
-    setSiteType(campaign !== undefined && campaign.siteType);
+    setIsHeart(campaign !== undefined && campaign.isHeart);
+    setheartCount(campaign !== undefined && campaign.heartCount);
+    setsiteType(campaign !== undefined && campaign.siteType);
 
     return () => {};
   }, [campaign]);
@@ -81,21 +93,44 @@ const Card = ({ campaign }) => {
     <>
       <Grow in={true}>
         <Root elevation={0} onClick={handleOpen}>
-          <InnerImage img={customImgUrl()} />
+          <InnerImage img={customImgUrl()}>
+            <SiteTypeBox>{siteType}</SiteTypeBox>
+          </InnerImage>
           <InnerTitleBox component="div">{title}</InnerTitleBox>
           <InnerOrganizationTitleBox>
             {organizationName}
           </InnerOrganizationTitleBox>
+          
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <InnerPriceBox>{priceToString(statusPrice)}원</InnerPriceBox>
             </Grid>
 
             <IconGrid item xs={6}>
-              <IconButton aria-label="add to favorites">
+              <InnerPriceBox
+                onClick={() => {
+                  console.log(isHeart);
+                }}
+              >
+                {heartCount}
+              </InnerPriceBox>
+              <IconButton
+                aria-label="add to favorites"
+                onClick={() => {
+                  const a = async () => {
+                    await axios.post(`http://localhost:8080/api/heart`, {
+                      campaignId: `${id}`,
+                      userId: '550e8400-e29b-41d4-a716-446655440000',
+                    });
+                    await console.log(isHeart);
+                  };
+                  a();
+                }}
+              >
                 <FavoriteIc />
               </IconButton>
-              <IconButton aria-label="share" onClick={handleOpenNavMenu}>
+
+              {/* <IconButton aria-label="share" onClick={handleOpenNavMenu}>
                 <ShareIc />
               </IconButton>
               <Menu
@@ -124,7 +159,7 @@ const Card = ({ campaign }) => {
               </Menu>
               <IconButton aria-label="share">
                 <ImageIc />
-              </IconButton>
+              </IconButton> */}
             </IconGrid>
           </Grid>
           <BorderLinearProgress
@@ -194,6 +229,8 @@ const InnerImage = styled(Box)(({ img }) => ({
   borderRadius: '6px',
   height: '120px',
   backgroundSize: 'inherit',
+  padding: 5,
+  direction: 'rtl',
 }));
 
 const InnerTitleBox = styled(Box)(() => ({
@@ -254,7 +291,8 @@ const ShareIc = styled(ShareIcon)(() => ({
 }));
 
 const FavoriteIc = styled(FavoriteIcon)(() => ({
-  fontSize: 14,
+  fontSize: 15,
+  color: '#f44336',
 }));
 
 const ImageIc = styled(ImageIcon)(() => ({
@@ -265,4 +303,16 @@ const IconGrid = styled(Grid)(() => ({
   direction: 'rtl',
 }));
 
-
+const SiteTypeBox = styled(Box)(() => ({
+  width: 60,
+  fontWeight: 400,
+  fontFamily: 'Noto Sans KR',
+  mx: 0.5,
+  fontSize: 10,
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  color: '#fafafa',
+  backgroundColor: '#4caf50',
+  borderRadius: 4,
+  textAlign: "center",
+}));
