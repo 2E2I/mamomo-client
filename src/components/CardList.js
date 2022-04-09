@@ -6,63 +6,36 @@ import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
 
-const CardList = (props) => {
+const CardList = ({category}) => {
+
   const menus = [1, 2, 3, 4];
-  const [category, setCategory] = useState('');
   const [campaign, setCampaign] = useState({});
 
-  const menuList = menus.map(
+  const menuList = category.content.map(
     (menu, index) =>
-      Object.keys(campaign) !== undefined && (
-        <Card2
-          key={index}
-          campaign={
-            Object.keys(campaign) !== undefined &&
-            Object.entries(campaign)[0] !== undefined &&
-            Object.entries(campaign)[0][1][menu]
-          }
-        />
+      category.content !== undefined && (
+        <Card2 key={index} campaign={menu !== undefined && menu} />
       ),
   );
 
-  useEffect(() => {
-    axios
-      .get(
-        `http://localhost:8080/api/campaigns?category=${props.category}&sort=due_date,asc`,
-      )
-      .then((result) => {
-        console.log('연결');
-        setCampaign(result.data);
-      })
-      .catch(() => {
-        console.log('연결실패');
-      });
-    return () => {};
-  }, []);
 
-  // console.log(
-  //   'test',
-  //   Object.keys(campaign) !== undefined &&
-  //     Object.entries(campaign)[0] !== undefined &&
-  //     Object.entries(campaign)[0][1][0],
-  // );
+  console.log(category.content[1].category);
 
   return (
     <>
-      {Object.keys(campaign) !== undefined &&
-        Object.entries(campaign)[0] !== undefined && (
-          <>
-            <Box sx={{ mt: 1 }}>
-              <ListTitle>
-                {campaign.campaigns[props.category].category}
-                <ArrowForwardIosIc />
-              </ListTitle>
-            </Box>
-            <ListBox container justifyContent="center">
-              {menuList}
-            </ListBox>
-          </>
-        )}
+      {category.content !== undefined && (
+        <>
+          <Box sx={{ mt: 2 }}>
+            <ListTitle>
+              {category.content[0].category}
+              <ArrowForwardIosIc />
+            </ListTitle>
+          </Box>
+          <ListBox container justifyContent="center">
+            {menuList}
+          </ListBox>
+        </>
+      )}
     </>
   );
 };
