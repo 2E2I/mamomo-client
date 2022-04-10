@@ -15,16 +15,17 @@ import { SearchPageStore } from '../../store/SearchPageStore';
 
 const SearchPage = () => {
 
-  let { word, setWord } = SearchPageStore();
+  let { word } = SearchPageStore();
 
   const onClick = () => {
-    <Link to="/searching"></Link>
+    <Link to='/searching'></Link>
   }
 
   const onKeyPress = (e) => {
-    if (e.key === 'Enter') {
-      setWord(word);
-      onClick();
+    if (word.length >= 2) {
+      if (e.key === 'Enter') {
+        onClick();
+      }
     }
   }
 
@@ -39,8 +40,7 @@ const SearchPage = () => {
     >
 
       <TopAppBar />
-      <RoundSearchBar onKeyPress={onKeyPress}>
-      </RoundSearchBar>
+      <RoundSearchBar onKeyDown={onKeyPress} />
 
       {/* 인기태그 top10 */}
       <Grid container justifyContent="center">
@@ -58,9 +58,6 @@ const SearchPage = () => {
         <CategoryTagTitle />
         <CategoryTags />
       </Grid>
-
-      <hr/>{word}
-
     </Container>
   )
 };
