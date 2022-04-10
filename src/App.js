@@ -20,6 +20,7 @@ function App() {
       <Route path="/categorie" exact={true} component={CategoriePage} />
       <Route path="/tags/:tag" exact={true} component={TagPage} />
       <Route path="/searching" exact={true} component={SearchingPage} />
+      {/* <Route path="/search/:word" exact={true} component={SearchingPage} /> */}
     </div>
   );
 }
