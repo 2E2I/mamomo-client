@@ -11,7 +11,7 @@ const TagTitle = () => {
         sx={{
           display: 'flex',
           //border: 1,
-          margin: '50px 0 50px 0',
+          margin: '30px 0 50px 0',
         }}
       >
         <Box
