@@ -30,16 +30,42 @@ export const RoundSearchBar = () => {
             alignItems: 'center',
             width: '100%',
             borderRadius: 20,
-            borderColor: '#9e9e9e',
+            borderColor: '#f7f7f7',
+            backgroundColor: '#f7f7f7',
             boxShadow: '0',
           }}
         >
-          <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-            <SearchIcon />
+          <IconButton
+            type="submit"
+            sx={{
+              "&:hover": {
+                backgroundColor: "transparent",
+                cursor: "default"
+                },
+              p: '10px',
+            }}
+            aria-label="search"
+          >
+            <SearchIcon
+              sx={{
+                width: '35px',
+                height: '35px',
+                color: '#424242',
+              }}
+            >
+            </SearchIcon>
           </IconButton>
 
           <InputBase
-            sx={{ ml: 1, flex: 1 }}
+            sx={{
+              ml: 1,
+              flex: 1,
+              fontWeight: 700,
+              fontFamily: 'Noto Sans KR',
+              mx: 0,
+              fontSize: 20,
+              color: '#424242',
+            }}
             placeholder="검색어를 입력하세요"
             value={word}
             onChange={ (e) => {
