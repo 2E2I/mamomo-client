@@ -5,6 +5,7 @@ import Card from '../DonationCard';
 import axios from 'axios';
 import { SearchPageStore } from '../../store/SearchPageStore';
 import { useInView } from 'react-intersection-observer';
+import { CategoryStore } from '../../store/CategoryPageStore';
 
 const TagPageDonationList = () => {
   const [campaign, setCampaign] = useState({});
@@ -16,6 +17,7 @@ const TagPageDonationList = () => {
   const [ref, inView] = useInView();
 
   const { categoryIndex } = SearchPageStore(); //zustand
+  const { setTotlaPage, setPageSize, sortValue, storePage } = CategoryStore(); //zustand
 
   const fetchMoreData = async () => {
     setLoading(true);
@@ -41,26 +43,31 @@ const TagPageDonationList = () => {
   }, [inView, loading]);
 
   useEffect(() => {
-    let a = `http://localhost:8080/api/campaigns?category=${categoryIndex}&sort=due_date,asc`;
+    let a = `http://localhost:8080/api/campaigns?page=${storePage}&size=20&category=${categoryIndex}&${sortValue}`;
     axios
       .get(a)
       .then((result) => {
         console.log('연결');
         console.log(Object.entries(result.data)[0][1]);
         setCampaign(result.data);
+        setTotlaPage(Object.entries(result.data)[0][1].totalElements);
+        setPageSize(Object.entries(result.data)[0][1].pageable.pageSize);
 
-        let response = Object.entries(result.data)[0][1];
-        setResult(response.slice(0, 20));
-        response = response.slice(20);
-        setItems(response);
+
+        let response = Object.entries(result.data)[0][1].content;
+        setResult(response);
+        //setResult(response.slice(0, 20));
+        //response = response.slice(20);
+        //setItems(response);
         setLoading(false);
       })
-      .catch(() => {
+      .catch((error) => {
+        console.log(error);
         console.log('연결실패');
       });
 
     return () => {};
-  }, [categoryIndex]);
+  }, [categoryIndex, storePage, sortValue]);
 
   return (
     <>
