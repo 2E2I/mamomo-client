@@ -1,8 +1,6 @@
-import React, { useEffect } from 'react';
-import Paper from '@mui/material/Paper';
-import { Box, Grid } from '@mui/material';
-import InputBase from '@mui/material/InputBase';
-import IconButton from '@mui/material/IconButton';
+import React from 'react';
+
+import { Box, Grid, Paper, InputBase, IconButton  } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 import { Link } from 'react-router-dom';
 
@@ -33,18 +31,44 @@ export const RoundSearchBar = () => {
             alignItems: 'center',
             width: '100%',
             borderRadius: 20,
-            borderColor: '#9e9e9e',
+            borderColor: '#f7f7f7',
+            backgroundColor: '#f7f7f7',
             boxShadow: '0',
           }}
         >
           <Link to='/searching'>
-            <IconButton type="submit" sx={{ p: '10px' }} aria-label="search">
-              <SearchIcon />
+            <IconButton
+              type="submit"
+              sx={{
+                "&:hover": {
+                  backgroundColor: "transparent",
+                  cursor: "default"
+                  },
+                p: '10px',
+              }}
+              aria-label="search"
+            >
+              <SearchIcon
+                sx={{
+                  width: '35px',
+                  height: '35px',
+                  color: '#424242',
+                }}
+              >
+              </SearchIcon>
             </IconButton>
           </Link>
 
           <InputBase
-            sx={{ ml: 1, flex: 1 }}
+            sx={{
+              ml: 1,
+              flex: 1,
+              fontWeight: 700,
+              fontFamily: 'Noto Sans KR',
+              mx: 0,
+              fontSize: 20,
+              color: '#424242',
+            }}
             placeholder="검색어를 입력하세요"
             inputProps={{ 'aria-label': '검색어를 입력하세요' }}
             onChange={ (e) => {
