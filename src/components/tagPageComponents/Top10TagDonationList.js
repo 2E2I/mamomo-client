@@ -3,11 +3,12 @@ import { Box, styled } from '@mui/material';
 
 import Card from '../DonationCard';
 import axios from 'axios';
-import { SearchPageStore } from '../../store/SearchPageStore';
 import { useInView } from 'react-intersection-observer';
+
+import { SearchPageStore } from '../../store/SearchPageStore';
 import { CategoryStore } from '../../store/CategoryPageStore';
 
-const TagPageDonationList = () => {
+const Top10TagDonationList = () => {
   const [campaign, setCampaign] = useState({});
 
   const [result, setResult] = useState([]);
@@ -16,7 +17,7 @@ const TagPageDonationList = () => {
 
   const [ref, inView] = useInView();
 
-  const { categoryIndex } = SearchPageStore(); //zustand
+  const { categoryIndex, tagName } = SearchPageStore(); //zustand
   const { setTotlaPage, setPageSize, sortValue, storePage } = CategoryStore(); //zustand
 
   const fetchMoreData = async () => {
@@ -43,7 +44,7 @@ const TagPageDonationList = () => {
   }, [inView, loading]);
 
   useEffect(() => {
-    let a = `http://localhost:8080/api/campaigns?page=${storePage}&size=20&category=${categoryIndex}&${sortValue}`;
+    let a = `http://localhost:8080/api/tag/${tagName}?page=${storePage}&size=20&${sortValue}`;
     axios
       .get(a)
       .then((result) => {
@@ -84,14 +85,13 @@ const TagPageDonationList = () => {
             <ListBox container justifyContent="center">
               {menuList}
             </ListBox>
-            <div ref={ref}>로딩중... {inView.toString()}</div>
           </>
         )}
     </>
   );
 };
 
-export default TagPageDonationList;
+export default Top10TagDonationList;
 
 const ListBox = styled(Box)(() => ({
   display: 'flex',
