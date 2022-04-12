@@ -9,6 +9,7 @@ import CategoriePage from './pages/CategoriePage/CategoriePage';
 import SearchingPage from './pages/SearchingPage/SearchingPage';
 
 import { Link, Route, Switch } from 'react-router-dom';
+import SignInPage from './pages/SignInPage';
 
 function App() {
   return (
@@ -20,7 +21,7 @@ function App() {
       <Route path="/categorie" exact={true} component={CategoriePage} />
       <Route path="/tags/:tag" exact={true} component={TagPage} />
       <Route path="/searching" exact={true} component={SearchingPage} />
-      {/* <Route path="/search/:word" exact={true} component={SearchingPage} /> */}
+      <Route path="/signin" exact={true} component={SignInPage} />
     </div>
   );
 }
