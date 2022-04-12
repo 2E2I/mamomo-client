@@ -2,12 +2,17 @@ import React from 'react';
 import { Container, Grid } from '@mui/material';
 
 import TopAppBar from '../../components/TopAppBar';
-import TagPageDonationList from '../../components/tagPageComponents/TagPageDonationList'
 import TagTitle from '../../components/tagPageComponents/TagTitle';
 import Paging from '../../components/Paging';
 import SortBox from '../../components/SortBox';
+import CategoryTagDonationList from '../../components/tagPageComponents/CategoryTagDonationList'
+import Top10TagDonationList from '../../components/tagPageComponents/Top10TagDonationList';
+import { SearchPageStore } from '../../store/SearchPageStore'
 
 const TagPage = () => {
+
+  const { tagType } = SearchPageStore();
+
   return (
     <Container
       maxWidth={false}
@@ -21,7 +26,14 @@ const TagPage = () => {
       <Grid container justifyContent="center">
         <TagTitle />
         <SortBox />
-        <TagPageDonationList />
+        {/* 사용자가 카테고리태그를 눌렀다면 */}
+        {
+          tagType === '카테고리태그' && <CategoryTagDonationList />
+        }
+        {/* 사용자가 인기태그를 눌렀다면 */}
+        {
+          tagType === '인기태그'&& <Top10TagDonationList />
+        }
         <Paging />
       </Grid>
     </Container>

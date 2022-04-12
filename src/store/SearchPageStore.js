@@ -1,3 +1,4 @@
+import create from 'zustand';
 import createStore from 'zustand';
 import persist from '../utils/persist';
 
@@ -17,10 +18,15 @@ const SearchPageStore = createStore(
         set(() => ({ tagName: name }));
       },
 
+      tagType: '',
+      setTagType: (type) => {
+        set(() => ({ tagType: type }));
+      },
+
       word: '',
       setWord: (word) => {
         set(() => ({ word: word }))
-      }
+      },
 
     }),
   ),

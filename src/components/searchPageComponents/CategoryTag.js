@@ -1,9 +1,9 @@
 import * as React from 'react';
 import { Box, Chip, styled } from '@mui/material';
+
 import { createContext, useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom/cjs/react-router-dom.min';
 
 import { SearchPageStore } from '../../store/SearchPageStore';
 
@@ -12,6 +12,7 @@ const Tag = () => {
   const categories = Object.values(tag);
   const list = categories[0];
   const { setCategoryIndex, setTagName } = SearchPageStore();
+  const { tagType, setTagType } = SearchPageStore();
 
   const categoryList =
     list &&
@@ -26,32 +27,30 @@ const Tag = () => {
             onClick={() => {
               setCategoryIndex(index + 1);
               setTagName(list[index]);
+              setTagType('카테고리태그');
             }}
           />
       </Link>
     ));
 
-useEffect(() => {
-  axios
-    .get(`http://localhost:8080/api/categories`)
-    .then((result) => {
-      console.log('연결');
-      setTag(result.data);
-    })
-    .catch(() => {
-      console.log('연결실패');
-    });
-  return () => {};
-}, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/categories`)
+      .then((result) => {
+        console.log('연결');
+        setTag(result.data);
+      })
+      .catch(() => {
+        console.log('연결실패');
+      });
+    return () => {};
+  }, []);
 
   return (
-    <>
- 
-        <TagBox>{categoryList}</TagBox>
-        {/* <Route path={`tags/:tag`} component={TagPageDonationList}/> */}
-
-    </>
-  );
+    <TagBox>
+      {categoryList}
+    </TagBox>
+  )
 }
 
 export default Tag;
@@ -82,7 +81,3 @@ const TagChip = styled(Chip)(() => ({
 const InnerBox = styled(Box)(() => ({
  fontSize: { xs: 13, md: 16 },
 }))
-
-const Loading = () => {
-  return <>loading</>;
-};

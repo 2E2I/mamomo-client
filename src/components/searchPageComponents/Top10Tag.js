@@ -1,48 +1,58 @@
 import * as React from 'react';
 import { Box, Chip, styled } from '@mui/material';
+
 import { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
+
+import { SearchPageStore } from '../../store/SearchPageStore';
 
 const Top10Tag = () => {
- const [tag, setTag] = useState('');
- const [tagClick, setTagClick] = useState(false);
- const categories = Object.values(tag);
- const list = categories[0]
+  const [tag, setTag] = useState('');
+  const categories = Object.values(tag);
+  const list = categories[0];
+  const { setCategoryIndex, setTagName } = SearchPageStore();
+  const { tagType, setTagType } = SearchPageStore();
 
- const top10List = list && list.map(
-   (tag, index) => (
-      <TagChip key={index}
-      label={
-        <InnerBox>#{tag}</InnerBox>
-      }
-      variant='outlined'
-      color='primary'
-      clickable
-      onClick={setTagClick}
-    />
-   )
- )
+  const top10TagList =
+    list &&
+    list.map((tag, index) => (
+      <Link to={`tags/${tag}`} style={{ textDecoration: 'none' }}>
+          <TagChip
+            key={index}
+            label={<InnerBox>#{tag}</InnerBox>}
+            variant="outlined"
+            color="primary"
+            clickable
+            onClick={() => {
+              setCategoryIndex(index + 1);
+              setTagName(list[index]);
+              setTagType('인기태그');
+            }}
+          />
+      </Link>
+    ));
 
-useEffect(() => {
-  axios
-    .get(
-      `http://localhost:8080/api/search`,
-    )
-    .then((result) => {
-      console.log('연결');
-      setTag(result.data);
-    })
-    .catch(() => {
-      console.log('연결실패');
-    });
-  return () => {};
-}, []);
+  useEffect(() => {
+    axios
+      .get(
+        `http://localhost:8080/api/search?from=0&to=10`,
+      )
+      .then((result) => {
+        console.log('연결');
+        setTag(result.data);
+      })
+      .catch(() => {
+        console.log('연결실패');
+      });
+    return () => {};
+  }, []);
 
- return (
-   <TagBox>
-     {top10List}
-   </TagBox>
- )
+  return (
+    <TagBox>
+      {top10TagList}
+    </TagBox>
+  )
 }
 
 export default Top10Tag;
