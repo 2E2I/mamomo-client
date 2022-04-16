@@ -3,6 +3,7 @@ import { Container, Grid } from '@mui/material';
 import MainTitle from '../../components/signInPageComponents/MainTitle';
 import ID from '../../components/signInPageComponents/ID';
 import Password from '../../components/signInPageComponents/Password';
+import SignInButton from '../../components/signInPageComponents/SignInButton';
 
 const SignInPage = () => {
   return (
@@ -18,6 +19,7 @@ const SignInPage = () => {
         <MainTitle />
         <ID />
         <Password />
+        <SignInButton />
       </Grid>
     </Container>
   );
