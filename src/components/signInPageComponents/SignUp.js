@@ -24,7 +24,7 @@ const SignUp = () => {
       <Box
         sx={{
           margin: "5px",
-          width: "150px",
+          width: "200px",
         }}
       >
         <Grid container justifyContent="left">

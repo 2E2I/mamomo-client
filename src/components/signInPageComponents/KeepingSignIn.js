@@ -23,8 +23,8 @@ const KeepingSignIn = () => {
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          margin: "5px",
-          width: "300px",
+          margin: "15px 0 0 0",
+          width: "400px",
         }}
       >
         <Grid container justifyContent="left">
