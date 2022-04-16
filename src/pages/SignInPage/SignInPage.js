@@ -2,6 +2,7 @@ import React from 'react';
 import { Container, Grid } from '@mui/material';
 import MainTitle from '../../components/signInPageComponents/MainTitle';
 import ID from '../../components/signInPageComponents/ID';
+import Password from '../../components/signInPageComponents/Password';
 
 const SignInPage = () => {
   return (
@@ -16,6 +17,7 @@ const SignInPage = () => {
       <Grid container justifyContent="center">
         <MainTitle />
         <ID />
+        <Password />
       </Grid>
     </Container>
   );
