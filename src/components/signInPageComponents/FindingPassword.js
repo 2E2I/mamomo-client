@@ -7,6 +7,7 @@ import {
   Grid,
 } from '@mui/material';
 
+// 비밀번호 찾기 버튼
 const FindingPassword = () => {
   const theme = createTheme({
     palette: {

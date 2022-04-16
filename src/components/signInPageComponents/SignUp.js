@@ -7,6 +7,7 @@ import {
   Grid,
 } from '@mui/material';
 
+// 회원가입 버튼
 const SignUp = () => {
   const theme = createTheme({
     palette: {

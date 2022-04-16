@@ -92,20 +92,22 @@ const TopAppBar = () => {
               ))}
             </Box>
 
-            <Box>
-              <Button
-                sx={{
-                  mr: 1,
-                  color: '#424242',
-                  display: 'block',
-                  fontSize: 16,
-                  fontWeight: 500,
-                  fontFamily: 'Noto Sans KR',
-                }}
-              >
-                마이페이지
-              </Button>
-            </Box>
+            <Link to="/signin" style={{ textDecoration: 'none' }}>
+              <Box>
+                <Button
+                  sx={{
+                    mr: 1,
+                    color: '#424242',
+                    display: 'block',
+                    fontSize: 16,
+                    fontWeight: 500,
+                    fontFamily: 'Noto Sans KR',
+                  }}
+                >
+                  로그인
+                </Button>
+              </Box>
+            </Link>
             <Link to="/search" style={{color: 'inherit'}} >
               <SearchIcon sx={{fontSize: 34, mt:0.5}}/>
             </Link>
