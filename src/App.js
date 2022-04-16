@@ -7,6 +7,7 @@ import DesignTestPage from './pages/DesignTestPage/DesignTestPage';
 import TagPage from './pages/TagPage/TagPage';
 import CategoriePage from './pages/CategoriePage/CategoriePage';
 import SearchingPage from './pages/SearchingPage/SearchingPage';
+import SignUpPage from './pages/SignUpPage/SignUpPage';
 
 import { Link, Route, Switch } from 'react-router-dom';
 import SignInPage from './pages/SignInPage';
@@ -22,6 +23,7 @@ function App() {
       <Route path="/tags/:tag" exact={true} component={TagPage} />
       <Route path="/searching" exact={true} component={SearchingPage} />
       <Route path="/signin" exact={true} component={SignInPage} />
+      <Route path="/signup" exact={true} component={SignUpPage} />
     </div>
   );
 }

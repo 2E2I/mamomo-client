@@ -6,6 +6,7 @@ import {
   ThemeProvider,
   Grid,
 } from '@mui/material';
+import { Link } from 'react-router-dom';
 
 // 회원가입 버튼
 const SignUp = () => {
@@ -27,18 +28,20 @@ const SignUp = () => {
         }}
       >
         <Grid container justifyContent="left">
-          <Button
-            variant="text"
-            color="gray"
-            sx={{
-              ":hover": {
-                backgroundColor: '#fff'
-              },
-              fontSize: "13px"
-            }}
-          >
-            회원가입
-          </Button>
+          <Link to="/signup" style={{ textDecoration: 'none' }}>
+            <Button
+              variant="text"
+              color="gray"
+              sx={{
+                ":hover": {
+                  backgroundColor: '#fff'
+                },
+                fontSize: "13px"
+              }}
+            >
+              회원가입
+            </Button>
+          </Link>
         </Grid>
       </Box>
     </ThemeProvider>
