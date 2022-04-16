@@ -1,5 +1,10 @@
 import React from 'react';
-import { Grid, TextField, createTheme, ThemeProvider, Box, styled } from '@mui/material';
+import {
+  Grid,
+  TextField,
+  createTheme,
+  ThemeProvider,
+} from '@mui/material';
 
 // Password 입력란
 const Password = () => {
@@ -16,17 +21,19 @@ const Password = () => {
     <ThemeProvider theme={theme}>
       <Grid container justifyContent="center">
         <TextField
-          id="standard-password-input"
+          label="비밀번호"
           type="password"
-          variant="standard"
+          variant="outlined"
           autoComplete="current-password"
-          placeholder="비밀번호"
+          // placeholder="비밀번호"
           color="gray"
-          margin="normal"
+          sx={{
+            margin: "5px",
+            width: "300px",
+          }}
         />
       </Grid>
     </ThemeProvider>
-    
   );
 }
 

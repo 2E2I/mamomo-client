@@ -8,12 +8,12 @@ const MainTitle = () => {
     <Link to="/" style={{ textDecoration: 'none' }}>
       <Box
         sx={{
-          display: 'inline',
+          margin: '70px 0 35px 0',
           fontWeight: 700,
           fontFamily: 'Noto Sans KR',
           mx: 0,
           fontSize: 36,
-          color: '#f48fb1',
+          color: '#FEBCBC',
         }}
       >
         MAMOMO

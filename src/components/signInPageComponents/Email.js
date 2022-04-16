@@ -1,8 +1,13 @@
 import React from 'react';
-import { Grid, TextField, createTheme, ThemeProvider } from '@mui/material';
+import {
+  Grid,
+  TextField,
+  createTheme,
+  ThemeProvider,
+} from '@mui/material';
 
-// ID 입력란
-const ID = () => {
+// email 입력란
+const Email = () => {
   const theme = createTheme({
     palette: {
       gray: {
@@ -16,12 +21,14 @@ const ID = () => {
     <ThemeProvider theme={theme}>
       <Grid container justifyContent="center">
         <TextField
-          id="standard-search"
-          type="search"
-          variant="standard"
-          placeholder="아이디"
+          label="이메일"
+          variant="outlined"
+          // placeholder="이메일"
           color="gray"
-          margin="normal"
+          sx={{
+            margin: "5px",
+            width: "300px",
+          }}
         >
         </TextField>
       </Grid>
@@ -30,4 +37,4 @@ const ID = () => {
   );
 }
 
-export default ID;
+export default Email;

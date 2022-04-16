@@ -7,7 +7,7 @@ import {
   Grid,
 } from '@mui/material';
 
-const FindingPassword = () => {
+const SignUp = () => {
   const theme = createTheme({
     palette: {
       gray: {
@@ -25,7 +25,7 @@ const FindingPassword = () => {
           width: "150px",
         }}
       >
-        <Grid container justifyContent="right">
+        <Grid container justifyContent="left">
           <Button
             variant="text"
             color="gray"
@@ -36,7 +36,7 @@ const FindingPassword = () => {
               fontSize: "13px"
             }}
           >
-            비밀번호 찾기
+            회원가입
           </Button>
         </Grid>
       </Box>
@@ -45,4 +45,4 @@ const FindingPassword = () => {
   )
 }
 
-export default FindingPassword;
+export default SignUp;

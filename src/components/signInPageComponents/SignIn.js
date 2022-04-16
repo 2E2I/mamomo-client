@@ -2,11 +2,11 @@ import React from 'react';
 import { Grid, Button, createTheme, ThemeProvider } from '@mui/material';
 
 // 로그인 버튼
-const SignInButton = () => {
+const SignIn = () => {
   const theme = createTheme({
     palette: {
       main: {
-        main: '#f48fb1',
+        main: '#FEBCBC',
         contrastText: '#fff',
       },
     },
@@ -20,14 +20,14 @@ const SignInButton = () => {
         color="main"
         sx={{
           m: "5px",
-          width: "200px",
-          height: "40px",
+          width: "300px",
+          height: "50px",
           boxShadow: '0',
           ":hover": {
             boxShadow: '0'
           },
           fontFamily: 'Noto Sans KR',
-          fontSize: "14px",
+          fontSize: "16px",
           fontWeight: 400,
         }}
       >
@@ -39,4 +39,4 @@ const SignInButton = () => {
   );
 }
 
-export default SignInButton;
+export default SignIn;
