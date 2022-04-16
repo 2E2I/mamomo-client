@@ -1,9 +1,11 @@
 import React from 'react';
 import { Container, Grid } from '@mui/material';
+
 import MainTitle from '../../components/signInPageComponents/MainTitle';
-import ID from '../../components/signInPageComponents/ID';
+import Email from '../../components/signInPageComponents/Email';
 import Password from '../../components/signInPageComponents/Password';
 import SignInButton from '../../components/signInPageComponents/SignInButton';
+import KeepingSingInButton from '../../components/signInPageComponents/KeepingSignInButton';
 
 const SignInPage = () => {
   return (
@@ -17,9 +19,10 @@ const SignInPage = () => {
     >
       <Grid container justifyContent="center">
         <MainTitle />
-        <ID />
+        <Email />
         <Password />
         <SignInButton />
+        <KeepingSingInButton />
       </Grid>
     </Container>
   );
