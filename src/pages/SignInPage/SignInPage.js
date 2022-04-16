@@ -7,6 +7,8 @@ import Password from '../../components/signInPageComponents/Password';
 import SignIn from '../../components/signInPageComponents/SignIn';
 import KeepingSignIn from '../../components/signInPageComponents/KeepingSignIn';
 import SplitedLine from '../../components/signInPageComponents/SplitedLine';
+import SignUp from '../../components/signInPageComponents/SignUp';
+import FindingPassword from '../../components/signInPageComponents/FindingPassword';
 
 const SignInPage = () => {
   return (
@@ -25,6 +27,8 @@ const SignInPage = () => {
         <SignIn />
         <KeepingSignIn />
         <SplitedLine />
+        <SignUp />
+        <FindingPassword />
       </Grid>
     </Container>
   );
