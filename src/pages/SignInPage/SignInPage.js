@@ -5,7 +5,8 @@ import MainTitle from '../../components/signInPageComponents/MainTitle';
 import Email from '../../components/signInPageComponents/Email';
 import Password from '../../components/signInPageComponents/Password';
 import SignInButton from '../../components/signInPageComponents/SignInButton';
-import KeepingSingInButton from '../../components/signInPageComponents/KeepingSignInButton';
+import KeepingSignInButton from '../../components/signInPageComponents/KeepingSignInButton';
+import SplitedLine from '../../components/signInPageComponents/SplitedLine';
 
 const SignInPage = () => {
   return (
@@ -22,7 +23,8 @@ const SignInPage = () => {
         <Email />
         <Password />
         <SignInButton />
-        <KeepingSingInButton />
+        <KeepingSignInButton />
+        <SplitedLine />
       </Grid>
     </Container>
   );
