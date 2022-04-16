@@ -24,9 +24,9 @@ const SignIn = () => {
         variant="contained"
         color="main"
         sx={{
-          m: "5px",
-          width: "300px",
-          height: "50px",
+          m: "15px 0 0 0",
+          width: "400px",
+          height: "55px",
           boxShadow: '0',
           ":hover": {
             boxShadow: '0'

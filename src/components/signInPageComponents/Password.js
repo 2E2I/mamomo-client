@@ -28,8 +28,8 @@ const Password = () => {
           // placeholder="비밀번호"
           color="gray"
           sx={{
-            margin: "5px",
-            width: "300px",
+            margin: "15px 0 0 0",
+            width: "400px",
           }}
         />
       </Grid>

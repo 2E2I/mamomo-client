@@ -26,8 +26,8 @@ const Email = () => {
           // placeholder="이메일"
           color="gray"
           sx={{
-            margin: "5px",
-            width: "300px",
+            margin: "5px 0 0 0",
+            width: "400px",
           }}
         >
         </TextField>
