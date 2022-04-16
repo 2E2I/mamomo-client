@@ -1,5 +1,9 @@
 import React from 'react';
 import { Container, Grid } from '@mui/material';
+import MainTitle from '../../components/signInPageComponents/MainTitle';
+import ID from '../../components/signInPageComponents/ID';
+import Password from '../../components/signInPageComponents/Password';
+import SignInButton from '../../components/signInPageComponents/SignInButton';
 
 const SignInPage = () => {
   return (
@@ -12,7 +16,10 @@ const SignInPage = () => {
       justify="center"
     >
       <Grid container justifyContent="center">
-        로그인페이지입니다.
+        <MainTitle />
+        <ID />
+        <Password />
+        <SignInButton />
       </Grid>
     </Container>
   );
