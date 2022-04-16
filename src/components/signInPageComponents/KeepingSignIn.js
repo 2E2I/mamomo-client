@@ -9,7 +9,7 @@ import {
 } from '@mui/material';
 
 // 로그인 상태 유지 버튼
-const KeepingSingInButton = () => {
+const KeepingSignIn = () => {
   const theme = createTheme({
     palette: {
       green: {
@@ -40,4 +40,4 @@ const KeepingSingInButton = () => {
   );
 }
 
-export default KeepingSingInButton;
+export default KeepingSignIn;

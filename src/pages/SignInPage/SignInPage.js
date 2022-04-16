@@ -4,8 +4,8 @@ import { Container, Grid } from '@mui/material';
 import MainTitle from '../../components/signInPageComponents/MainTitle';
 import Email from '../../components/signInPageComponents/Email';
 import Password from '../../components/signInPageComponents/Password';
-import SignInButton from '../../components/signInPageComponents/SignInButton';
-import KeepingSignInButton from '../../components/signInPageComponents/KeepingSignInButton';
+import SignIn from '../../components/signInPageComponents/SignIn';
+import KeepingSignIn from '../../components/signInPageComponents/KeepingSignIn';
 import SplitedLine from '../../components/signInPageComponents/SplitedLine';
 
 const SignInPage = () => {
@@ -22,8 +22,8 @@ const SignInPage = () => {
         <MainTitle />
         <Email />
         <Password />
-        <SignInButton />
-        <KeepingSignInButton />
+        <SignIn />
+        <KeepingSignIn />
         <SplitedLine />
       </Grid>
     </Container>

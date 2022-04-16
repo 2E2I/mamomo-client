@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid, Button, createTheme, ThemeProvider } from '@mui/material';
 
 // 로그인 버튼
-const SignInButton = () => {
+const SignIn = () => {
   const theme = createTheme({
     palette: {
       main: {
@@ -39,4 +39,4 @@ const SignInButton = () => {
   );
 }
 
-export default SignInButton;
+export default SignIn;
