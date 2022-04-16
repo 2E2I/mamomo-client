@@ -27,7 +27,7 @@ const Email = () => {
           color="gray"
           sx={{
             margin: "5px 0 0 0",
-            width: "300px",
+            width: "400px",
           }}
         >
         </TextField>

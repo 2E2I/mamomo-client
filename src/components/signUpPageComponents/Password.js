@@ -28,8 +28,8 @@ const Password = () => {
           placeholder="영문, 숫자 포함 8~14자"
           color="gray"
           sx={{
-            margin: "25px 0 0 0",
-            width: "300px",
+            margin: "30px 0 0 0",
+            width: "400px",
           }}
         />
       </Grid>

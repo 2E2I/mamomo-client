@@ -26,8 +26,8 @@ const Nickname = () => {
           placeholder="특수문자 제외 2~10자"
           color="gray"
           sx={{
-            margin: "25px 0 0 0",
-            width: "300px",
+            margin: "30px 0 0 0",
+            width: "400px",
           }}
         >
         </TextField>

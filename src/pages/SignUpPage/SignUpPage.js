@@ -8,6 +8,9 @@ import CheckingPassword from "../../components/signUpPageComponents/CheckingPass
 import Nickname from "../../components/signUpPageComponents/Nickname";
 import Sex from "../../components/signUpPageComponents/Sex";
 import SplitedLine from "../../components/SplitedLine";
+import Birth from "../../components/signUpPageComponents/Birth";
+import FavTopics from "../../components/signUpPageComponents/FavTopics";
+import SignUp from "../../components/signUpPageComponents/SignUp";
 
 const SignUpPage = () => {
   return (
@@ -27,6 +30,9 @@ const SignUpPage = () => {
         <Nickname />
         <Sex />
         <SplitedLine />
+        <Birth />
+        <FavTopics />
+        <SignUp />
       </Grid>
     </Container>
   )

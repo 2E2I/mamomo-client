@@ -1,7 +1,6 @@
 import React from 'react';
 import {
   Grid,
-  TextField,
   createTheme,
   ThemeProvider,
   FormControl,
@@ -33,8 +32,8 @@ const Sex = () => {
       <Grid container justifyContent="center">
         <FormControl
           sx={{
-            margin: "25px 0 0 0",
-            width: "300px",
+            margin: "30px 0 0 0",
+            width: "400px",
           }}
         >
           <FormLabel id="demo-row-radio-buttons-group-label" color="darkGray">성별</FormLabel>

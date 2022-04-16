@@ -27,8 +27,8 @@ const CheckingPassword = () => {
           autoComplete="current-password"
           color="gray"
           sx={{
-            margin: "25px 0 0 0",
-            width: "300px",
+            margin: "30px 0 0 0",
+            width: "400px",
           }}
         />
       </Grid>
