@@ -6,7 +6,7 @@ import axios from 'axios';
 
 import { CategoryStore } from '../store/CategoryPageStore';
 
-const DonationListByCategorie = () => {
+const DonationListByCategory = () => {
   const [campaign, setCampaign] = useState({});
 
   const [result, setResult] = useState([]);
@@ -85,7 +85,7 @@ const DonationListByCategorie = () => {
   );
 };;;
 
-export default DonationListByCategorie;
+export default DonationListByCategory;
 
 const ListBox = styled(Box)(() => ({
   display: 'flex',

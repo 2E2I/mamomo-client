@@ -21,7 +21,7 @@ const CategoryStore = create((set) => ({
 
   pageSize: 0,
 
-  sortValue: 'heart=true',
+  sortValue: 'sort=heart_count,DESC',
 
   sortIndex: 1,
 
@@ -50,7 +50,7 @@ const CategoryStore = create((set) => ({
   },
 
   initializeSortValue(ap) {
-    set(() => ({ sortValue: 'heart=true' }));
+    set(() => ({ sortValue: 'sort=heart_count,DESC' }));
   },
 
   setSortIndex(ap) {

@@ -2,12 +2,12 @@ import React from 'react';
 import { Box, Container } from '@mui/material';
 import TopAppBar from '../../components/TopAppBar';
 import Categories from '../../components/Categories';
-import DonationListByCategorie from '../../components/DonationListByCategorie';
+import DonationListByCategory from '../../components/DonationListByCategory';
 import SortBox from '../../components/SortBox';
 import CategoryPageTest from '../../components/CategoryPageTest';
 import Paging from '../../components/Paging';
 
-const MainPage2 = () => {
+const CategoryPage = () => {
   return (
     <Container
       maxWidth={false}
@@ -27,7 +27,7 @@ const MainPage2 = () => {
       <br />
       <SortBox />
 
-      <DonationListByCategorie />
+      <DonationListByCategory />
       <Paging />
       <br />
       <br />
@@ -36,4 +36,4 @@ const MainPage2 = () => {
   );
 };
 
-export default MainPage2;
+export default CategoryPage;
