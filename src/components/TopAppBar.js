@@ -15,6 +15,7 @@ import { Route } from 'react-router-dom';
 import SearchPage from '../pages/SearchPage/SearchPage';
 
 const pages = ['기부모아', '배너제작', '도움말'];
+const links = ['/category', '/banner', '/'];
 
 const TopAppBar = () => {
 
@@ -75,20 +76,22 @@ const TopAppBar = () => {
                 display: 'flex',
               }}
             >
-              {pages.map((page) => (
-                <Button
-                  key={page}
-                  sx={{
-                    my: 2,
-                    color: '#424242',
-                    display: 'block',
-                    fontWeight: 700,
-                    fontFamily: 'Noto Sans KR',
-                    fontSize: 16,
-                  }}
-                >
-                  {page}
-                </Button>
+              {pages.map((page, index) => (
+                <Link to={links[index]} style={{ textDecoration: 'none' }}>
+                  <Button
+                    key={page}
+                    sx={{
+                      my: 2,
+                      color: '#424242',
+                      display: 'block',
+                      fontWeight: 700,
+                      fontFamily: 'Noto Sans KR',
+                      fontSize: 16,
+                    }}
+                  >
+                    {page}
+                  </Button>
+                </Link>
               ))}
             </Box>
 
@@ -108,8 +111,8 @@ const TopAppBar = () => {
                 </Button>
               </Box>
             </Link>
-            <Link to="/search" style={{color: 'inherit'}} >
-              <SearchIcon sx={{fontSize: 34, mt:0.5}}/>
+            <Link to="/search" style={{ color: 'inherit' }}>
+              <SearchIcon sx={{ fontSize: 34, mt: 0.5 }} />
             </Link>
           </Toolbar>
         </Container>

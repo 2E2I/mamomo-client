@@ -3,11 +3,9 @@ import { Box, Container } from '@mui/material';
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/mainPageComponents/MainPageSearchBar';
 import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
-import Card from '../../components/OldDonationCard';
 import MainCarousel from '../../components/mainPageComponents/Carousel2';
 import Categories from '../../components/Tags';
-import { useEffect } from 'react';
-import axios from 'axios';
+
 
 const MainPage = () => {
     return (
