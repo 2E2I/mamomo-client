@@ -41,7 +41,7 @@ const SortBox = () => {
       <SortButton
         colorN={1}
         onClick={() => {
-          setSortValue('heart=true');
+          setSortValue('sort=heart_count,DESC');
           setSortIndex(1);
         }}
         sx={{ color: color1(1, sortIndex) }}
