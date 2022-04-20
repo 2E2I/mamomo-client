@@ -27,12 +27,10 @@ const BannerBox = styled(Box)(() => ({
   textOverflow: 'ellipsis',
   overflow: 'hidden',
   width: '100%',
+  maxWidth: '1000px',
   display: 'flex',
   flexDirection: 'row',
-  justifyContent: 'center',
-  alignContent: 'center',
-  alignItems: 'center',
-  backgroundColor: '#FFF8F8',
+  background: 'linear-gradient(to right, #FFF8F8, pink)',
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   height: '200px',
@@ -43,7 +41,7 @@ const InfoBox = styled(Box)(() => ({
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-  width: '650px',
+  width: '69%',
   display: 'flex',
   flexDirection: 'column',
   // justifyContent: 'center',
@@ -55,13 +53,15 @@ const InfoBox = styled(Box)(() => ({
   height: 200,
   marginBottom: 10,
   paddingRight: 30,
+  paddingLeft: 30,
+  fontSize: "1px",
 }));
 
 const ImgBox = styled(Box)(() => ({
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-  width: '300px',
+  width: '30%',
   display: 'flex',
   flexDirection: 'row',
   justifyContent: 'center',
@@ -77,12 +77,11 @@ const ImgBox = styled(Box)(() => ({
 
 const SiteType = styled(Box)(() => ({
   fontWeight: 500,
-  fontSize: 14,
+  fontSize: "14em",
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
   textAlign: 'start',
   display: 'flex',
-  //alignItems: 'center',
   overflow: 'hidden',
   color: '#9ccc65',
   height: '30px',
@@ -91,10 +90,9 @@ const SiteType = styled(Box)(() => ({
 
 const Title = styled(Box)(() => ({
   fontWeight: 600,
-  fontSize: 24,
+  fontSize: "24em",
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
-  //alignItems: 'center',
   textAlign: 'start',
   display: 'flex',
   overflow: 'hidden',
@@ -105,10 +103,9 @@ const Title = styled(Box)(() => ({
 
 const Info = styled(Box)(() => ({
   fontWeight: 300,
-  fontSize: 16,
+  fontSize: "16em",
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
-  //alignItems: 'center',
   textAlign: 'start',
   overflow: 'hidden',
   color: '#424242',
@@ -118,10 +115,9 @@ const Info = styled(Box)(() => ({
 
 const Source = styled(Box)(() => ({
   fontWeight: 200,
-  fontSize: 14,
+  fontSize: "14em",
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
-  //alignItems: 'center',
   textAlign: 'end',
   overflow: 'hidden',
   color: '#f48fb1',
