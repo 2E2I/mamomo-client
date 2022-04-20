@@ -1,6 +1,5 @@
 import React from 'react';
 import BannerDesign from './BannerDesign';
-import BannerDesign2 from './BannerDesign2';
 import { Box, Grid, styled } from '@mui/material';
 
 const Preview = () => {
