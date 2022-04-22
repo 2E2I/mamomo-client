@@ -6,6 +6,8 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
+import { useState } from 'react';
+
 // email 입력란
 const Email = () => {
   const theme = createTheme({
@@ -16,6 +18,8 @@ const Email = () => {
       },
     },
   });
+
+  const [email, setEmail] = useState();
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,6 +32,10 @@ const Email = () => {
           sx={{
             margin: "5px 0 0 0",
             width: "400px",
+          }}
+          onChange={ (e) => {
+            setEmail(e.target.value)
+            console.log(email)
           }}
         >
         </TextField>

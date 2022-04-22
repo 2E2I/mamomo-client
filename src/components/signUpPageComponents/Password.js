@@ -6,6 +6,8 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
+import { useState } from 'react';
+
 // Password 입력란
 const Password = () => {
   const theme = createTheme({
@@ -16,6 +18,8 @@ const Password = () => {
       },
     },
   });
+
+  const [password, setPassword] = useState();
 
   return (
     <ThemeProvider theme={theme}>
@@ -30,6 +34,9 @@ const Password = () => {
           sx={{
             margin: "30px 0 0 0",
             width: "400px",
+          }}
+          onChange={ (e) => {
+            setPassword(e.target.value)
           }}
         />
       </Grid>

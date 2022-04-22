@@ -10,6 +10,8 @@ import {
   Radio,
 } from '@mui/material';
 
+import { useState } from 'react';
+
 // 성별 선택
 const Sex = () => {
   const theme = createTheme({
@@ -26,6 +28,8 @@ const Sex = () => {
       }
     },
   });
+
+  const [sex, setSex] = useState('');
 
   return (
     <ThemeProvider theme={theme}>
@@ -46,12 +50,17 @@ const Sex = () => {
                 value="M"
                 control={<Radio color='pink'/>}
                 label="남성"
+                onClick={ (e) => {
+                  setSex(e.target.value);
+                }}
               />
               <FormControlLabel
                 value="F"
                 control={<Radio color='pink'/>}
                 label="여성"
-
+                onClick={ (e) => {
+                  setSex(e.target.value);
+                }}
               />
           </RadioGroup>
         </FormControl>
