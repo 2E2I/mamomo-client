@@ -25,6 +25,8 @@ const FavTopics = () => {
     },
   });
 
+  const [favTopics, setFavTopics] = useState([]);
+
   const [tag, setTag] = useState('');
   const categories = Object.values(tag);
   const list = categories[0];
@@ -48,6 +50,15 @@ const FavTopics = () => {
             key={index}
             control={<Checkbox color='pink'/>}
             label={tag}
+            onChange={ (e) => {
+              if (e.target.checked) {
+                favTopics.push(index + 1)
+                console.log(favTopics);
+              } else {
+                favTopics.pop()
+                console.log(favTopics);
+              }
+            }}
           />
         </Box>
     ));
