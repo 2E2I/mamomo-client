@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 
 import { useState } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
 
 // 닉네임 입력란
 const Nickname = () => {
@@ -19,7 +20,7 @@ const Nickname = () => {
     },
   });
 
-  const [nickname, setNickname] = useState();
+  const { nickname, setNickname } = SignUpStore();
 
   return (
     <ThemeProvider theme={theme}>

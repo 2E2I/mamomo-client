@@ -11,6 +11,8 @@ import {
 } from '@mui/material';
 
 import { useState } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
+
 
 // 성별 선택
 const Sex = () => {
@@ -29,7 +31,7 @@ const Sex = () => {
     },
   });
 
-  const [sex, setSex] = useState('');
+  const { sex, setSex } = SignUpStore();
 
   return (
     <ThemeProvider theme={theme}>

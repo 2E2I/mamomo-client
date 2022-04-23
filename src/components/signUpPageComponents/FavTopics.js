@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 
 import { useState, useEffect } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
 import axios from 'axios';
 
 // 관심 기부 분야 checkBox
@@ -25,7 +26,7 @@ const FavTopics = () => {
     },
   });
 
-  const [favTopics, setFavTopics] = useState([]);
+  const { favTopics, setFavTopics } = SignUpStore();
 
   const [tag, setTag] = useState('');
   const categories = Object.values(tag);

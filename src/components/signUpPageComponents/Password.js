@@ -7,6 +7,7 @@ import {
 } from '@mui/material';
 
 import { useState } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
 
 // Password 입력란
 const Password = () => {
@@ -19,7 +20,7 @@ const Password = () => {
     },
   });
 
-  const [password, setPassword] = useState();
+  const { password, setPassword } = SignUpStore();
 
   return (
     <ThemeProvider theme={theme}>

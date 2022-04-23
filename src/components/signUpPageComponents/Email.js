@@ -6,7 +6,7 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
-import { useState } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
 
 // email 입력란
 const Email = () => {
@@ -19,7 +19,7 @@ const Email = () => {
     },
   });
 
-  const [email, setEmail] = useState();
+  const { email, setEmail } = SignUpStore();
 
   return (
     <ThemeProvider theme={theme}>
@@ -35,7 +35,6 @@ const Email = () => {
           }}
           onChange={ (e) => {
             setEmail(e.target.value)
-            console.log(email)
           }}
         >
         </TextField>
