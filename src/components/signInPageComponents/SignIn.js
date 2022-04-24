@@ -6,6 +6,10 @@ import {
   ThemeProvider
 } from '@mui/material';
 
+import axios from 'axios';
+import { SignInStore } from '../../store/SignInPageStore';
+import { useHistory } from "react-router-dom";
+
 // 로그인 버튼
 const SignIn = () => {
   const theme = createTheme({
@@ -16,6 +20,29 @@ const SignIn = () => {
       },
     },
   });
+
+  const { email, password, keepingSignIn } = SignInStore();
+  const history = useHistory();
+
+  const onClick = async () => {
+    try {
+      await axios
+        .post("http://localhost:8080/api/user/authenticate", {
+          email: email,
+          password: password,
+          //keepingSignIn: keepingSignIn,
+        })
+        .then((res) => {
+          console.log(res.data) // 토큰
+          if (res.status === 200) {
+            console.log('로그인 성공')
+            history.push('/')
+          }
+        })
+    } catch (e) {
+      console.log(e);
+    }
+  };
 
   return (
     <ThemeProvider theme={theme}>
@@ -35,6 +62,7 @@ const SignIn = () => {
           fontSize: "16px",
           fontWeight: 400,
         }}
+        onClick={ onClick }
       >
           로그인
         </Button>
