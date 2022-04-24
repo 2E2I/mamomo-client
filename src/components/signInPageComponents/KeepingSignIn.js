@@ -8,7 +8,9 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
-// 로그인 상태 유지 버튼
+import { SignInStore } from '../../store/SignInPageStore';
+
+// 로그인 상태 유지 버튼 (안 쓸 듯..?)
 const KeepingSignIn = () => {
   const theme = createTheme({
     palette: {
@@ -18,6 +20,8 @@ const KeepingSignIn = () => {
       },
     },
   });
+
+  const { keepingSignIn, setKeepingSignIn } = SignInStore();
 
   return (
     <ThemeProvider theme={theme}>
@@ -31,6 +35,15 @@ const KeepingSignIn = () => {
           <FormControlLabel
             control={<Checkbox color='green' />}
             label="로그인 상태 유지"
+            onChange={ (e) => {
+              if (e.target.checked) {
+                setKeepingSignIn(false)
+                console.log(keepingSignIn);
+              } else {
+                setKeepingSignIn(true)
+                console.log(keepingSignIn);
+              }
+            }}
           />
         </Grid>
       </Box>

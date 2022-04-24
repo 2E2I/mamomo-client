@@ -6,6 +6,9 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
+import { useState } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
+
 // 닉네임 입력란
 const Nickname = () => {
   const theme = createTheme({
@@ -16,6 +19,8 @@ const Nickname = () => {
       },
     },
   });
+
+  const { nickname, setNickname } = SignUpStore();
 
   return (
     <ThemeProvider theme={theme}>
@@ -28,6 +33,9 @@ const Nickname = () => {
           sx={{
             margin: "30px 0 0 0",
             width: "400px",
+          }}
+          onChange={ (e) => {
+            setNickname(e.target.value)
           }}
         >
         </TextField>

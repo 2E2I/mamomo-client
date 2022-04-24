@@ -9,6 +9,7 @@ import {
 } from '@mui/material';
 
 import { useState, useEffect } from 'react';
+import { SignUpStore } from '../../store/SignUpPageStore';
 import axios from 'axios';
 
 // 관심 기부 분야 checkBox
@@ -24,6 +25,8 @@ const FavTopics = () => {
       },
     },
   });
+
+  const { favTopics, setFavTopics } = SignUpStore();
 
   const [tag, setTag] = useState('');
   const categories = Object.values(tag);
@@ -48,6 +51,15 @@ const FavTopics = () => {
             key={index}
             control={<Checkbox color='pink'/>}
             label={tag}
+            onChange={ (e) => {
+              if (e.target.checked) {
+                favTopics.push(index + 1)
+                console.log(favTopics);
+              } else {
+                favTopics.pop()
+                console.log(favTopics);
+              }
+            }}
           />
         </Box>
     ));
@@ -74,20 +86,12 @@ const FavTopics = () => {
             margin: "30px 0 0 0"
           }}
         >
-            <Box
-              component="span"
-              color="#666666"
-            >
-              관심 기부 분야
-            </Box>
-            <Box
-              component="span"
-              color="#c6c6c6"
-              margin="0 0 0 5px"
-              fontSize="14px"
-            >
-              (선택)
-            </Box>
+          <Box
+            component="span"
+            color="#666666"
+          >
+            관심 기부 분야
+          </Box>
           <Box
             sx={{
               width: "400px",
