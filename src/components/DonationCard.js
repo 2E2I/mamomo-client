@@ -34,7 +34,7 @@ const pages = ['카카오톡', '페이스북', '트위터'];
 
 const Card = ({ campaign }) => {
   const [id, setId] = useState('');
-  const [img, setImg] = useState('');
+  const [thumbnail, setThumbnail] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState(''); //쓸지 안쓸지 모름...
   const [organizationName, setorganizationName] = useState('');
@@ -55,10 +55,13 @@ const Card = ({ campaign }) => {
   const handleClick = () => {
     setFlag(!flag);
   };
+  
+
+  var img = new Image();
 
   useEffect(() => {
     setId(campaign !== undefined && campaign.id);
-    setImg(campaign !== undefined && campaign.thumbnail);
+    setThumbnail(campaign !== undefined && campaign.thumbnail);
     setTitle(campaign !== undefined && campaign.title);
     setBody(campaign !== undefined && campaign.body);
     setorganizationName(campaign !== undefined && campaign.organizationName);
@@ -68,6 +71,8 @@ const Card = ({ campaign }) => {
     setIsHeart(campaign !== undefined && campaign.isHeart);
     setheartCount(campaign !== undefined && campaign.heartCount);
     setsiteType(campaign !== undefined && campaign.siteType);
+    img.src = thumbnail;
+    console.log(thumbnail);
 
     return () => {};
   }, [campaign]);
@@ -100,7 +105,7 @@ const Card = ({ campaign }) => {
           <InnerOrganizationTitleBox>
             {organizationName}
           </InnerOrganizationTitleBox>
-          
+
           <Grid container spacing={1}>
             <Grid item xs={6}>
               <InnerPriceBox>{priceToString(statusPrice)}원</InnerPriceBox>
@@ -314,5 +319,5 @@ const SiteTypeBox = styled(Box)(() => ({
   color: '#fafafa',
   backgroundColor: '#4caf50',
   borderRadius: 4,
-  textAlign: "center",
+  textAlign: 'center',
 }));
