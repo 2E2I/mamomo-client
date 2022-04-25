@@ -2,8 +2,6 @@ import React, { useState } from 'react';
 import { Box, styled } from '@mui/material';
 
 import { CategoryStore } from '../store/CategoryPageStore';
-import { makeStyles } from '@mui/styles';
-import { color } from '@mui/system';
 
 
 const color1 = (colorN, index) => {

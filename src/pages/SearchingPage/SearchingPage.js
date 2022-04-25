@@ -3,8 +3,8 @@ import { Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import TopAppBar from '../../components/TopAppBar';
-import RoundSearchBar from '../../components/SearchingPageComponents/SearchingPageSearchBar';
-import SearchingPageDonationList from '../../components/SearchingPageComponents/SearchingPageDonationList'
+import RoundSearchBar from '../../components/searchingPageComponents/SearchingPageSearchBar';
+import SearchingPageDonationList from '../../components/searchingPageComponents/SearchingPageDonationList'
 import Paging from '../../components/Paging';
 import SortBox from '../../components/SortBox';
 
