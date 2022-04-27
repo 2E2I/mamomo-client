@@ -26,15 +26,13 @@ const MakeBannerPage = () => {
         sx={{
           //minWidth: { xs: '100%', md: '1200px' },
           //maxWidth: { xs: '100%', md: '2560px' },
-          width: '960px',
+          width: '1000px',
         }}
         disableGutters={true}
         justify="center"
       >
         <br />
-        <hr />
-        기부글 불러오는 컴포넌트
-        <hr />
+
         <Preview />
         <br />
         <EditForm />

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Button, Grid, styled } from '@mui/material';
+import { Box, Button, Grid, styled, Paper, InputBase, Container } from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { BannerPageStore } from '../../store/BannerPageStore';
 import { useState } from 'react';
@@ -8,27 +8,25 @@ import { HexColorInput, HexColorPicker } from 'react-colorful';
 
 const EditForm = () => {
   const [files, setFiles] = useState('');
-  const [editColor1, setEditColor1] = useState('#FFF8F8');
-  const [editColor2, setEditColor2] = useState('pink');
 
-  const [editTextColor1, setEditTextColor1] = useState('#9ccc65');
-  const [editTextColor2, setEditTextColor2] = useState('#424242');
-  const [editTextColor3, setEditTextColor3] = useState('#424242');
+  let [modal, setModal] = useState(false);
 
-  const [editWidth, setEditWidth] = useState('1000');
-  const [editHeight, setEditHeight] = useState('200');
-
-
-
-  const {
+  let {
     siteType,
     title,
     info,
     imgData,
-    BgColor1,
-    BgColor2,
     wid,
     hei,
+    BgColor1,
+    BgColor2,
+    textColor1,
+    textColor2,
+    textColor3,
+    textFont1,
+    textFont2,
+    textFont3,
+    url,
     setSiteType,
     setTitle,
     setInfo,
@@ -43,41 +41,20 @@ const EditForm = () => {
     setTextFont3,
     setWid,
     setHei,
+    setUrl,
   } = BannerPageStore();
 
-  // useEffect(() => {
-  //   setEditWidth(wid);
-  //   setEditHeight(hei);
-  // }, []);
-
   useEffect(() => {
-    console.log(editColor1);
-    console.log(editColor2);
-    setBgColor1(editColor1);
-    setBgColor2(editColor2);
-    setTextColor1(editTextColor1);
-    setTextColor2(editTextColor2);
-    setTextColor3(editTextColor3);
-    setWid(editWidth);
-    setHei(editHeight);
+    console.log({siteType});
+    console.log(title);
+    console.log(info);
+  }, []);
 
-    return () => {};
-  }, [
-    editColor1,
-    editColor2,
-    editTextColor1,
-    editTextColor2,
-    editTextColor3,
-    editWidth,
-    editHeight,
-  ]);
 
   useEffect(() => {
     preview();
-
     return () => preview();
   }, [files]);
-
 
   const preview = () => {
     if (!files) return false;
@@ -102,134 +79,454 @@ const EditForm = () => {
   return (
     <div>
       <Grid container spacing={1}>
+        <Grid item xs={1}>
+          <Box
+            onClick={() => {
+              setModal(!modal);
+            }}
+            sx={{
+              fontFamily: 'Noto Sans KR',
+              fontSize: '18px',
+              fontWeight: 400,
+              mb: '10px',
+              border: 2,
+              backgroundColor: '#9e9e9e',
+              color: '#f5f5f5',
+              borderRadius: 1,
+              width: 120,
+              textAlign: 'center',
+              '&:hover': {
+                cursor: 'pointer',
+                color: '#616161',
+              },
+            }}
+          >
+            색상편집
+          </Box>
+        </Grid>
+        <Grid item xs={11} sx={{ direction: 'rtl' }}>
+          <BoxButton
+            variant="contained"
+            component="label"
+            sx={{ border: 2, borderRadius: 1, mr: 1 }}
+          >
+            이미지 업로드
+            <input type="file" hidden onChange={handleUploadClick} />
+          </BoxButton>
+        </Grid>
+      </Grid>
+      {modal == true ? (
+        <>
+          <Grid
+            container
+            spacing={1}
+            sx={{
+              fontFamily: 'Noto Sans KR',
+              fontSize: '14px',
+              justifyContent: 'space-between',
+              display: 'flex',
+            }}
+          >
+            <Grid item xs={2.4}>
+              <HexColorPicker
+                color={BgColor1}
+                onChange={setBgColor1}
+                style={{
+                  width: '160px',
+                  height: '120px',
+                  marginTop: '5px',
+                }}
+              />
+              그라디언트 L:
+              <HexColorInput
+                color={BgColor1}
+                onChange={setBgColor1}
+                style={{
+                  width: '50px',
+                  border: 0,
+                  textAlign: 'end',
+                }}
+              />
+            </Grid>
+            <Grid item xs={2.4}>
+              <HexColorPicker
+                color={BgColor2}
+                onChange={setBgColor2}
+                style={{ width: '160px', height: '120px', marginTop: '5px' }}
+              />
+              그라디언트 R:
+              <HexColorInput
+                color={BgColor2}
+                onChange={setBgColor2}
+                style={{ width: '50px', border: 0, textAlign: 'end' }}
+              />
+            </Grid>
+            <Grid item xs={2.4}>
+              <HexColorPicker
+                color={textColor1}
+                onChange={setTextColor1}
+                style={{ width: '160px', height: '120px', marginTop: '5px' }}
+              />
+              소제목 색상:
+              <HexColorInput
+                color={textColor1}
+                onChange={setTextColor1}
+                style={{ width: '50px', border: 0, textAlign: 'end' }}
+              />
+            </Grid>
+            <Grid item xs={2.4}>
+              <HexColorPicker
+                color={textColor2}
+                onChange={setTextColor2}
+                style={{ width: '160px', height: '120px', marginTop: '5px' }}
+              />
+              제목 색상:
+              <HexColorInput
+                color={textColor2}
+                onChange={setTextColor2}
+                style={{ width: '50px', border: 0, textAlign: 'end' }}
+              />
+            </Grid>
+            <Grid item xs={2.4}>
+              <HexColorPicker
+                color={textColor3}
+                onChange={setTextColor3}
+                style={{ width: '160px', height: '120px', marginTop: '5px' }}
+              />
+              본문 색상:
+              <HexColorInput
+                color={textColor3}
+                onChange={setTextColor3}
+                style={{ width: '50px', border: 0, textAlign: 'end' }}
+              />
+            </Grid>
+          </Grid>
+        </>
+      ) : null}
+      <Grid container spacing={1} sx={{ mt: 1 }}>
+        <Grid item xs={2}>
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '100px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
+            }}
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder=""
+              value={wid}
+              onChange={(e) => {
+                setWid(e.target.value);
+              }}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={2}>
+          {' '}
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '100px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
+            }}
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder=""
+              value={hei}
+              onChange={(e) => {
+                setHei(e.target.value);
+              }}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={8}></Grid>
         <Grid item xs={8}>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="출처"
-            multiline
-            defaultValue="happybean"
-            onChange={(e) => {
-              setSiteType(e.target.value);
-              console.log(title);
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '600px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
             }}
-            sx={{ mb: 4 }}
-          />
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder="소제목을 입력하세요."
+              value={siteType}
+              onChange={(e) => {
+                setSiteType(e.target.value);
+              }}
+            />
+          </Paper>
         </Grid>
         <Grid item xs={2}>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="폰트크기"
-            defaultValue="14"
-            onChange={(e) => {
-              setTextFont1(e.target.value);
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '100px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
             }}
-            sx={{ mb: 4 }}
-          />
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder=""
+              value={textFont1}
+              onChange={(e) => {
+                setTextFont1(e.target.value);
+              }}
+            />
+          </Paper>
         </Grid>
         <Grid item xs={2}>
-          <BoxButton>색상변경</BoxButton>
+          {/* <BoxButton>fontWeight</BoxButton> */}
         </Grid>
         <Grid item xs={8}>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="제목"
-            multiline
-            defaultValue="익산시민 희망공약제안 캠페인을 응원해주세요."
-            onChange={(e) => {
-              setTitle(e.target.value);
-              console.log(title);
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '600px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
             }}
-            sx={{ mb: 4 }}
-          />
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder="제목을 입력하세요."
+              value={title}
+              onChange={(e) => {
+                setTitle(e.target.value);
+                console.log(title);
+              }}
+            />
+          </Paper>
         </Grid>
         <Grid item xs={2}>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="폰트크기"
-            defaultValue="24"
-            onChange={(e) => {
-              setTextFont2(e.target.value);
-              console.log('f2' + e.target.value);
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '100px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
             }}
-            sx={{ mb: 4 }}
-          />
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder=""
+              value={textFont2}
+              onChange={(e) => {
+                setTextFont2(e.target.value);
+              }}
+            />
+          </Paper>
         </Grid>
         <Grid item xs={2}>
-          <BoxButton>색상변경</BoxButton>
+          {/* <BoxButton>fontWeight</BoxButton> */}
         </Grid>
 
         <Grid item xs={8}>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="내용"
-            multiline
-            rows={4}
-            defaultValue="시민이 직접 공약을 제안합니다.우리 익산을 위해 필요하다고 생각하는 아이디어가 있는 시민이면 누구나 참여 가능하며, 아이디어를 구체적인 공약으로 만들어 직접 제안하는 것입니다."
-            onChange={(e) => setInfo(e.target.value)}
-            sx={{ mb: 4 }}
-          />
-        </Grid>
-        <Grid item xs={2}>
-          <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="폰트크기"
-            defaultValue="16"
-            onChange={(e) => {
-              setTextFont3(e.target.value);
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '600px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
             }}
-            sx={{ mb: 4 }}
-          />
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder="내용을 입력하세요."
+              multiline={true}
+              minRows={3}
+              value={info}
+              onChange={(e) => {
+                setInfo(e.target.value);
+                console.log(info);
+              }}
+            />
+          </Paper>
         </Grid>
         <Grid item xs={2}>
-          <BoxButton>색상변경</BoxButton>
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '100px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
+            }}
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder=""
+              value={textFont3}
+              onChange={(e) => {
+                setTextFont3(e.target.value);
+              }}
+            />
+          </Paper>
+        </Grid>
+        <Grid item xs={2}>
+          {/* <BoxButton>fontWeight</BoxButton> */}
         </Grid>
         <Grid item xs={8}>
-          <TextField
+          {/* <TextField
             fullWidth
             id="outlined-multiline-static"
             label="url"
             multiline
             defaultValue="https://happybean.naver.com/donations/H000000183493"
-          />
+          /> */}
+          <Paper
+            component="form"
+            variant="outlined"
+            sx={{
+              p: '2px 4px',
+              display: 'flex',
+              alignItems: 'center',
+              width: '600px',
+              //height: '40px',
+              borderColor: '#f7f7f7',
+              backgroundColor: '#f7f7f7',
+              boxShadow: '0',
+            }}
+          >
+            <InputBase
+              sx={{
+                ml: 1,
+                flex: 1,
+                fontWeight: 300,
+                fontFamily: 'Noto Sans KR',
+                mx: 0,
+                fontSize: 14,
+                color: '#212121',
+              }}
+              placeholder=""
+              value={url}
+              onChange={(e) => {
+                setUrl(e.target.value);
+              }}
+            />
+          </Paper>
         </Grid>
-
-        <Button variant="contained" component="label">
-          이미지 업로드
-          <input type="file" hidden onChange={handleUploadClick} />
-        </Button>
       </Grid>
 
-      <TextField
-        fullWidth
-        id="outlined-multiline-static"
-        label="가로"
-        defaultValue={wid} //해결해야해요
-        onChange={(e) => {
-          setEditWidth(e.target.value);
-          console.log('wi' + e.target.value);
-        }}
-        sx={{ mb: 4 }}
-      />
-
-      <TextField
-        fullWidth
-        id="outlined-multiline-static"
-        label="세로"
-        defaultValue={editHeight}
-        onChange={(e) => {
-          setEditHeight(e.target.value);
-          console.log('he' + e.target.value);
-        }}
-        sx={{ mb: 4 }}
-      />
-
-      <HexColorPicker color={editColor1} onChange={setEditColor1} />
+      {/* <HexColorPicker color={editColor1} onChange={setEditColor1} />
       <HexColorInput color={editColor1} onChange={setEditColor1} />
 
       <HexColorPicker color={editColor2} onChange={setEditColor2} />
@@ -242,7 +539,7 @@ const EditForm = () => {
       <HexColorInput color={editTextColor2} onChange={setEditTextColor2} />
 
       <HexColorPicker color={editTextColor3} onChange={setEditTextColor3} />
-      <HexColorInput color={editTextColor3} onChange={setEditTextColor3} />
+      <HexColorInput color={editTextColor3} onChange={setEditTextColor3} /> */}
     </div>
   );
 };
@@ -250,18 +547,30 @@ const EditForm = () => {
 export default EditForm;
 
 const BoxButton = styled(Box)(() => ({
-  fontWeight: 500,
-  fontSize: 18,
-  padding: 4,
-  marginTop: 4,
   fontFamily: 'Noto Sans KR',
-  textOverflow: 'ellipsis',
-  overflow: 'hidden',
-  borderRadius: 4,
-  borderColor: '#616161',
-  marginRight: 30,
+  fontSize: '18px',
+  mb: '10px',
+  backgroundColor: '#9e9e9e',
+  color: '#f5f5f5',
+  borderRadius: '2px',
+  width: 120,
+  textAlign: 'center',
   '&:hover': {
     cursor: 'pointer',
     color: '#616161',
   },
 }));
+
+const Modal = () => {
+  return (
+    <div>
+      <Grid container spacing={1}>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={6}></Grid>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}></Grid>
+        <Grid item xs={4}></Grid>
+      </Grid>
+    </div>
+  );
+};

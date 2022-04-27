@@ -8,15 +8,6 @@ import { useState } from 'react';
 
 
 const BannerTest = () => {
-  const [bannerTitle, setBannerTitle] = useState("aaa");
-  const [bannerInfo, setBannerInfo] = useState('aaa');
-  const [font1, setFont1] = useState('14');
-  const [font2, setFont2] = useState('24');
-  const [font3, setFont3] = useState('16');
-  const [bannerW, setBannerW] = useState('1000');
-  const [bannerH, setBannerH] = useState('200');
-
-
   const {
     siteType,
     title,
@@ -37,45 +28,26 @@ const BannerTest = () => {
     hei
   } = BannerPageStore();
     
-
   var img = new Image();
   img.src = imgData;
-
-  useEffect(() => {
-    setBannerTitle(title);
-    setBannerInfo(info);
-    setFont1(textFont1);
-    setFont2(textFont2);
-    setFont3(textFont3);
-    setBannerW(wid);
-    setBannerH(hei);
-    // setBannerColor1(BgColor1);
-    // setBannerColor2(BgColor2);
-    console.log('1-' + wid);
-    console.log('2-' + hei);
-
-    return () => {};
-  }, [title, info, BgColor1, BgColor2, textFont1, textFont2, textFont3, wid, hei]);
-
-
 
   return (
     <BannerBox
       textAlign="center"
       color1={BgColor1}
       color2={BgColor2}
-      wid={bannerW}
-      hei={bannerH}
+      wid={wid}
+      hei={hei}
     >
       <InfoBox>
-        <SiteType color={textColor1} fsize={font1}>
+        <SiteType color={textColor1} fsize={textFont1}>
           {siteType}
         </SiteType>
-        <Title color={textColor2} fsize={font2}>
-          {bannerTitle}
+        <Title color={textColor2} fsize={textFont2}>
+          {title}
         </Title>
-        <Info color={textColor3} fsize={font3}>
-          {bannerInfo}
+        <Info color={textColor3} fsize={textFont3}>
+          {info}
         </Info>
         <Source>produced.by MAMOMO</Source>
       </InfoBox>
@@ -103,14 +75,13 @@ const BannerBox = styled(Box)(({ color1, color2, wid, hei }) => ({
   alignContent: 'center',
   alignItems: 'center',
   height: `${ hei }px`,
-  borderRadius: 10,
 }));
 
 const InfoBox = styled(Box)(() => ({
   fontFamily: 'Noto Sans KR',
   textOverflow: 'ellipsis',
   overflow: 'hidden',
-  width: '69%',
+  width: '70%',
   display: 'flex',
   flexDirection: 'column',
   // justifyContent: 'center',
@@ -135,13 +106,14 @@ const ImgBox = styled(Box)(({ img }) => ({
   flexDirection: 'row',
   justifyContent: 'center',
   alignContent: 'center',
-  backgroundColor: '#f9fbe7',
+  backgroundColor: 'inherit',
+  //backgroundImage: `url(${img})`,
   backgroundImage: `url(${img})`,
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   alignItems: 'center',
   height: 'inherit',
-  borderRadius: 10,
+
 }));
 
 const SiteType = styled(Box)(({ color, fsize }) => ({
@@ -153,7 +125,8 @@ const SiteType = styled(Box)(({ color, fsize }) => ({
   display: 'flex',
   overflow: 'hidden',
   color: { color },
-  height: '10%',
+  height: '12%',
+  maxHeight: '20%',
   marginTop: '20px',
 }));
 
@@ -166,8 +139,8 @@ const Title = styled(Box)(({ color, fsize }) => ({
   display: 'flex',
   overflow: 'hidden',
   color: { color },
-  maxHeight: '60%',
-  marginBottom: '10px',
+  maxHeight: '50%',
+  marginBottom: '20px',
 }));
 
 const Info = styled(Box)(({ color, fsize }) => ({
@@ -178,7 +151,7 @@ const Info = styled(Box)(({ color, fsize }) => ({
   textAlign: 'start',
   overflow: 'hidden',
   color: { color },
-  height: '50%',
+  height: '35%',
   maxHeight: '60%',
   marginBottom: 10,
 }));
