@@ -60,7 +60,7 @@ const Email = () => {
         >
         </TextField>
       </Grid>
-      {
+      {/* {
           isEmail === true
           ? null
           :
@@ -71,7 +71,7 @@ const Email = () => {
             >
               {msg}
             </Grid>
-        }
+        } */}
       </Grid>
     </ThemeProvider>
   );

@@ -60,7 +60,7 @@ const Nickname = () => {
           >
           </TextField>
         </Grid>
-        {
+        {/* {
           isNickname === true
           ? null
           :
@@ -71,10 +71,8 @@ const Nickname = () => {
             >
               {msg}
             </Grid>
-        }
-
-      </Grid>
-      
+        } */}
+      </Grid>   
     </ThemeProvider>
   );
 }
