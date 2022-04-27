@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Grid,
   TextField,
@@ -20,9 +20,30 @@ const Email = () => {
   });
 
   const { email, setEmail } = SignUpStore();
+  const [msg, setMsg] = useState('');
+  const [isEmail, setIsEmail] = useState('');
+
+  function Validation() {
+    if (email !== "") {
+      setIsEmail(true);
+    }
+    else if (email === "") {
+      setMsg("이메일을 입력하세요.");
+      setIsEmail(false);
+    }
+  }
+
+  useEffect(() => {
+    Validation();
+  });
 
   return (
     <ThemeProvider theme={theme}>
+      <Grid
+        sx={{
+          margin: "30px 0 0 0",
+        }}
+      >
       <Grid container justifyContent="center">
         <TextField
           label="이메일"
@@ -38,6 +59,19 @@ const Email = () => {
           }}
         >
         </TextField>
+      </Grid>
+      {
+          isEmail === true
+          ? null
+          :
+            <Grid span
+            margin="10px 0 0 0"
+            fontSize="12px"
+            color="#ff0000"
+            >
+              {msg}
+            </Grid>
+        }
       </Grid>
     </ThemeProvider>
   );
