@@ -89,9 +89,9 @@ const SourceCode = () => {
           <TitleBox>소스코드</TitleBox>
         </Grid>
         <Grid item xs={6}>
-          <GridBox>
+          {/* <GridBox>
             <CopyButton sx={{ border: 1.5 }}>복사하기</CopyButton>
-          </GridBox>
+          </GridBox> */}
         </Grid>
       </Grid>
       <CodeBox>

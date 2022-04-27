@@ -5,24 +5,27 @@ import sq1 from '../../assets/images/ex1.jpg';
 import sq2 from '../../assets/images/cat.jpg';
 import ex1 from '../../assets/images/earth.PNG';
 import ex2 from '../../assets/images/fire.PNG';
+import i from '../../assets/images/i.jpg';
+import i2 from '../../assets/images/ex5.jpg';
+import ex4 from '../../assets/images/ex4.jpg';
 import { styled } from '@mui/system';
 
 const MainCarousel = (props) => {
   var items = [
     {
-      name: '불이야',
-      description: '이제 니 인생 살어',
-      img: ex2,
+      name: '',
+      description: '',
+      img: ex4,
     },
     {
-      name: '불이야',
-      description: 'ㅇ~~~~~',
-      img: ex1,
+      name: '',
+      description: '',
+      img: i2,
     },
     {
-      name: '임시',
-      description: '~~~~',
-      img: sq1,
+      name: '',
+      description: '',
+      img: i,
     },
     {
       name: '난 가끔 눈물을 흘린다',

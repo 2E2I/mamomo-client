@@ -34,7 +34,7 @@ const pages = ['카카오톡', '페이스북', '트위터'];
 
 const Card = ({ campaign }) => {
   const [id, setId] = useState('');
-  const [thumbnail, setThumbnail] = useState('');
+  const [img, setImg] = useState('');
   const [title, setTitle] = useState('');
   const [body, setBody] = useState(''); //쓸지 안쓸지 모름...
   const [organizationName, setorganizationName] = useState('');
@@ -57,11 +57,10 @@ const Card = ({ campaign }) => {
   };
   
 
-  var img = new Image();
 
   useEffect(() => {
     setId(campaign !== undefined && campaign.id);
-    setThumbnail(campaign !== undefined && campaign.thumbnail);
+    setImg(campaign !== undefined && campaign.thumbnail);
     setTitle(campaign !== undefined && campaign.title);
     setBody(campaign !== undefined && campaign.body);
     setorganizationName(campaign !== undefined && campaign.organizationName);
@@ -71,8 +70,6 @@ const Card = ({ campaign }) => {
     setIsHeart(campaign !== undefined && campaign.isHeart);
     setheartCount(campaign !== undefined && campaign.heartCount);
     setsiteType(campaign !== undefined && campaign.siteType);
-    img.src = thumbnail;
-    console.log(thumbnail);
 
     return () => {};
   }, [campaign]);
@@ -96,7 +93,6 @@ const Card = ({ campaign }) => {
 
   return (
     <>
-      <Grow in={true}>
         <Root elevation={0} onClick={handleOpen}>
           <InnerImage img={customImgUrl()}>
             <SiteTypeBox>{siteType}</SiteTypeBox>
@@ -172,7 +168,6 @@ const Card = ({ campaign }) => {
             value={(statusPrice / targetPrice) * 100}
           />
         </Root>
-      </Grow>
 
       <Modal
         open={open}
@@ -187,7 +182,7 @@ const Card = ({ campaign }) => {
         }}
       >
         <Fade in={open}>
-          <ModalBox>{DonationModal(img, title, body, url)}</ModalBox>
+          <ModalBox>{DonationModal(img, title, body, url, siteType)}</ModalBox>
         </Fade>
       </Modal>
     </>
