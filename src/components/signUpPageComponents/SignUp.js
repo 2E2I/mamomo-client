@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Grid,
   Button,
@@ -8,6 +8,7 @@ import {
 
 import axios from 'axios';
 import { SignUpStore } from '../../store/SignUpPageStore';
+import { useHistory } from 'react-router-dom';
 
 // 회원가입 버튼
 const SignUp = () => {
@@ -20,7 +21,8 @@ const SignUp = () => {
     },
   });
 
-  const { email, password, nickname, sex, birth, favTopics } = SignUpStore();
+  const { email, password, nickname, sex, birth, favTopics, btnOnClick, setBtnOnClick } = SignUpStore();
+  const history = useHistory();
 
   const onClick = async () => {
     try {
@@ -32,10 +34,17 @@ const SignUp = () => {
           sex: sex,
           birth: birth,
           favTopics: favTopics, 
-        });
+        })
+        .then((res) => {
+          console.log(res.data);
+          if (res.status === 200) {
+            console.log('회원가입 성공');
+            history.push('/signin');
+          }
+        })
     } catch (e) {
       console.log(e);
-      console.log(email, password, nickname, sex, birth, favTopics)
+      console.log('회원가입 실패');
     }
   };
 
