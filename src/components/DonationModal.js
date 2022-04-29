@@ -5,9 +5,36 @@ import kakaoicon from '../assets/images/icon-kakao.png';
 import facebookicon from '../assets/images/icon-facebook.png';
 import twittericon from '../assets/images/icon-twitter.png';
 import { BannerPageStore } from '../store/BannerPageStore';
+import axios from 'axios';
 
-const DonationModal = (img, title, body, url, siteType) => {
-  const { setSiteType, setTitle, setInfo, setUrl, info } = BannerPageStore();
+
+const DonationModal = (img, title, body, url, siteType, id) => {
+  const {
+    setSiteType,
+    setTitle,
+    setInfo,
+    setUrl,
+    info,
+    setImgData,
+    imgData,
+    initImgData,
+  } = BannerPageStore();
+
+  const m2b = async () => {
+    await axios.get(`http://localhost:8080/api/campaign/${id}`).then((result)=>{
+      console.log('연결');
+      console.log(result.data.thumbnail);
+      setImgData(result.data.thumbnail);
+    });
+    let str = body.slice(0, 120);
+    setSiteType(siteType);
+    setTitle(title);
+    setInfo(str + '...');
+    setUrl(url);
+    console.log('ImgData= ' + imgData);
+    window.location.href = '/banner';
+  };
+
   return (
     <>
       <Box
@@ -62,12 +89,7 @@ const DonationModal = (img, title, body, url, siteType) => {
       {/* <Link to="/banner"> */}
       <Box
         onClick={() => {
-          let str = body.slice(0, 120);
-          setSiteType(siteType);
-          setTitle(title);
-          setInfo(str + '...');
-          setUrl(url);
-          window.location.href = '/banner';
+          m2b();
         }}
         sx={{
           backgroundColor: '#9e9e9e',
