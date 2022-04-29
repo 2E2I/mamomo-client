@@ -7,7 +7,7 @@ import { BrowserRouter } from 'react-router-dom';
 import './assets/fonts/fonts.css';
 import axios from 'axios';
 
-axios.defaults.withCredentials = true;
+//axios.defaults.withCredentials = true;
 
 ReactDOM.render(
   <React.StrictMode>
