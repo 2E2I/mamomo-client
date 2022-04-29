@@ -37,6 +37,10 @@ const SignIn = () => {
         .then((res) => {
           console.log(res.data) // 토큰
           setError(false);
+          
+          const { accessToken } = res.data;
+          //axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+
           if (res.status === 200) {
             console.log('로그인 성공')
             history.push('/')
