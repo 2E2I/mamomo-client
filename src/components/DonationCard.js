@@ -182,7 +182,7 @@ const Card = ({ campaign }) => {
         }}
       >
         <Fade in={open}>
-          <ModalBox>{DonationModal(img, title, body, url, siteType)}</ModalBox>
+          <ModalBox>{DonationModal(img, title, body, url, siteType, id)}</ModalBox>
         </Fade>
       </Modal>
     </>

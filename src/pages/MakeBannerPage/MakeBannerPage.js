@@ -38,7 +38,7 @@ const MakeBannerPage = () => {
         <EditForm />
         <br />
         <br />
-        <SourceCode />
+        {/* <SourceCode /> */}
       </Container>
     </Container>
   );

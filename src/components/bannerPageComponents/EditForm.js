@@ -1,5 +1,13 @@
 import React from 'react';
-import { Box, Button, Grid, styled, Paper, InputBase, Container } from '@mui/material';
+import {
+  Box,
+  Button,
+  Grid,
+  styled,
+  Paper,
+  InputBase,
+  Container,
+} from '@mui/material';
 import TextField from '@mui/material/TextField';
 import { BannerPageStore } from '../../store/BannerPageStore';
 import { useState } from 'react';
@@ -45,11 +53,10 @@ const EditForm = () => {
   } = BannerPageStore();
 
   useEffect(() => {
-    console.log({siteType});
+    console.log({ siteType });
     console.log(title);
     console.log(info);
   }, []);
-
 
   useEffect(() => {
     preview();
@@ -204,7 +211,8 @@ const EditForm = () => {
         </>
       ) : null}
       <Grid container spacing={1} sx={{ mt: 1 }}>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>가로 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -237,8 +245,8 @@ const EditForm = () => {
             />
           </Paper>
         </Grid>
-        <Grid item xs={2}>
-          {' '}
+        <Grid item xs={2} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>세로 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -272,7 +280,8 @@ const EditForm = () => {
           </Paper>
         </Grid>
         <Grid item xs={8}></Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>제공 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -305,7 +314,8 @@ const EditForm = () => {
             />
           </Paper>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>폰트 크기 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -313,7 +323,7 @@ const EditForm = () => {
               p: '2px 4px',
               display: 'flex',
               alignItems: 'center',
-              width: '100px',
+              width: '40px',
               //height: '40px',
               borderColor: '#f7f7f7',
               backgroundColor: '#f7f7f7',
@@ -341,7 +351,8 @@ const EditForm = () => {
         <Grid item xs={2}>
           {/* <BoxButton>fontWeight</BoxButton> */}
         </Grid>
-        <Grid item xs={8}>
+        <Grid item xs={8} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>제목 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -375,7 +386,8 @@ const EditForm = () => {
             />
           </Paper>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>폰트 크기 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -383,7 +395,7 @@ const EditForm = () => {
               p: '2px 4px',
               display: 'flex',
               alignItems: 'center',
-              width: '100px',
+              width: '40px',
               //height: '40px',
               borderColor: '#f7f7f7',
               backgroundColor: '#f7f7f7',
@@ -412,7 +424,8 @@ const EditForm = () => {
           {/* <BoxButton>fontWeight</BoxButton> */}
         </Grid>
 
-        <Grid item xs={8}>
+        <Grid item xs={8} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>본문 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -448,7 +461,8 @@ const EditForm = () => {
             />
           </Paper>
         </Grid>
-        <Grid item xs={2}>
+        <Grid item xs={2} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>폰트 크기 :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
@@ -456,8 +470,8 @@ const EditForm = () => {
               p: '2px 4px',
               display: 'flex',
               alignItems: 'center',
-              width: '100px',
-              //height: '40px',
+              width: '40px',
+              height: '36px',
               borderColor: '#f7f7f7',
               backgroundColor: '#f7f7f7',
               boxShadow: '0',
@@ -484,14 +498,8 @@ const EditForm = () => {
         <Grid item xs={2}>
           {/* <BoxButton>fontWeight</BoxButton> */}
         </Grid>
-        <Grid item xs={8}>
-          {/* <TextField
-            fullWidth
-            id="outlined-multiline-static"
-            label="url"
-            multiline
-            defaultValue="https://happybean.naver.com/donations/H000000183493"
-          /> */}
+        <Grid item xs={8} sx={{ display: 'flex' }}>
+          <Box sx={{ mt: 0.75, fontWeight: 500 }}>URL :&nbsp;&nbsp; </Box>
           <Paper
             component="form"
             variant="outlined"
