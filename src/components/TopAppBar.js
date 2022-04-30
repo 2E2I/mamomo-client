@@ -21,8 +21,8 @@ import SearchPage from '../pages/SearchPage/SearchPage';
 import { SignInStore } from '../store/SignInPageStore';
 import { authHeader, logout } from './authenticationFunc';
 
-const pages = ['기부모아', '배너제작', '도움말'];
-const links = ['/category', '/banner', '/'];
+const pages = ['기부모아', '배너모아', '배너제작', '도움말'];
+const links = ['/category', '/bannerList', '/banner', '/'];
 
 const TopAppBar = () => {
 
