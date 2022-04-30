@@ -32,49 +32,20 @@ const SignIn = () => {
         password: password,
       })
       .then((res) => {
-        //console.log(res.data) // 토큰
         setError(false);
+        setStatus(true);
 
         if (res.status === 200) {
-          console.log('로그인 성공')
-          history.push('/')
+          localStorage.setItem('user', res.data.token);
+          console.log('로그인 성공');
+          history.push('/');
         }
       })
       .catch((e) => {
         console.log(e);
         setError(true);
+        setStatus(false);
       });
-      
-
-    if (data?.accessToken) {
-      localStorage.setItem('user', JSON.stringify(data));
-    }
-
-    //const signIn = login(email, password);
-
-    // try {
-    //   await axios
-    //     .post("http://localhost:8080/api/user/authenticate", {
-    //       email: email,
-    //       password: password,
-    //       //keepingSignIn: keepingSignIn,
-    //     })
-    //     .then((res) => {
-    //       console.log(res.data) // 토큰
-    //       setError(false);
-    //       setStatus(true);
-
-    //       if (res.status === 200) {
-    //         console.log('로그인 성공')
-    //         history.push('/')
-    //         //console.log(status);
-    //       }
-    //     })
-    // } catch (e) {
-    //   console.log(e);
-    //   setError(true);
-    //   setStatus(false);
-    // }
   };
 
   return (

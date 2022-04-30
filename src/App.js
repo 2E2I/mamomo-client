@@ -1,8 +1,7 @@
 import './App.css';
-import { useEffect, useState } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
 import { createBrowserHistory } from 'history';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 
 import MainPage from './pages/MainPage';
 import MainPage2 from './pages/MainPage/MainPage2';
@@ -23,11 +22,11 @@ function App() {
   let history = createBrowserHistory();
 
   history.listen((location, action) => {
-    const user = JSON.parse(localStorage.getItem('user'));
+    const user = localStorage.getItem('user');
     //console.log("토큰 만료 검사");
 
     if (user) {
-      const decodedJwt = authHeader(user.accessToken);
+      const decodedJwt = authHeader();
 
       if (decodedJwt.exp * 1000 < Date.now()) {
         logout();
