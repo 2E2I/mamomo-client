@@ -13,6 +13,7 @@ import SearchingPage from './pages/SearchingPage/SearchingPage';
 import SignUpPage from './pages/SignUpPage/SignUpPage';
 import MakeBannerPage from './pages/MakeBannerPage/MakeBannerPage';
 import SignInPage from './pages/SignInPage';
+import BannerListPage from './pages/BannerListPage/BannerListPage';
 
 import { authHeader, logout, getCurrentUser } from '../src/components/authenticationFunc';
 import { SignInStore } from '../src/store/SignInPageStore'
@@ -55,6 +56,7 @@ function App() {
       <Route path="/signin" exact={true} component={SignInPage} />
       <Route path="/signup" exact={true} component={SignUpPage} />
       <Route path="/banner" exact={true} component={MakeBannerPage} />
+      <Route path="/bannerList" exact={true} component={BannerListPage} />
     </BrowserRouter>
   );
 }
