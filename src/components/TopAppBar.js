@@ -1,7 +1,6 @@
-import * as React from 'react';
-import MenuIcon from '@mui/icons-material/Menu';
-import SearchIcon from '@mui/icons-material/Search';
-import { ThemeProvider, createTheme } from '@mui/material/styles';
+import React, { useEffect, useState } from 'react';
+import axios from 'axios';
+
 import {
   AppBar,
   Box,
@@ -9,10 +8,18 @@ import {
   Typography,
   Container,
   Button,
+  MenuIcon,
+  ThemeProvider,
+  createTheme,
+  Grid,
 } from '@mui/material';
-import { Link } from 'react-router-dom';
-import { Route } from 'react-router-dom';
+import SearchIcon from '@mui/icons-material/Search';
+
+import { Link, Route } from 'react-router-dom';
+
 import SearchPage from '../pages/SearchPage/SearchPage';
+import { SignInStore } from '../store/SignInPageStore';
+import { authHeader, logout } from './authenticationFunc';
 
 const pages = ['기부모아', '배너제작', '도움말'];
 const links = ['/category', '/banner', '/'];
@@ -26,6 +33,26 @@ const TopAppBar = () => {
         contrastText: '#000',
       },
     },
+  });
+
+  const { email, status, setStatus } = SignInStore();
+  const [nickname, setNickname] = useState('');
+
+  useEffect(() => {
+    axios
+    .get(
+      `http://localhost:8080/api/user/${email}`, {
+        headers: authHeader()
+      }
+    )
+    .then((res) => {
+      setNickname(res.data.user.nickname);
+      console.log('연결');
+      console.log(res.data.user); // 사용자 닉네임
+    })
+    .catch((e) => {
+      console.log(e);
+    })
   });
 
   return (
@@ -94,30 +121,87 @@ const TopAppBar = () => {
                 </Link>
               ))}
             </Box>
-
-            <Link to="/signin" style={{ textDecoration: 'none' }}>
-              <Box>
-                <Button
-                  sx={{
-                    mr: 1,
-                    color: '#424242',
-                    display: 'block',
-                    fontSize: 16,
-                    fontWeight: 500,
-                    fontFamily: 'Noto Sans KR',
-                  }}
-                >
-                  로그인
-                </Button>
+                  
+            {
+              status === true
+              ?
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                }}
+              >
+                <Box>
+                  <Button
+                    sx={{
+                      mr: 1,
+                      color: '#424242',
+                      display: 'block',
+                      fontSize: 16,
+                      fontWeight: 500,
+                      fontFamily: 'Noto Sans KR',
+                    }}
+                    onClick = { logout }
+                  >
+                    {nickname}님
+                  </Button>
+                </Box>
+                <Box>
+                  <Button
+                    sx={{
+                      mr: 1,
+                      color: '#424242',
+                      display: 'block',
+                      fontSize: 16,
+                      fontWeight: 500,
+                      fontFamily: 'Noto Sans KR',
+                    }}
+                    onClick = { logout }
+                  >
+                    로그아웃
+                  </Button>
+                </Box>
+                <Link to="/search" style={{ color: 'inherit' }}>
+                  <SearchIcon sx={{ fontSize: 34, mt: 0.5 }} />
+                </Link>
               </Box>
-            </Link>
-            <Link to="/search" style={{ color: 'inherit' }}>
-              <SearchIcon sx={{ fontSize: 34, mt: 0.5 }} />
-            </Link>
+              :
+              <Box
+                sx={{
+                  flexGrow: 1,
+                  display: 'flex',
+                }}
+              >
+                <Link to="/signin" style={{ textDecoration: 'none' }}>
+                  <Box>
+                    <Button
+                      sx={{
+                        mr: 1,
+                        color: '#424242',
+                        display: 'block',
+                        fontSize: 16,
+                        fontWeight: 500,
+                        fontFamily: 'Noto Sans KR',
+                      }}
+                      onClick={() => {
+                        setStatus(false);
+                        localStorage.removeItem('user');
+                      }}
+                    >
+                      로그인
+                    </Button>
+                  </Box>
+                </Link>
+                <Link to="/search" style={{ color: 'inherit' }}>
+                  <SearchIcon sx={{ fontSize: 34, mt: 0.5 }} />
+                </Link>
+              </Box>
+            }
+
           </Toolbar>
         </Container>
       </AppBar>
-    </ThemeProvider>
+    </ThemeProvider>    
   );
 };
 export default TopAppBar;
