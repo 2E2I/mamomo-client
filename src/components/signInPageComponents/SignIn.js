@@ -22,34 +22,59 @@ const SignIn = () => {
     },
   });
   
-  const { email, password, keepingSignIn } = SignInStore();
+  const { email, password, keepingSignIn, status, setStatus, error, setError } = SignInStore();
   const history = useHistory();
-  const [error, setError] = useState(false);
 
   const onClick = async () => {
-    try {
-      await axios
-        .post("http://localhost:8080/api/user/authenticate", {
-          email: email,
-          password: password,
-          //keepingSignIn: keepingSignIn,
-        })
-        .then((res) => {
-          console.log(res.data) // 토큰
-          setError(false);
-          
-          const { accessToken } = res.data;
-          //axios.defaults.headers.common['Authorization'] = `Bearer ${accessToken}`;
+    const data = await axios
+      .post("http://localhost:8080/api/user/authenticate", {
+        email: email,
+        password: password,
+      })
+      .then((res) => {
+        //console.log(res.data) // 토큰
+        setError(false);
 
-          if (res.status === 200) {
-            console.log('로그인 성공')
-            history.push('/')
-          }
-        })
-    } catch (e) {
-      console.log(e);
-      setError(true);
+        if (res.status === 200) {
+          console.log('로그인 성공')
+          history.push('/')
+        }
+      })
+      .catch((e) => {
+        console.log(e);
+        setError(true);
+      });
+      
+
+    if (data?.accessToken) {
+      localStorage.setItem('user', JSON.stringify(data));
     }
+
+    //const signIn = login(email, password);
+
+    // try {
+    //   await axios
+    //     .post("http://localhost:8080/api/user/authenticate", {
+    //       email: email,
+    //       password: password,
+    //       //keepingSignIn: keepingSignIn,
+    //     })
+    //     .then((res) => {
+    //       console.log(res.data) // 토큰
+    //       setError(false);
+    //       setStatus(true);
+
+    //       if (res.status === 200) {
+    //         console.log('로그인 성공')
+    //         history.push('/')
+    //         //console.log(status);
+    //       }
+    //     })
+    // } catch (e) {
+    //   console.log(e);
+    //   setError(true);
+    //   setStatus(false);
+    // }
   };
 
   return (

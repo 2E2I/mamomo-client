@@ -15,6 +15,21 @@ const SignInStore = create((set) => ({
   setKeepingSignIn(keepingSignIn) {
     set(() => ({ keepingSignIn: keepingSignIn }));
   },
+  
+  status: false,
+  setStatus(status) {
+    set(() => ({ status: status }));
+  },
+
+  error: false,
+  setError(error) {
+    set(() => ({ error: error }));
+  },
+
+  user: {},
+  setUser(user) {
+    set(() => ({ user: user }));
+  },
 
 }));
 
