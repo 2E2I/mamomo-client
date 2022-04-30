@@ -19,7 +19,7 @@ import { authHeader, logout, getCurrentUser } from '../src/components/authentica
 import { SignInStore } from '../src/store/SignInPageStore'
 
 function App() {
-  const { user, setUser } = SignInStore();
+  const { user, setUser, initUser, initStatus } = SignInStore();
   let history = createBrowserHistory();
 
   history.listen((location, action) => {
@@ -31,7 +31,8 @@ function App() {
 
       if (decodedJwt.exp * 1000 < Date.now()) {
         logout();
-        setUser({});
+        initUser();
+        initStatus();
       }
     }
   });

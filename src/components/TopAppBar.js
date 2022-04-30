@@ -35,7 +35,7 @@ const TopAppBar = () => {
     },
   });
 
-  const { email, status, setStatus } = SignInStore();
+  const { email, status, setStatus, initStatus } = SignInStore();
   const [nickname, setNickname] = useState('');
 
   useEffect(() => {
@@ -121,10 +121,8 @@ const TopAppBar = () => {
                 </Link>
               ))}
             </Box>
-                  
-            {
-              status === true
-              ?
+
+            {status === true ? (
               <Box
                 sx={{
                   flexGrow: 1,
@@ -141,7 +139,10 @@ const TopAppBar = () => {
                       fontWeight: 500,
                       fontFamily: 'Noto Sans KR',
                     }}
-                    onClick = { logout }
+                    onClick={() => {
+                      logout();
+                      initStatus();
+                    }}
                   >
                     {nickname}님
                   </Button>
@@ -156,7 +157,10 @@ const TopAppBar = () => {
                       fontWeight: 500,
                       fontFamily: 'Noto Sans KR',
                     }}
-                    onClick = { logout }
+                    onClick={() => {
+                      logout();
+                      initStatus();
+                    }}
                   >
                     로그아웃
                   </Button>
@@ -165,7 +169,7 @@ const TopAppBar = () => {
                   <SearchIcon sx={{ fontSize: 34, mt: 0.5 }} />
                 </Link>
               </Box>
-              :
+            ) : (
               <Box
                 sx={{
                   flexGrow: 1,
@@ -184,7 +188,7 @@ const TopAppBar = () => {
                         fontFamily: 'Noto Sans KR',
                       }}
                       onClick={() => {
-                        setStatus(false);
+                        initStatus();
                         localStorage.removeItem('user');
                       }}
                     >
@@ -196,12 +200,11 @@ const TopAppBar = () => {
                   <SearchIcon sx={{ fontSize: 34, mt: 0.5 }} />
                 </Link>
               </Box>
-            }
-
+            )}
           </Toolbar>
         </Container>
       </AppBar>
-    </ThemeProvider>    
+    </ThemeProvider>
   );
 };
 export default TopAppBar;
