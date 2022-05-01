@@ -22,13 +22,14 @@ const Email = () => {
   });
 
   const { email, setEmail } = SignInStore();
-  const { setPassword, setCheckingPassword, setNickname, setSex} = SignUpStore();
+  const { setPassword, setCheckingPassword, setNickname, setSex, setBirth} = SignUpStore();
 
   useEffect(() => {
     setPassword('');
     setCheckingPassword('');
     setNickname('');
     setSex('');
+    setBirth('');
   }, []);
 
   return (
