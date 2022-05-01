@@ -82,7 +82,7 @@ const FavTopics = () => {
       <Grid container justifyContent="center">
         <Box
           sx={{
-            width: "400px",
+            width: "440px",
             margin: "30px 0 0 0"
           }}
         >
@@ -94,7 +94,7 @@ const FavTopics = () => {
           </Box>
           <Box
             sx={{
-              width: "400px",
+              width: "440px",
               margin: "10px 0 0 0",
               border: 1,
               borderColor: "#a6a6a6",

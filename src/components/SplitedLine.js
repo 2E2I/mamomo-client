@@ -23,7 +23,7 @@ const SplitedLine = () => {
       <Box
         sx={{
           margin: '5px',
-          width: 400,
+          width: 440,
           borderTop: 1,
           borderColor: 'lightGray',
         }}

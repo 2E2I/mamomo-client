@@ -8,6 +8,8 @@ import {
   styled,
 } from '@mui/material';
 
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import { SignUpStore } from '../../store/SignUpPageStore';
 
 // Password 재확인
@@ -18,6 +20,14 @@ const CheckingPassword = () => {
         main: '#cecece',
         contrastText: '#fff',
       },
+
+      lightGray: {
+        main: '#a8a8a8'
+      },
+
+      green: {
+        main: '#2db400'
+      }
     },
   });
 
@@ -45,6 +55,7 @@ const CheckingPassword = () => {
     <ThemeProvider theme={theme}>
       <Grid container justifyContent="center">
         <TextField
+          required
           label="비밀번호 재확인"
           type="password"
           variant="outlined"
@@ -57,9 +68,28 @@ const CheckingPassword = () => {
           onChange={ (e) => {
             setPw(e.target.value)
           }}
-        />
+        >
+        </TextField>
+        {
+          isPw === true ?
+          (
+            <CheckCircleIcon
+              sx={{
+                m: "45px 0 0 10px",
+                color: "#2db400",
+              }}
+            />
+          ) : (
+            <CheckCircleIcon
+              sx={{
+                m: "45px 0 0 10px",
+                color: "#a8a8a8",
+              }}
+            />
+          )
+        }
       </Grid>
-      {
+      {/* {
         isPw === true
         ?
           <Grid
@@ -79,8 +109,7 @@ const CheckingPassword = () => {
           >
             {msg}
           </Grid>
-      }
-
+      } */}
     </ThemeProvider>
   );
 }

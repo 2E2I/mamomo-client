@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Grid,
   TextField,
@@ -8,6 +8,7 @@ import {
 } from '@mui/material';
 
 import { SignInStore } from '../../store/SignInPageStore';
+import { SignUpStore } from '../../store/SignUpPageStore';
 
 // email 입력란
 const Email = () => {
@@ -21,6 +22,14 @@ const Email = () => {
   });
 
   const { email, setEmail } = SignInStore();
+  const { setPassword, setCheckingPassword, setNickname, setSex} = SignUpStore();
+
+  useEffect(() => {
+    setPassword('');
+    setCheckingPassword('');
+    setNickname('');
+    setSex('');
+  }, []);
 
   return (
     <ThemeProvider theme={theme}>

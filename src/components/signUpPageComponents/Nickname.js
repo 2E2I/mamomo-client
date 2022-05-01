@@ -6,7 +6,8 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
-import { useState } from 'react';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import { SignUpStore } from '../../store/SignUpPageStore';
 
 // 닉네임 입력란
@@ -17,41 +18,41 @@ const Nickname = () => {
         main: '#cecece',
         contrastText: '#fff',
       },
+
+      lightGray: {
+        main: '#a8a8a8'
+      },
+
+      green: {
+        main: '#2db400'
+      }
     },
   });
 
   const { nickname, setNickname } = SignUpStore();
-  const [msg, setMsg] = useState('');
-  const [isNickname, setIsNickname] = useState('');
 
-  function Validation() {
-    if (nickname !== "") {
-      setIsNickname(true);
-    }
-    else if (nickname === "") {
-      setMsg("닉네임을 입력하세요.");
-      setIsNickname(false);
-    }
-  }
+  const isNickname = (nickname) => {
+    const nicknameRegex = RegExp("^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{2,10}\$")
 
-  useEffect(() => {
-    Validation();
-  });
+    return nicknameRegex.test(nickname);
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid
+      {/* <Grid
         sx={{
           margin: "30px 0 0 0",
         }}
-      >
+      > */}
         <Grid container justifyContent="center">
           <TextField
+            required
             label="닉네임"
             variant="outlined"
-            placeholder="특수문자 제외 2~10자"
+            placeholder="특수문자, 공백 제외 2~10자"
             color="gray"
             sx={{
+              margin: "30px 0 0 0",
               width: "400px"
             }}
             onChange={ (e) => {
@@ -59,6 +60,24 @@ const Nickname = () => {
             }}
           >
           </TextField>
+          {
+            isNickname(nickname) === true ?
+            (
+              <CheckCircleIcon
+                sx={{
+                  m: "45px 0 0 10px",
+                  color: "#2db400",
+                }}
+              />
+            ) : (
+              <CheckCircleIcon
+                sx={{
+                  m: "45px 0 0 10px",
+                  color: "#a8a8a8",
+                }}
+              />
+            )
+          }
         </Grid>
         {/* {
           isNickname === true
@@ -72,7 +91,7 @@ const Nickname = () => {
               {msg}
             </Grid>
         } */}
-      </Grid>   
+      {/* </Grid>    */}
     </ThemeProvider>
   );
 }

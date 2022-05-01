@@ -6,6 +6,8 @@ import {
   ThemeProvider,
 } from '@mui/material';
 
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import { SignUpStore } from '../../store/SignUpPageStore';
 
 // email 입력란
@@ -16,62 +18,66 @@ const Email = () => {
         main: '#cecece',
         contrastText: '#fff',
       },
+
+      lightGray: {
+        main: '#a8a8a8'
+      },
+
+      green: {
+        main: '#2db400'
+      }
     },
   });
 
   const { email, setEmail } = SignUpStore();
-  const [msg, setMsg] = useState('');
-  const [isEmail, setIsEmail] = useState('');
+  const isEmail = (email) => {
+    const emailRegex = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])*\.[a-zA-Z]{2,3}$/i;
 
-  function Validation() {
-    if (email !== "") {
-      setIsEmail(true);
-    }
-    else if (email === "") {
-      setMsg("이메일을 입력하세요.");
-      setIsEmail(false);
-    }
-  }
-
-  useEffect(() => {
-    Validation();
-  });
+    return emailRegex.test(email);
+  };
 
   return (
     <ThemeProvider theme={theme}>
-      <Grid
+      <Grid container justifyContent="center"
         sx={{
           margin: "30px 0 0 0",
         }}
       >
-      <Grid container justifyContent="center">
-        <TextField
-          label="이메일"
-          variant="outlined"
-          placeholder="example@example.com"
-          color="gray"
-          sx={{
-            margin: "5px 0 0 0",
-            width: "400px",
-          }}
-          onChange={ (e) => {
-            setEmail(e.target.value)
-          }}
-        >
-        </TextField>
-      </Grid>
-      {/* {
-          isEmail === true
-          ? null
-          :
-            <Grid span
-            margin="10px 0 0 0"
-            fontSize="12px"
-            color="#ff0000"
-            >
-              {msg}
-            </Grid>
-        } */}
+        <Grid container justifyContent="center">
+          <TextField
+            required
+            label="이메일"
+            variant="outlined"
+            placeholder="example@example.com"
+            color="gray"
+            sx={{
+              margin: "5px 0 0 0",
+              width: "400px",
+            }}
+            onChange={ (e) => {
+              setEmail(e.target.value)
+            }}
+          >
+          </TextField>
+          {
+            isEmail(email) === true ?
+            (
+              <CheckCircleIcon
+                color="green"
+                sx={{
+                  m: "20px 0 0 10px",
+                }}
+              />
+            ) : (
+              <CheckCircleIcon
+                color="lightGray"
+                sx={{
+                  m: "20px 0 0 10px",
+                }}
+              />
+            )
+          }
+        </Grid>
       </Grid>
     </ThemeProvider>
   );

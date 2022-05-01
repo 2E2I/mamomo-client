@@ -11,6 +11,11 @@ const SignUpStore = create((set) => ({
     set(() => ({ password: password }));
   },
 
+  checkPassword: "",
+  setCheckingPassword(checkPassword) {
+    set(() => ({ checkPassword: checkPassword }));
+  },
+
   nickname: "",
   setNickname(nickname) {
     set(() => ({ nickname: nickname }));

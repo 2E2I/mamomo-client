@@ -10,7 +10,8 @@ import {
   Radio,
 } from '@mui/material';
 
-import { useState } from 'react';
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import { SignUpStore } from '../../store/SignUpPageStore';
 
 
@@ -66,6 +67,24 @@ const Sex = () => {
               />
           </RadioGroup>
         </FormControl>
+        {
+          sex === "" ?
+          (
+            <CheckCircleIcon
+              sx={{
+                m: "60px 0 0 10px",
+                color: "#a8a8a8",
+              }}
+            />
+          ) : (
+            <CheckCircleIcon
+              sx={{
+                m: "60px 0 0 10px",
+                color: "#2db400",
+              }}
+            />
+          )
+        }
       </Grid>
     </ThemeProvider>
   )
