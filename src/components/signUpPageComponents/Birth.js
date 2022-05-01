@@ -1,4 +1,4 @@
-import React from 'react';
+import { React, useEffect } from 'react';
 import {
   Grid,
   TextField,
@@ -11,6 +11,7 @@ import {
   FormControlLabel,
   Checkbox,
   Box,
+  Button,
 } from '@mui/material';
 
 import { useState } from 'react';
@@ -45,6 +46,12 @@ const Birth = () => {
   var mm = [];
   var dd = [];
 
+  useEffect(() => {
+    setBirthDay(year, month, day);
+    return () => {};
+  }, [year, month, day, birth]);
+
+
   for (var i = nowYear; i >= 1900; i--) {
     yyyy.push(i);
   }
@@ -58,6 +65,7 @@ const Birth = () => {
   }
 
   function setBirthDay(year, month, day){
+    console.log('year'+year);
     var m, d = "";
     
     if (month < 10) {
@@ -123,8 +131,16 @@ const Birth = () => {
               id="year"
               value={year}
               onChange={ (e) => {
+                // const a = async () => {
+                //   await setYear(e.target.value);
+                //   await year != '' && console.log('e.year' + year);
+                //   await setBirthDay(year, month, day);
+                // };
+                // a();
                 setYear(e.target.value);
-                setBirthDay(year, month, day);
+                // console.log('e.year'+ e.target.value);
+                // year!=''&& console.log('e.year'+ year);
+                // setBirthDay(year, month, day);
               }}
               label="년도"
             >
@@ -159,7 +175,7 @@ const Birth = () => {
               value={month}
               onChange={ (e) => {
                 setMonth(e.target.value);
-                setBirthDay(year, month, day);
+                // setBirthDay(year, month, day);
               }}
               label="월"
             >
@@ -194,7 +210,7 @@ const Birth = () => {
               value={day}
               onChange={ (e) => {
                 setDay(e.target.value);
-                setBirthDay(year, month, day);
+                // setBirthDay(year, month, day);
               }}
               label="일"
             >
@@ -256,6 +272,7 @@ const Birth = () => {
             }}
           />
         </Box>
+        <Button onClick={()=>{console.log('year' + year, month, day);console.log('birth' + birth);}}>aaa</Button>
       </Grid>
     </ThemeProvider>
   );
