@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   Grid,
   Button,
@@ -37,6 +37,7 @@ const SignUp = () => {
         })
         .then((res) => {
           console.log(res.data);
+
           if (res.status === 200) {
             console.log('회원가입 성공');
             history.push('/signin');
@@ -48,6 +49,8 @@ const SignUp = () => {
     }
   };
 
+
+
   return (
     <ThemeProvider theme={theme}>
       <Grid container justifyContent="center">
@@ -56,7 +59,7 @@ const SignUp = () => {
         color="main"
         sx={{
           m: "40px",
-          width: "400px",
+          width: "440px",
           height: "50px",
           boxShadow: '0',
           ":hover": {
