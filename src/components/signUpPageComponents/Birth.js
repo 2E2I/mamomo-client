@@ -14,6 +14,8 @@ import {
   Button,
 } from '@mui/material';
 
+import CheckCircleIcon from '@mui/icons-material/CheckCircle';
+
 import { useState } from 'react';
 import { SignUpStore } from '../../store/SignUpPageStore';
 
@@ -36,8 +38,8 @@ const Birth = () => {
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
   const [day, setDay] = useState('');
-  const [lunar, setLunar] = useState(false); // 음력
-  const [leap, setLeap] = useState(false); // 윤달
+  // const [lunar, setLunar] = useState(false); // 음력
+  // const [leap, setLeap] = useState(false); // 윤달
 
   var nowDate = new Date();
   var nowYear = nowDate.getFullYear();
@@ -120,8 +122,8 @@ const Birth = () => {
           <FormControl
             variant="standard"
             sx={{
-              margin: "5px 15px 0 0",
-              width: "100px",
+              margin: "10px 15px 0 0",
+              width: "120px",
             }}
           >
             {/* 년도 선택 */}
@@ -164,8 +166,8 @@ const Birth = () => {
           <FormControl
             variant="standard"
             sx={{
-              margin: "5px 15px 0 0",
-              width: "50px",
+              margin: "10px 15px 0 0",
+              width: "80px",
             }}
           >
             <InputLabel id="month">월</InputLabel>
@@ -199,8 +201,8 @@ const Birth = () => {
           <FormControl
             variant="standard"
             sx={{
-              margin: "5px 10px 0 0",
-              width: "50px",
+              margin: "10px 10px 0 0",
+              width: "80px",
             }}
           >
             <InputLabel id="day">일</InputLabel>
@@ -230,8 +232,10 @@ const Birth = () => {
             </Select>
           </FormControl>
 
+
+
           {/* 음력 선택 */}
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox color='pink'/>}
             label="음력"
             variant="standard"
@@ -249,10 +253,10 @@ const Birth = () => {
                 console.log(lunar);
               }
             }}
-          />
+          /> */}
 
           {/* 윤달 선택 */}
-          <FormControlLabel
+          {/* <FormControlLabel
             control={<Checkbox color='pink'/>}
             label="윤달"
             variant="standard"
@@ -270,9 +274,27 @@ const Birth = () => {
                 console.log(leap);
               }
             }}
-          />
+          /> */}
         </Box>
-        <Button onClick={()=>{console.log('year' + year, month, day);console.log('birth' + birth);}}>aaa</Button>
+        {
+            year && month && day > 0 ?
+            (
+              <CheckCircleIcon
+                sx={{
+                  m: "80px 0 0 10px",
+                  color: "#2db400",
+                }}
+              />
+            ) : (
+              <CheckCircleIcon
+                sx={{
+                  m: "80px 0 0 10px",
+                  color: "#a8a8a8",
+                }}
+              />
+            )
+          }
+        {/* <Button onClick={()=>{console.log('year' + year, month, day);console.log('birth' + birth);}}>aaa</Button> */}
       </Grid>
     </ThemeProvider>
   );
