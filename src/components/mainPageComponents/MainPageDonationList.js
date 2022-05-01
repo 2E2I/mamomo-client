@@ -4,6 +4,7 @@ import { ListStore } from '../../store/MainPageStore';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { authHeader } from '../authenticationFunc';
 
 const MainPageDonationList = () => {
   const { categories, setCategory } = ListStore();
@@ -20,6 +21,9 @@ const MainPageDonationList = () => {
     try {
       const response = await axios.get(
         `http://localhost:8080/api/campaigns?page=${0}&size=4&category=${data}&sort=due_date,ASC&heart=true`,
+        {
+          headers: authHeader(),
+        },
       );
       setArray([...array, response.data.campaigns]);
       setCount(count + 1);

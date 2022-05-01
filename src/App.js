@@ -17,9 +17,19 @@ import BannerListPage from './pages/BannerListPage/BannerListPage';
 
 import { authHeader, logout, getCurrentUser } from '../src/components/authenticationFunc';
 import { SignInStore } from '../src/store/SignInPageStore'
+import axios from 'axios';
 
 function App() {
-  const { user, setUser, initUser, initStatus } = SignInStore();
+  const {
+    user,
+    setUser,
+    initUser,
+    initStatus,
+    setUserInfo,
+    userInfo,
+    email,
+    status,
+  } = SignInStore();
   let history = createBrowserHistory();
 
   history.listen((location, action) => {
@@ -44,6 +54,26 @@ function App() {
       setUser(user);
     }
   }, []);
+
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/user/${email}`, {
+        headers: authHeader(),
+      })
+      .then((res) => {
+        // setUserID(res.data.user.id);
+        setUserInfo(res.data.user)
+        console.log('연결~~~~');
+        console.log(res.data.user); // 사용자 닉네임
+        console.log(userInfo); // 사용자 닉네임
+
+      })
+      .catch((error) => {
+        console.log(error.message);
+        error.response.status == 400 &&
+          console.log('로그인이 필요합니다.');
+      });
+  }, [status]);
 
   return (
     <BrowserRouter history={history}>

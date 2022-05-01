@@ -3,6 +3,7 @@ import { Box, Grid, styled, Container } from '@mui/material';
 import Card2 from './DonationCard';
 import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import axios from 'axios';
+import { authHeader } from './authenticationFunc';
 
 import { CategoryStore } from '../store/CategoryPageStore';
 
@@ -40,7 +41,9 @@ const DonationListByCategory = () => {
     category == 0 &&
       (a = `http://localhost:8080/api/campaigns?page=${storePage}&${sortValue}`);
     axios
-      .get(a)
+      .get(a, {
+          headers: authHeader(),
+        },)
       .then((result) => {
         console.log('연결');
         console.log('storePage'+ storePage);
