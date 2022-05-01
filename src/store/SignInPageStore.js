@@ -49,6 +49,11 @@ const SignInStore = create(
       initStatus() {
         set(() => ({ status: false }));
       },
+
+      userInfo: {},
+      setUserInfo(uid){
+        set(() => ({ userInfo: uid }));
+      }
     }),
   ),
 );

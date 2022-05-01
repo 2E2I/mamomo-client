@@ -35,7 +35,7 @@ const TopAppBar = () => {
     },
   });
 
-  const { email, status, setStatus, initStatus } = SignInStore();
+  const { email, status, setStatus, initStatus, setUser } = SignInStore();
   const [nickname, setNickname] = useState('');
 
   useEffect(() => {
@@ -47,6 +47,7 @@ const TopAppBar = () => {
     )
     .then((res) => {
       setNickname(res.data.user.nickname);
+      //setUser(res.data.user);
       console.log('연결');
       console.log(res.data.user); // 사용자 닉네임
     })

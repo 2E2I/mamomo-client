@@ -4,6 +4,8 @@ import kakaoicon from '../assets/images/icon-kakao.png';
 import ShareIcon from '@mui/icons-material/Share';
 import ImageIcon from '@mui/icons-material/Image';
 import DonationModal from './DonationModal';
+import { authHeader } from './authenticationFunc';
+import { SignInStore } from '../store/SignInPageStore';
 
 import {
   Box,
@@ -20,6 +22,7 @@ import {
   Backdrop,
   Fade,
   Container,
+  Alert,
 } from '@mui/material';
 import { useEffect } from 'react';
 import { useState } from 'react';
@@ -55,8 +58,9 @@ const Card = ({ campaign }) => {
   const handleClick = () => {
     setFlag(!flag);
   };
-  
 
+  const { email, status, setStatus, initStatus, user, userInfo } =
+    SignInStore();
 
   useEffect(() => {
     setId(campaign !== undefined && campaign.id);
@@ -72,7 +76,7 @@ const Card = ({ campaign }) => {
     setsiteType(campaign !== undefined && campaign.siteType);
 
     return () => {};
-  }, [campaign]);
+  }, [campaign], );
 
   const customImgUrl = () => {
     const modifyUrEnd = String(img).substring(String(img).indexOf(')') + 1);
@@ -91,47 +95,90 @@ const Card = ({ campaign }) => {
     setAnchorElNav(null);
   };
 
+  const [userID, setUserID] = useState('');
+
+  const c2s = async () => {
+    if (window.confirm('로그인이 필요합니다. 로그인 페이지로 이동합니다.')) {
+      window.location.href = '/signin';
+    } else {
+      // They clicked no
+    }
+  };
+
   return (
     <>
-        <Root elevation={0} onClick={handleOpen}>
-          <InnerImage img={customImgUrl()}>
-            <SiteTypeBox>{siteType}</SiteTypeBox>
-          </InnerImage>
-          <InnerTitleBox component="div">{title}</InnerTitleBox>
-          <InnerOrganizationTitleBox>
-            {organizationName}
-          </InnerOrganizationTitleBox>
+      <Root elevation={0}>
+        <InnerImage img={customImgUrl()} onClick={handleOpen}>
+          <SiteTypeBox>{siteType}</SiteTypeBox>
+        </InnerImage>
+        <InnerTitleBox component="div" onClick={handleOpen}>
+          {title}
+        </InnerTitleBox>
+        <InnerOrganizationTitleBox onClick={handleOpen}>
+          {organizationName}
+        </InnerOrganizationTitleBox>
 
-          <Grid container spacing={1}>
-            <Grid item xs={6}>
-              <InnerPriceBox>{priceToString(statusPrice)}원</InnerPriceBox>
-            </Grid>
+        <Grid container spacing={1}>
+          <Grid item xs={9} onClick={handleOpen}>
+            <InnerPriceBox>{priceToString(statusPrice)}원</InnerPriceBox>
+          </Grid>
 
-            <IconGrid item xs={6}>
-              <InnerPriceBox
-                onClick={() => {
-                  console.log(isHeart);
-                }}
-              >
-                {heartCount}
-              </InnerPriceBox>
-              <IconButton
-                aria-label="add to favorites"
-                onClick={() => {
-                  const a = async () => {
-                    await axios.post(`http://localhost:8080/api/heart`, {
-                      campaignId: `${id}`,
-                      userId: '550e8400-e29b-41d4-a716-446655440000',
+          <IconGrid item xs={3}>
+            <InnerPriceBox
+              onClick={() => {
+                console.log(isHeart);
+              }}
+            >
+              {heartCount}
+            </InnerPriceBox>
+            <IconButton
+              aria-label="add to favorites"
+              onClick={() => {
+                const a = async () => {
+                  // let userid;
+                  // await axios
+                  //   .get(`http://localhost:8080/api/user/${email}`, {
+                  //     headers: authHeader(),
+                  //   })
+                  //   .then((res) => {
+                  //     // setUserID(res.data.user.id);
+                  //     userid = res.data.user.id;
+                  //     console.log('연결');
+                  //     console.log(res.data.user.id); // 사용자 닉네임
+                  //   })
+                  //   .catch((error) => {
+                  //     console.log(error.message);
+                  //     error.response.status == 400 &&
+                  //       console.log('로그인이 필요합니다.');
+                  //   });
+                  await console.log(userInfo.id); // 사용자 닉네임
+                  await axios
+                    .post(
+                      `http://localhost:8080/api/heart`,
+                      {
+                        campaignId: `${id}`,
+                        //userId: userID,
+                        userId: userInfo.id,
+                      },
+                      {
+                        headers: authHeader(),
+                      },
+                    )
+                    .catch((error) => {
+                      console.log(error.message);
+                      console.log(error.response.status);
+                      error.response.status == 409 && alert('이미 좋아요를 눌렀습니다.');
                     });
-                    await console.log(isHeart);
-                  };
-                  a();
-                }}
-              >
-                <FavoriteIc />
-              </IconButton>
+                };
+                status == false && c2s();
+                status == true && a();
+                console.log(isHeart);
+              }}
+            >
+              <FavoriteIc icColor={isHeart === true ? '#e91e63' : '#bdbdbd'} />
+            </IconButton>
 
-              {/* <IconButton aria-label="share" onClick={handleOpenNavMenu}>
+            {/* <IconButton aria-label="share" onClick={handleOpenNavMenu}>
                 <ShareIc />
               </IconButton>
               <Menu
@@ -161,13 +208,13 @@ const Card = ({ campaign }) => {
               <IconButton aria-label="share">
                 <ImageIc />
               </IconButton> */}
-            </IconGrid>
-          </Grid>
-          <BorderLinearProgress
-            variant="determinate"
-            value={(statusPrice / targetPrice) * 100}
-          />
-        </Root>
+          </IconGrid>
+        </Grid>
+        <BorderLinearProgress
+          variant="determinate"
+          value={(statusPrice / targetPrice) * 100}
+        />
+      </Root>
 
       <Modal
         open={open}
@@ -182,9 +229,12 @@ const Card = ({ campaign }) => {
         }}
       >
         <Fade in={open}>
-          <ModalBox>{DonationModal(img, title, body, url, siteType, id)}</ModalBox>
+          <ModalBox>
+            {DonationModal(img, title, body, url, siteType, id)}
+          </ModalBox>
         </Fade>
       </Modal>
+
     </>
   );
 };
@@ -290,9 +340,9 @@ const ShareIc = styled(ShareIcon)(() => ({
   fontSize: 14,
 }));
 
-const FavoriteIc = styled(FavoriteIcon)(() => ({
+const FavoriteIc = styled(FavoriteIcon)(({ icColor }) => ({
   fontSize: 15,
-  color: '#f44336',
+  color: icColor,
 }));
 
 const ImageIc = styled(ImageIcon)(() => ({
