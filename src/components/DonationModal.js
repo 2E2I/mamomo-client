@@ -6,6 +6,7 @@ import facebookicon from '../assets/images/icon-facebook.png';
 import twittericon from '../assets/images/icon-twitter.png';
 import { BannerPageStore } from '../store/BannerPageStore';
 import axios from 'axios';
+import boogie04 from '../assets/images/boogie01.png';
 
 
 const DonationModal = (img, title, body, url, siteType, id) => {
@@ -36,16 +37,28 @@ const DonationModal = (img, title, body, url, siteType, id) => {
   };
 
   return (
-    <>
+    <Box>
+      <Box
+        sx={{
+          position: 'absolute',
+          top: '395px',
+          left: '340px',
+          backgroundImage: `url(${boogie04})`,
+          backgroundPosition: 'center',
+          //backgroundRepeat: 'no-repeat',
+          width: 230,
+          height: 230,
+          backgroundSize: '120%',
+          //opacity: 0.6,
+        }}
+      ></Box>
       <Box
         sx={{
           fontSize: 24,
           textOverflow: 'ellipsis',
           overflow: 'hidden',
-          maxHeight: 140,
-          minHeight: 140,
-          maxWidth: 600,
-          minWidth: 600,
+          height: 140,
+          width: 600,
           padding: 5,
           backgroundImage: `url(${img})`,
           backgroundSize: 'cover',
@@ -58,12 +71,11 @@ const DonationModal = (img, title, body, url, siteType, id) => {
       <Box
         sx={{
           fontSize: 17,
+          fontWeight: 200,
           textOverflow: 'ellipsis',
           overflow: 'auto',
-          maxHeight: 180,
-          minHeight: 180,
-          maxWidth: 600,
-          minWidth: 600,
+          height: 240,
+          width: 600,
           padding: 5,
           paddingTop: 2,
         }}
@@ -72,27 +84,11 @@ const DonationModal = (img, title, body, url, siteType, id) => {
       </Box>
       <hr />
       <Box
-        sx={{
-          fontSize: 17,
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          height: 80,
-          maxWidth: 600,
-          minWidth: 600,
-          padding: 5,
-          paddingTop: 0,
-          paddingBottom: 1,
-        }}
-      >
-        바로가기 <div>{url}</div>
-      </Box>
-      {/* <Link to="/banner"> */}
-      <Box
         onClick={() => {
-          m2b();
+          window.open(`${url}`, '_blank');
         }}
         sx={{
-          backgroundColor: '#9e9e9e',
+          background: `linear-gradient(to right, #f8bbd0,#ff80ab)`,
           color: '#f5f5f5',
           fontWeight: 400,
           fontSize: 18,
@@ -103,10 +99,38 @@ const DonationModal = (img, title, body, url, siteType, id) => {
           height: 30,
           width: 120,
           ml: 5,
+          mt: 4,
           textAlign: 'center',
           '&:hover': {
             cursor: 'pointer',
-            color: '#616161',
+            color: '#ec407a',
+          },
+        }}
+      >
+        바로가기
+      </Box>
+      {/* <Link to="/banner"> */}
+      <Box
+        onClick={() => {
+          m2b();
+        }}
+        sx={{
+          background: `linear-gradient(to right, #f8bbd0,#ff80ab)`,
+          color: '#f5f5f5',
+          fontWeight: 400,
+          fontSize: 18,
+          fontFamily: 'Noto Sans KR',
+          textOverflow: 'ellipsis',
+          overflow: 'hidden',
+          borderRadius: 2,
+          height: 30,
+          width: 120,
+          ml: 5,
+          mt: 3,
+          textAlign: 'center',
+          '&:hover': {
+            cursor: 'pointer',
+            color: '#ec407a',
           },
         }}
       >
@@ -124,10 +148,9 @@ const DonationModal = (img, title, body, url, siteType, id) => {
           padding: 5,
           paddingTop: 1,
           paddingBottom: 1,
+          mt: 1,
         }}
       >
-        공유하기
-        <br />
         <Container disableGutters={true} sx={{ display: 'flex', marginTop: 2 }}>
           <Box
             sx={{
@@ -188,17 +211,14 @@ const DonationModal = (img, title, body, url, siteType, id) => {
           fontWeight: 700,
           textOverflow: 'ellipsis',
           overflow: 'auto',
-          height: 60,
-          padding: 5,
-          paddingTop: 2,
-          paddingBottom: 1,
+          height: 40,
           display: 'flex',
           color: '#f48fb1',
         }}
       >
         <Box sx={{ margin: 'auto', marginBottom: 0 }}>MAMOMO</Box>
       </Box>
-    </>
+    </Box>
   );
 };
 
