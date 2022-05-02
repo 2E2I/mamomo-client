@@ -1,9 +1,10 @@
 import React from 'react';
-import { Container } from '@mui/material';
+import { Container, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import TopAppBar from '../../components/TopAppBar';
 import UserTab from '../../components/myPageComponents/UserTab';
+import Title from '../../components/myPageComponents/Title';
 
 const MyPage = () => {
 
@@ -19,7 +20,11 @@ const MyPage = () => {
 
       <TopAppBar />
 
-      <UserTab />
+      <Grid container justifycontent='center'>
+        <UserTab />
+        <Title />
+      </Grid>
+
 
     </Container>
   )

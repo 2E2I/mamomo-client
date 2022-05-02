@@ -16,6 +16,7 @@ import {
 import axios from 'axios';
 
 import { SignInStore } from '../../store/SignInPageStore';
+import { MyPageStore } from '../../store/MyPageStore';
 import { authHeader } from '../authenticationFunc';
 
 const UserTab = () => {
@@ -28,6 +29,9 @@ const UserTab = () => {
 
   const { email } = SignInStore();
   const [nickname, setNickname] = useState('');
+  const { setTitle } = MyPageStore();
+
+  const title = ['프로필 관리', '좋아요한 기부', '내가 만든 배너']
 
   const [selectedIndex, setSelectedIndex] = useState(0);
   const handleListItemClick = (event, index) => {
@@ -102,23 +106,31 @@ const UserTab = () => {
         >
           <ListItem button divider
             selected={selectedIndex === 0}
-            onClick={(event) => handleListItemClick(event, 0)}
+            onClick={(event) => { 
+              handleListItemClick(event, 0);
+              setTitle(title[0])
+            }}
           >
-            <ListItemText>프로필 관리</ListItemText>
+            <ListItemText>{title[0]}</ListItemText>
           </ListItem>
 
           <ListItem button divider
             selected={selectedIndex === 1}
-            onClick={(event) => handleListItemClick(event, 1)}          
+            onClick={(event) => { 
+              handleListItemClick(event, 1);
+              setTitle(title[1])
+            }}         
           >
-            <ListItemText>좋아요한 기부</ListItemText>
+            <ListItemText>{title[1]}</ListItemText>
           </ListItem>
 
           <ListItem button
             selected={selectedIndex === 2}
-            onClick={(event) => handleListItemClick(event, 2)}
-          >
-            <ListItemText>내가 만든 배너</ListItemText>
+            onClick={(event) => { 
+              handleListItemClick(event, 2);
+              setTitle(title[2])
+            }}          >
+            <ListItemText>{title[2]}</ListItemText>
           </ListItem>
         </List>
 
