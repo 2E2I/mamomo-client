@@ -143,7 +143,6 @@ const TopAppBar = () => {
                     }}
                     onClick={() => {
                       history.push('/my');
-                      //initStatus();
                     }}
                   >
                     {nickname}님
