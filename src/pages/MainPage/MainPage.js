@@ -35,8 +35,6 @@ const MainPage = () => {
         <TopAppBar />
         <MainCarousel />
         <br />
-        <Categories />
-        
         <CardList2 />
         <hr />
       </Container>

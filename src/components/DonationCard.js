@@ -308,6 +308,8 @@ const ModalBox = styled(Box)(() => ({
   transform: 'translate(-50%, -50%)',
   width: 600,
   height: 700,
+  maxWidth: 600,
+  maxHeight: 700,
   backgroundColor: '#FFF',
   boxShadow: 24,
   outline: 'none',

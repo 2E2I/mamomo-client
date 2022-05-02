@@ -127,7 +127,7 @@ const TopAppBar = () => {
             {status === true ? (
               <Box
                 sx={{
-                  flexGrow: 1,
+                  flexGrow: 0,
                   display: 'flex',
                 }}
               >
@@ -173,7 +173,7 @@ const TopAppBar = () => {
             ) : (
               <Box
                 sx={{
-                  flexGrow: 1,
+                  flexGrow: 0,
                   display: 'flex',
                 }}
               >
