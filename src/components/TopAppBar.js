@@ -15,7 +15,7 @@ import {
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
-import { Link, Route } from 'react-router-dom';
+import { Link, Route, useHistory } from 'react-router-dom';
 
 import SearchPage from '../pages/SearchPage/SearchPage';
 import { SignInStore } from '../store/SignInPageStore';
@@ -37,6 +37,7 @@ const TopAppBar = () => {
 
   const { email, status, setStatus, initStatus, setUser } = SignInStore();
   const [nickname, setNickname] = useState('');
+  const history = useHistory()
 
   useEffect(() => {
     axios
@@ -141,8 +142,7 @@ const TopAppBar = () => {
                       fontFamily: 'Noto Sans KR',
                     }}
                     onClick={() => {
-                      logout();
-                      initStatus();
+                      history.push('/my');
                     }}
                   >
                     {nickname}님

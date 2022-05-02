@@ -1,13 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Box, Container } from '@mui/material';
 import TopAppBar from '../../components/TopAppBar';
 import RoundSearchBar from '../../components/mainPageComponents/MainPageSearchBar';
 import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
 import MainCarousel from '../../components/mainPageComponents/Carousel2';
 import Categories from '../../components/Tags';
+import { SignInStore } from '../../store/SignInPageStore';
 
 
 const MainPage = () => {
+
+  const { status, setEmail, setPassword } = SignInStore()
+
+  useEffect(() => {
+    if (status === false) {
+      setEmail('');
+      setPassword('');
+    } else {
+      return
+    }
+  }, [])
+
     return (
       <Container
         maxWidth={false}
