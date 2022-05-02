@@ -3,6 +3,7 @@ import { Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import TopAppBar from '../../components/TopAppBar';
+import UserTab from '../../components/myPageComponents/UserTab';
 
 const MyPage = () => {
 
@@ -18,7 +19,7 @@ const MyPage = () => {
 
       <TopAppBar />
 
-      마이페이지입니다.
+      <UserTab />
 
     </Container>
   )
