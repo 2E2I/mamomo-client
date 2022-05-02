@@ -50,12 +50,13 @@ const EditForm = () => {
     setWid,
     setHei,
     setUrl,
+    setImgData2,
   } = BannerPageStore();
 
   useEffect(() => {
     console.log({ siteType });
     console.log(title);
-    console.log(info);
+    console.log('info'+info);
   }, []);
 
   useEffect(() => {
@@ -65,9 +66,13 @@ const EditForm = () => {
 
   const preview = () => {
     if (!files) return false;
+    console.log('확인1');
     const reader = new FileReader();
+    console.log('확인2');
     reader.readAsDataURL(files[0]);
+    console.log('확인3');
     reader.onload = () => setImgData(reader.result);
+    console.log('확인4');
     console.log('reader' + reader.result);
   };
 
@@ -451,8 +456,9 @@ const EditForm = () => {
                 color: '#212121',
               }}
               placeholder="내용을 입력하세요."
-              multiline={true}
+              //multiline={true}
               minRows={3}
+              maxRows={3}
               value={info}
               onChange={(e) => {
                 setInfo(e.target.value);
@@ -533,21 +539,6 @@ const EditForm = () => {
           </Paper>
         </Grid>
       </Grid>
-
-      {/* <HexColorPicker color={editColor1} onChange={setEditColor1} />
-      <HexColorInput color={editColor1} onChange={setEditColor1} />
-
-      <HexColorPicker color={editColor2} onChange={setEditColor2} />
-      <HexColorInput color={editColor2} onChange={setEditColor2} />
-
-      <HexColorPicker color={editTextColor1} onChange={setEditTextColor1} />
-      <HexColorInput color={editTextColor1} onChange={setEditTextColor1} />
-
-      <HexColorPicker color={editTextColor2} onChange={setEditTextColor2} />
-      <HexColorInput color={editTextColor2} onChange={setEditTextColor2} />
-
-      <HexColorPicker color={editTextColor3} onChange={setEditTextColor3} />
-      <HexColorInput color={editTextColor3} onChange={setEditTextColor3} /> */}
     </div>
   );
 };
