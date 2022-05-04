@@ -9,6 +9,7 @@ import {
   RadioGroup,
   FormControlLabel,
   Radio,
+  Divider,
 } from '@mui/material';
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -102,6 +103,7 @@ const Sex = () => {
                 />
             </RadioGroup>
           </FormControl>
+          <Divider />
         </Box>
         {
           sex === "" ?
@@ -121,6 +123,7 @@ const Sex = () => {
             />
           )
         }
+
       </Grid>
     </ThemeProvider>
   )
