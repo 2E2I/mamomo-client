@@ -9,6 +9,7 @@ import Title from '../../components/myPageComponents/Title';
 import { MyPageStore } from '../../store/MyPageStore';
 import Birth from '../../components/myPageComponents/managingPageComponents/Birth';
 import Sex from '../../components/myPageComponents/managingPageComponents/Sex';
+import FavTopics from '../../components/myPageComponents/managingPageComponents/FavTopics';
 
 // 프로필 관리 페이지
 const ManagingPage = () => {
@@ -37,6 +38,7 @@ const ManagingPage = () => {
         <Title />
         <Birth />
         <Sex />
+        <FavTopics />
       </Box>
 
     </Grid>
