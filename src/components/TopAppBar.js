@@ -142,7 +142,7 @@ const TopAppBar = () => {
                       fontFamily: 'Noto Sans KR',
                     }}
                     onClick={() => {
-                      history.push('/my');
+                      history.push('/my/manage');
                     }}
                   >
                     {nickname}님

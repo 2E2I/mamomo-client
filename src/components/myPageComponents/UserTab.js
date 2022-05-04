@@ -1,19 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import {
-  Container,
   Grid,
-  TextField,
-  createTheme,
-  ThemeProvider,
-  Box,
   Avatar,
   List,
   ListItem,
   ListItemText,
-  Divider,
 } from '@mui/material';
 
 import axios from 'axios';
+import { useHistory } from 'react-router-dom';
 
 import { SignInStore } from '../../store/SignInPageStore';
 import { MyPageStore } from '../../store/MyPageStore';
@@ -29,14 +24,15 @@ const UserTab = () => {
 
   const { email } = SignInStore();
   const [nickname, setNickname] = useState('');
-  const { setTitle } = MyPageStore();
+  const { setTitle, index, setIndex } = MyPageStore();
 
   const title = ['프로필 관리', '좋아요한 기부', '내가 만든 배너']
 
-  const [selectedIndex, setSelectedIndex] = useState(0);
   const handleListItemClick = (event, index) => {
-    setSelectedIndex(index);
+    setIndex(index);
   };
+
+  const history = useHistory();
 
   useEffect(() => {
     axios
@@ -105,30 +101,36 @@ const UserTab = () => {
           component="nav"
         >
           <ListItem button divider
-            selected={selectedIndex === 0}
+            selected={index === 0}
+            sx={{
+              color: '#424242',
+            }}
             onClick={(event) => { 
               handleListItemClick(event, 0);
               setTitle(title[0])
+              history.push('/my/manage')
             }}
           >
             <ListItemText>{title[0]}</ListItemText>
           </ListItem>
 
           <ListItem button divider
-            selected={selectedIndex === 1}
+            selected={index === 1}
             onClick={(event) => { 
               handleListItemClick(event, 1);
               setTitle(title[1])
+              history.push('/my/like')
             }}         
           >
             <ListItemText>{title[1]}</ListItemText>
           </ListItem>
 
           <ListItem button
-            selected={selectedIndex === 2}
+            selected={index === 2}
             onClick={(event) => { 
               handleListItemClick(event, 2);
               setTitle(title[2])
+              history.push('/my/mybanner')
             }}          >
             <ListItemText>{title[2]}</ListItemText>
           </ListItem>

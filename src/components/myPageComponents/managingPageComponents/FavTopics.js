@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   createTheme,
   ThemeProvider,
@@ -8,9 +8,13 @@ import {
   Grid,
 } from '@mui/material';
 
-import { useState, useEffect } from 'react';
-import { SignUpStore } from '../../store/SignUpPageStore';
 import axios from 'axios';
+
+import { SignUpStore } from '../../../store/SignUpPageStore';
+import { SignInStore } from '../../../store/SignInPageStore';
+
+import { authHeader } from '../../authenticationFunc';
+
 
 // 관심 기부 분야 checkBox
 const FavTopics = () => {
@@ -27,10 +31,13 @@ const FavTopics = () => {
   });
 
   const { favTopics, setFavTopics } = SignUpStore();
+  const { email } = SignInStore();
 
   const [tag, setTag] = useState('');
   const categories = Object.values(tag);
   const list = categories[0];
+
+  var userFavTopics = [];
 
   const categoryList =
     list &&
@@ -51,14 +58,15 @@ const FavTopics = () => {
             key={index}
             control={<Checkbox color='pink'/>}
             label={tag}
+            //checked={ userFavTopics.includes(index) ? true : false }
             onChange={ (e) => {
               if (e.target.checked) {
-                favTopics.push(index + 1)
-                favTopics.sort(function(a, b) { return a - b });
-                console.log(favTopics);
+                userFavTopics.push(index + 1)
+                userFavTopics.sort(function(a, b) { return a - b });
+                console.log(userFavTopics);
               } else {
-                favTopics.pop()
-                console.log(favTopics);
+                userFavTopics.pop()
+                console.log(userFavTopics);
               }
             }}
           />
@@ -76,30 +84,54 @@ const FavTopics = () => {
           console.log('연결실패');
         });
       return () => {};
-    }, []); 
+    }, []);
+
+  useEffect(() => {
+    axios
+    .get(
+      `http://localhost:8080/api/user/${email}`, {
+        headers: authHeader()
+      }
+    )
+    .then((res) => {
+      console.log('연결');
+      for (var i = 0; i < (Object.values(res.data.user.favTopic).length); i++) {
+        userFavTopics.push(Object.values(res.data.user.favTopic)[i].topic.id)
+      }
+      console.log(userFavTopics);
+    })
+    .catch((e) => {
+      console.log(e);
+    })
+  }, [email]);
 
   return (
     <ThemeProvider theme={theme}>
       <Grid container justifyContent="center">
         <Box
           sx={{
-            width: "440px",
-            margin: "30px 0 0 0"
+            m: "50px 0 0 20px",
+            width: "700px",
+            //border: 1
           }}
         >
           <Box
             component="span"
-            color="#666666"
+            sx={{
+              fontSize: "15px",
+              fontFamily: "Noto Sans KR",
+              fontWeight: 500
+            }}
           >
             관심 기부 분야
           </Box>
           <Box
             sx={{
-              width: "440px",
-              margin: "10px 0 0 0",
+              width: "700px",
+              margin: "20px 0 0 0",
               border: 1,
               borderColor: "#a6a6a6",
-              p: '7px 3px 7px 3px'
+              p: "7px 3px 7px 3px"
             }}
           >
             {categoryList}

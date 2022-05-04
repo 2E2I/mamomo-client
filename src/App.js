@@ -14,7 +14,11 @@ import SignUpPage from './pages/SignUpPage/SignUpPage';
 import MakeBannerPage from './pages/MakeBannerPage/MakeBannerPage';
 import SignInPage from './pages/SignInPage';
 import BannerListPage from './pages/BannerListPage/BannerListPage';
-import MyPage from './pages/MyPage/MyPage';
+
+// 마이페이지
+import ManagingPage from './pages/MyPage/ManagingPage';
+import LikePage from './pages/MyPage/LikePage';
+import MyBannerPage from './pages/MyPage/MyBannerPage';
 
 import { authHeader, logout, getCurrentUser } from '../src/components/authenticationFunc';
 import { SignInStore } from '../src/store/SignInPageStore'
@@ -141,7 +145,9 @@ function App() {
         <Route path="/signup" exact={true} component={SignUpPage} />
         <Route path="/banner" exact={true} component={MakeBannerPage} />
         <Route path="/bannerList" exact={true} component={BannerListPage} />
-        <Route path="/my" exact={true} component={MyPage} />
+        <Route path="/my/manage" exact={true} component={ManagingPage} />
+        <Route path="/my/like" exact={true} component={LikePage} />
+        <Route path="/my/mybanner" exact={true} component={MyBannerPage} />
       </BrowserRouter>
     </>
   );
