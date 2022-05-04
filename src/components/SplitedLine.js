@@ -22,8 +22,8 @@ const SplitedLine = () => {
       <Grid container justifyContent="center">
         <Box
           sx={{
-            m: "5px 0 0 10px",
-            width: "700px",
+            m: "5px",
+            width: "440px",
             borderTop: 1,
             borderColor: "lightGray",
           }}

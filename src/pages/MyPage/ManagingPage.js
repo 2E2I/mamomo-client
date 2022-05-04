@@ -6,11 +6,14 @@ import TopAppBar from '../../components/TopAppBar';
 import UserTab from '../../components/myPageComponents/UserTab';
 import Title from '../../components/myPageComponents/Title';
 
-import { MyPageStore } from '../../store/MyPageStore';
+import Nickname from '../../components/myPageComponents/managingPageComponents/Nickname';
 import Birth from '../../components/myPageComponents/managingPageComponents/Birth';
 import Sex from '../../components/myPageComponents/managingPageComponents/Sex';
 import FavTopics from '../../components/myPageComponents/managingPageComponents/FavTopics';
-import Nickname from '../../components/myPageComponents/managingPageComponents/Nickname';
+import SaveButton from '../../components/myPageComponents/managingPageComponents/SaveButton';
+import CancelButton from '../../components/myPageComponents/managingPageComponents/CancelButton';
+
+import { MyPageStore } from '../../store/MyPageStore';
 
 // 프로필 관리 페이지
 const ManagingPage = () => {
@@ -41,6 +44,11 @@ const ManagingPage = () => {
         <Birth />
         <Sex />
         <FavTopics />
+
+        
+        <SaveButton />
+        <CancelButton />
+
       </Box>
 
     </Grid>
