@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react';
 
-import { Container, Grid } from '@mui/material';
+import { Container, Grid, Box } from '@mui/material';
 
 import TopAppBar from '../../components/TopAppBar';
 import UserTab from '../../components/myPageComponents/UserTab';
 import Title from '../../components/myPageComponents/Title';
 
 import { MyPageStore } from '../../store/MyPageStore';
+import Birth from '../../components/myPageComponents/managingPageComponents/Birth';
 
 // 프로필 관리 페이지
 const ManagingPage = () => {
@@ -31,7 +32,11 @@ const ManagingPage = () => {
 
     <Grid container justifycontent='center'>
       <UserTab />
-      <Title />
+      <Box span>
+        <Title />
+        <Birth />
+      </Box>
+
     </Grid>
 
     </Container>
