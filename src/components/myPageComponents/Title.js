@@ -1,24 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
-  Container,
   Grid,
-  TextField,
-  createTheme,
-  ThemeProvider,
-  Box,
-  Avatar,
-  List,
-  ListItem,
-  ListItemText,
   Divider,
 } from '@mui/material';
 
-import axios from 'axios';
-
-import { SignInStore } from '../../store/SignInPageStore';
 import { MyPageStore } from '../../store/MyPageStore';
-import { authHeader } from '../authenticationFunc';
-import { fontFamily } from '@mui/system';
 
 const Title = () => {
 
