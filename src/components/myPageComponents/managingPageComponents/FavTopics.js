@@ -110,26 +110,28 @@ const FavTopics = () => {
       <Grid container justifyContent="center">
         <Box
           sx={{
-            width: "650px",
-            margin: "30px 0 0 0",
+            m: "50px 0 0 20px",
+            width: "700px",
+            //border: 1
           }}
         >
           <Box
             component="span"
             sx={{
               fontSize: "15px",
-              fontFamily: 'Noto Sans KR',
+              fontFamily: "Noto Sans KR",
+              fontWeight: 500
             }}
           >
             관심 기부 분야
           </Box>
           <Box
             sx={{
-              width: "650px",
-              margin: "10px 0 0 0",
+              width: "700px",
+              margin: "20px 0 0 0",
               border: 1,
               borderColor: "#a6a6a6",
-              p: '7px 3px 7px 3px'
+              p: "7px 3px 7px 3px"
             }}
           >
             {categoryList}

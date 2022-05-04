@@ -13,34 +13,30 @@ import {
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import { SignUpStore } from '../../../store/SignUpPageStore';
 import axios from 'axios';
+
 import { authHeader } from '../../authenticationFunc';
 import { SignInStore } from '../../../store/SignInPageStore';
-
 
 // 성별 선택
 const Sex = () => {
   const theme = createTheme({
     palette: {
       darkGray: {
-        main: '#666666'
+        main: "#666666"
       },
       gray: {
-        main: '#cecece',
-        contrastText: '#fff',
+        main: "#cecece",
+        contrastText: "#fff",
       },
       pink: {
-        main: '#FEBCBC',
+        main: "#FEBCBC",
       }
     },
   });
 
   const { email } = SignInStore();
-  const { sex, setSex } = SignUpStore();
-
-  const [userSex, setUserSex] = useState('');
-
+  const [ sex, setSex ] = useState('');
 
   useEffect(() => {
     axios
@@ -64,28 +60,27 @@ const Sex = () => {
       <Grid container justifyContent="center">
         <Box
           sx={{
-            width: "650px",
+            m: "50px 0 0 50px",
+            width: "700px",
+            //border: 1
           }}
         >
-          <FormControl
-            sx={{
-              margin: "30px 0 0 0",
-              width: "620px",
-            }}
-          >
+          <FormControl>
             <FormLabel
               sx={{
                 color: "#000000",
                 fontSize: "15px",
                 fontFamily: 'Noto Sans KR',
+                fontWeight: 500
               }}
             >
-              성별
+              <Box component="span" sx={{ color: "#ff0000" }}>*</Box> 성별
             </FormLabel>
               <RadioGroup
                 row
-                aria-labelledby="demo-row-radio-buttons-group-label"
-                name="row-radio-buttons-group"
+                sx={{
+                  m: "20px 0 0 0"
+                }}
               >
                 <FormControlLabel
                   value="M"
@@ -107,25 +102,25 @@ const Sex = () => {
                 />
             </RadioGroup>
           </FormControl>
-          {
-            sex === "" ?
-            (
-              <CheckCircleIcon
-                sx={{
-                  m: "60px 0 0 0px",
-                  color: "#a8a8a8",
-                }}
-              />
-            ) : (
-              <CheckCircleIcon
-                sx={{
-                  m: "60px 0 0 0px",
-                  color: "#2db400",
-                }}
-              />
-            )
-          }
         </Box>
+        {
+          sex === "" ?
+          (
+            <CheckCircleIcon
+              sx={{
+                m: "100px 0 0 10px",
+                color: "#a8a8a8",
+              }}
+            />
+          ) : (
+            <CheckCircleIcon
+              sx={{
+                m: "100px 0 0 10px",
+                color: "#2db400",
+              }}
+            />
+          )
+        }
       </Grid>
     </ThemeProvider>
   )

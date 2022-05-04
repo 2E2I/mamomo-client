@@ -13,19 +13,19 @@ const Title = () => {
   return (
     <Grid>
       <Grid
-        // border={1}
         sx={{
-          m: '50px 0 20px 50px',
-          width: 700,
-          fontSize: '20px',
-          fontFamily: 'Noto Sans KR',
+          m: "50px 0 20px 50px",
+          fontSize: "24px",
+          fontFamily: "Noto Sans KR",
+          fontWeight: 500
         }}
       >
         {title}
       </Grid>
       <Divider
         sx={{
-          m: '20px 0 20px 50px',
+          m: "20px 0 20px 50px",
+          width: "700px",
         }}
       >
       </Divider>

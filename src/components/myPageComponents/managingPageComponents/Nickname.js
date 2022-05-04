@@ -19,16 +19,16 @@ const Nickname = () => {
   const theme = createTheme({
     palette: {
       gray: {
-        main: '#cecece',
-        contrastText: '#fff',
+        main: "#cecece",
+        contrastText: "#fff",
       },
 
       lightGray: {
-        main: '#a8a8a8'
+        main: "#a8a8a8"
       },
 
       green: {
-        main: '#2db400'
+        main: "#2db400"
       }
     },
   });
@@ -65,18 +65,19 @@ const Nickname = () => {
           <Box
             component="form"
             sx={{
-              m: '30px 0 0 0',
-              width: '650px',
+              m: "30px 0 0 50px",
+              width: "700px",
               //border: 1
             }}
           >
             <Box
               sx={{
                 fontSize: "15px",
-                fontFamily: 'Noto Sans KR',
+                fontFamily: "Noto Sans KR",
+                fontWeight: 500
               }}
             >
-              닉네임
+              <Box component="span" sx={{ color: "#ff0000" }}>*</Box> 닉네임
             </Box>
             <TextField
               value={nickname}
@@ -84,33 +85,33 @@ const Nickname = () => {
               placeholder="특수문자, 공백 제외 2~10자"
               color="gray"
               sx={{
-                m: '20px 0 0 0',
-                width: '610px'
+                m: "20px 0 0 0",
+                width: "700px"
               }}
               onChange={ (e) => {
                 setNickname(e.target.value)
               }}
             >
             </TextField>
-            {
-              isNickname(nickname) === true ?
-              (
-                <CheckCircleIcon
-                  sx={{
-                    m: "15px 0 0 10px",
-                    color: "#2db400",
-                  }}
-                />
-              ) : (
-                <CheckCircleIcon
-                  sx={{
-                    m: "15px 0 0 10px",
-                    color: "#a8a8a8",
-                  }}
-                />
-              )
-            }
           </Box>
+          {
+            isNickname(nickname) === true ?
+            (
+              <CheckCircleIcon
+                sx={{
+                  m: "70px 0 0 10px",
+                  color: "#2db400",
+                }}
+              />
+            ) : (
+              <CheckCircleIcon
+                sx={{
+                  m: "70px 0 0 10px",
+                  color: "#a8a8a8",
+                }}
+              />
+            )
+          }
         </Grid>
     </ThemeProvider>
   );

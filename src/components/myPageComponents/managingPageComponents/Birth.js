@@ -14,7 +14,6 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import axios from 'axios';
 
-import { SignUpStore } from '../../../store/SignUpPageStore';
 import { authHeader } from '../../authenticationFunc';
 import { SignInStore } from '../../../store/SignInPageStore';
 
@@ -35,7 +34,7 @@ const Birth = () => {
   const [userBirth, setUserBirth] = useState('');
 
   const { email } = SignInStore();
-  const { birth, setBirth } = SignUpStore();
+  const [ birth, setBirth ] = useState('');
 
   const [year, setYear] = useState('');
   const [month, setMonth] = useState('');
@@ -118,34 +117,33 @@ const Birth = () => {
       <Grid container justifyContent="center">
         <Box
           sx={{
-            width: "650px",
-            // border: 1
+            m: "50px 0 0 50px",
+            width: "700px",
+            //border: 1,
           }}
         >
           <Box
             sx={{
               width: "620px",
-              margin: "30px 0 0 0",
             }}
           >
             <Box
               component="span"
-              //color="#666666"
               sx={{
                 width: "400px",
-                margin: "25px 0 0 0",
                 fontSize: "15px",
-                fontFamily: 'Noto Sans KR',
+                fontFamily: "Noto Sans KR",
+                fontWeight: 500
               }}
             >
-              생년월일
+              <Box component="span" sx={{ color: "#ff0000" }}>*</Box> 생년월일
             </Box>
           </Box>
 
           <FormControl
             variant="standard"
             sx={{
-              margin: "10px 15px 0 0",
+              margin: "20px 15px 0 0",
               width: "120px",
             }}
           >
@@ -189,7 +187,7 @@ const Birth = () => {
           <FormControl
             variant="standard"
             sx={{
-              margin: "10px 15px 0 0",
+              margin: "20px 15px 0 0",
               width: "80px",
             }}
           >
@@ -224,7 +222,7 @@ const Birth = () => {
           <FormControl
             variant="standard"
             sx={{
-              margin: "10px 10px 0 0",
+              margin: "20px 10px 0 0",
               width: "80px",
             }}
           >
@@ -254,27 +252,25 @@ const Birth = () => {
               }
             </Select>
           </FormControl>
-          {
+        </Box>
+        {
             year && month && day > 0 ?
             (
               <CheckCircleIcon
                 sx={{
-                  m: "30px 0 0 300px",
+                  m: "100px 0 0 10px",
                   color: "#2db400",
                 }}
               />
             ) : (
               <CheckCircleIcon
                 sx={{
-                  m: "30px 0 0 300px",
+                  m: "100px 0 0 10px",
                   color: "#a8a8a8",
                 }}
               />
             )
           }
-        </Box>
-
-        {/* <Button onClick={()=>{console.log('year' + year, month, day);console.log('birth' + birth);}}>aaa</Button> */}
       </Grid>
     </ThemeProvider>
   );
