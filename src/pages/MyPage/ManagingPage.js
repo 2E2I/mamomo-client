@@ -14,6 +14,7 @@ import SaveButton from '../../components/myPageComponents/managingPageComponents
 import CancelButton from '../../components/myPageComponents/managingPageComponents/CancelButton';
 
 import { MyPageStore } from '../../store/MyPageStore';
+import ProfileImg from '../../components/myPageComponents/managingPageComponents/ProfileImg';
 
 // 프로필 관리 페이지
 const ManagingPage = () => {
@@ -40,6 +41,8 @@ const ManagingPage = () => {
       <UserTab />
       <Box span>
         <Title />
+
+        <ProfileImg />
         <Nickname />
         <Birth />
         <Sex />

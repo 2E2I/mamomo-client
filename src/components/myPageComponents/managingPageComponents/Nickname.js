@@ -74,7 +74,8 @@ const Nickname = () => {
               sx={{
                 fontSize: "15px",
                 fontFamily: "Noto Sans KR",
-                fontWeight: 500
+                fontWeight: 500,
+                //border: 1
               }}
             >
               <Box component="span" sx={{ color: "#ff0000" }}>*</Box> 닉네임
