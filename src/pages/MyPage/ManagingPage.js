@@ -8,6 +8,7 @@ import Title from '../../components/myPageComponents/Title';
 
 import { MyPageStore } from '../../store/MyPageStore';
 import Birth from '../../components/myPageComponents/managingPageComponents/Birth';
+import Sex from '../../components/myPageComponents/managingPageComponents/Sex';
 
 // 프로필 관리 페이지
 const ManagingPage = () => {
@@ -35,6 +36,7 @@ const ManagingPage = () => {
       <Box span>
         <Title />
         <Birth />
+        <Sex />
       </Box>
 
     </Grid>

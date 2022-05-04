@@ -111,7 +111,7 @@ const Birth = () => {
     .catch((e) => {
       console.log(e);
     })
-  }, [userBirth]);
+  }, [email, userBirth]);
 
   return (
     <ThemeProvider theme={theme}>
