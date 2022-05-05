@@ -9,6 +9,7 @@ import {
 
 import axios from 'axios';
 import { SignInStore } from '../../store/SignInPageStore';
+import { UserProfileStore } from '../../store/UserProfileStore';
 import { useHistory } from "react-router-dom"; // <Route>로 감싸지지 않은 컴포넌트에서 history 사용
 
 // 로그인 버튼
@@ -23,6 +24,7 @@ const SignIn = () => {
   });
   
   const { email, password, keepingSignIn, status, setStatus, error, setError } = SignInStore();
+  const { setNickname, setSex, setBirth, setFavTopics } = UserProfileStore();
   const history = useHistory();
 
   const onClick = async () => {
@@ -34,9 +36,14 @@ const SignIn = () => {
       .then((res) => {
         setError(false);
         setStatus(true);
+        //console.log(res.data.profile);
 
         if (res.status === 200) {
           localStorage.setItem('user', res.data.token);
+          setNickname(res.data.profile.nickname);
+          setBirth(res.data.profile.sex);
+          setSex(res.data.profile.birth);
+          setFavTopics(res.data.profile.favTopics);
           console.log('로그인 성공');
           history.push('/');
         }
