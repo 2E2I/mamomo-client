@@ -46,8 +46,8 @@ const SignIn = () => {
         if (res.status === 200) {
           localStorage.setItem('user', res.data.token);
           setNickname(res.data.profile.nickname);
-          setBirth(res.data.profile.sex);
-          setSex(res.data.profile.birth);
+          setBirth(res.data.profile.birth);
+          setSex(res.data.profile.sex);
           setFavTopics(userFavTopics);
           console.log('로그인 성공');
           history.push('/');
