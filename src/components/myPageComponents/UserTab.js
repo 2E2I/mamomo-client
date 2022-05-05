@@ -10,9 +10,9 @@ import {
 import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-import { SignInStore } from '../../store/SignInPageStore';
-import { MyPageStore } from '../../store/MyPageStore';
 import { authHeader } from '../authenticationFunc';
+import { MyPageStore } from '../../store/MyPageStore';
+import { UserProfileStore } from '../../store/UserProfileStore';
 
 const UserTab = () => {
 
@@ -22,8 +22,7 @@ const UserTab = () => {
     bgcolor: 'background.paper',
   };
 
-  const { email } = SignInStore();
-  const [nickname, setNickname] = useState('');
+  const { nickname, setNickname } = UserProfileStore();
   const { setTitle, index, setIndex } = MyPageStore();
 
   const title = ['프로필 관리', '좋아요한 기부', '내가 만든 배너']
@@ -33,23 +32,6 @@ const UserTab = () => {
   };
 
   const history = useHistory();
-
-  useEffect(() => {
-    axios
-    .get(
-      `http://localhost:8080/api/user/${email}`, {
-        headers: authHeader()
-      }
-    )
-    .then((res) => {
-      setNickname(res.data.user.nickname);
-      console.log('연결');
-      console.log(res.data.user.nickname); // 사용자 닉네임
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  });
 
   return(
     <Grid container justifycontent='center'
