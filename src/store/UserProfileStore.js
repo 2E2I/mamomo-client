@@ -20,9 +20,9 @@ const UserProfileStore = create(
       },
 
       // 사용자 생년월일
-      birth: "",
-      setBirth(birth) {
-        set(() => ({ birth: birth }));
+      birthday: "",
+      setBirthday(birthday) {
+        set(() => ({ birthday: birthday }));
       },
 
       // 사용자 관심 기부 분야
@@ -35,7 +35,7 @@ const UserProfileStore = create(
       initUserProfileData() {
         set(() => ({
           nickname: "",
-          birth: "", 
+          birthday: "", 
           sex: "",
           favTopics: "",
         }));

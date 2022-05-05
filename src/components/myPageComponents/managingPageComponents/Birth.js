@@ -15,7 +15,7 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 import axios from 'axios';
 
 import { authHeader } from '../../authenticationFunc';
-import { SignInStore } from '../../../store/SignInPageStore';
+import { UserProfileStore } from '../../../store/UserProfileStore';
 
 // 생년월일
 const Birth = () => {
@@ -31,9 +31,8 @@ const Birth = () => {
     },
   });
 
-  const [userBirth, setUserBirth] = useState('');
+  const { birthday, setBirthday } = UserProfileStore();
 
-  const { email } = SignInStore();
   const [ birth, setBirth ] = useState('');
 
   const [year, setYear] = useState('');
@@ -46,6 +45,12 @@ const Birth = () => {
   var yyyy = [];
   var mm = [];
   var dd = [];
+
+  useEffect(() => {
+    setYear(birthday.substring(0, 4));
+    setMonth(birthday.substring(6, 7));
+    setDay(birthday.substring(8, 10));
+  }, [birthday]);
 
   useEffect(() => {
     setBirthDay(year, month, day);
@@ -91,26 +96,6 @@ const Birth = () => {
     setBirth(`${year}-${m}-${d}`);
     console.log(birth);
   }
-
-  useEffect(() => {
-    axios
-    .get(
-      `http://localhost:8080/api/user/${email}`, {
-        headers: authHeader()
-      }
-    )
-    .then((res) => {
-      setUserBirth(res.data.user.birth);
-      setYear(userBirth.substring(0, 4));
-      setMonth(userBirth.substring(6, 7));
-      setDay(userBirth.substring(8,10));
-      console.log('연결');
-      console.log(res.data.user.birth); // 사용자 생일
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  }, [email, userBirth]);
 
   return (
     <ThemeProvider theme={theme}>

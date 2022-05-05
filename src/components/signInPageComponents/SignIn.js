@@ -24,7 +24,7 @@ const SignIn = () => {
   });
   
   const { email, password, keepingSignIn, status, setStatus, error, setError } = SignInStore();
-  const { setNickname, setSex, setBirth, setFavTopics } = UserProfileStore();
+  const { setNickname, setSex, setBirthday, setFavTopics } = UserProfileStore();
   const history = useHistory();
 
   const userFavTopics = [];
@@ -39,6 +39,8 @@ const SignIn = () => {
         setError(false);
         setStatus(true);
 
+        console.log(res.data.profile.birth);
+
         for (var i = 0; i < (Object.values(res.data.profile.favTopics).length); i++) {
           userFavTopics.push(Object.values(res.data.profile.favTopics)[i].topic.id)
         }
@@ -46,7 +48,7 @@ const SignIn = () => {
         if (res.status === 200) {
           localStorage.setItem('user', res.data.token);
           setNickname(res.data.profile.nickname);
-          setBirth(res.data.profile.birth);
+          setBirthday(res.data.profile.birth);
           setSex(res.data.profile.sex);
           setFavTopics(userFavTopics);
           console.log('로그인 성공');
