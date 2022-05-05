@@ -19,11 +19,12 @@ import ProfileImg from '../../components/myPageComponents/managingPageComponents
 // 프로필 관리 페이지
 const ManagingPage = () => {
 
-  const { setTitle } = MyPageStore();
+  const { setTitle, setIndex } = MyPageStore();
 
   useEffect(() => {
     setTitle('프로필 관리');
-  }, [])
+    setIndex(0);
+  }, [setTitle, setIndex])
 
   return (
     <Container
