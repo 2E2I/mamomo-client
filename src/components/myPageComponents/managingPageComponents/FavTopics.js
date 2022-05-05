@@ -10,10 +10,8 @@ import {
 
 import axios from 'axios';
 
-import { SignUpStore } from '../../../store/SignUpPageStore';
-import { SignInStore } from '../../../store/SignInPageStore';
-
 import { authHeader } from '../../authenticationFunc';
+import { UserProfileStore } from '../../../store/UserProfileStore';
 
 
 // 관심 기부 분야 checkBox
@@ -30,14 +28,11 @@ const FavTopics = () => {
     },
   });
 
-  const { favTopics, setFavTopics } = SignUpStore();
-  const { email } = SignInStore();
-
+  const { favTopics, setFavTopics } = UserProfileStore();
+  
   const [tag, setTag] = useState('');
   const categories = Object.values(tag);
   const list = categories[0];
-
-  var userFavTopics = [];
 
   const categoryList =
     list &&
@@ -56,17 +51,21 @@ const FavTopics = () => {
             component="fieldset"
             variant="standard"
             key={index}
-            control={<Checkbox color='pink'/>}
+            control={
+              <Checkbox
+                color='pink'
+                defaultChecked={ favTopics.includes(index + 1) ? true : null }
+              />
+            }
             label={tag}
-            //checked={ userFavTopics.includes(index) ? true : false }
             onChange={ (e) => {
               if (e.target.checked) {
-                userFavTopics.push(index + 1)
-                userFavTopics.sort(function(a, b) { return a - b });
-                console.log(userFavTopics);
+                favTopics.push(index + 1)
+                favTopics.sort(function(a, b) { return a - b });
+                console.log(favTopics);
               } else {
-                userFavTopics.pop()
-                console.log(userFavTopics);
+                favTopics.pop()
+                console.log(favTopics);
               }
             }}
           />
@@ -85,25 +84,6 @@ const FavTopics = () => {
         });
       return () => {};
     }, []);
-
-  useEffect(() => {
-    axios
-    .get(
-      `http://localhost:8080/api/user/${email}`, {
-        headers: authHeader()
-      }
-    )
-    .then((res) => {
-      console.log('연결');
-      for (var i = 0; i < (Object.values(res.data.user.favTopic).length); i++) {
-        userFavTopics.push(Object.values(res.data.user.favTopic)[i].topic.id)
-      }
-      console.log(userFavTopics);
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  }, [email]);
 
   return (
     <ThemeProvider theme={theme}>
