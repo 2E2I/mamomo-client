@@ -17,7 +17,8 @@ const Title = () => {
           m: "50px 0 20px 50px",
           fontSize: "24px",
           fontFamily: "Noto Sans KR",
-          fontWeight: 500
+          fontWeight: 500,
+          //border: 1
         }}
       >
         {title}
@@ -25,7 +26,7 @@ const Title = () => {
       <Divider
         sx={{
           m: "20px 0 20px 50px",
-          width: "700px",
+          width: "740px",
         }}
       >
       </Divider>
