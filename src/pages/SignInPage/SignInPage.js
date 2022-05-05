@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container, Grid } from '@mui/material';
 
 import MainTitle from '../../components/MainTitle';
@@ -10,7 +10,21 @@ import SplitedLine from '../../components/SplitedLine';
 import SignUp from '../../components/signInPageComponents/SignUp';
 import FindingPassword from '../../components/signInPageComponents/FindingPassword';
 
+import { SignInStore } from '../../store/SignInPageStore';
+
 const SignInPage = () => {
+  
+  const { status, setEmail, setPassword } = SignInStore()
+
+  useEffect(() => {
+    if (status === false) {
+      setEmail('');
+      setPassword('');
+    } else {
+      return
+    }
+  }, [status, setEmail, setPassword])
+
   return (
     <Container
       maxWidth={false}
