@@ -20,6 +20,7 @@ import { Link, Route, useHistory } from 'react-router-dom';
 import SearchPage from '../pages/SearchPage/SearchPage';
 import { SignInStore } from '../store/SignInPageStore';
 import { authHeader, logout } from './authenticationFunc';
+import { UserProfileStore } from '../store/UserProfileStore';
 
 const pages = ['기부모아', '배너모아', '배너제작', '도움말'];
 const links = ['/category', '/bannerList', '/banner', '/'];
@@ -35,27 +36,9 @@ const TopAppBar = () => {
     },
   });
 
-  const { email, status, setStatus, initStatus, setUser } = SignInStore();
-  const [nickname, setNickname] = useState('');
+  const { status, setStatus, initStatus, setUser } = SignInStore();
+  const { nickname, initProfileData } = UserProfileStore();
   const history = useHistory()
-
-  useEffect(() => {
-    axios
-    .get(
-      `http://localhost:8080/api/user/${email}`, {
-        headers: authHeader()
-      }
-    )
-    .then((res) => {
-      setNickname(res.data.user.nickname);
-      //setUser(res.data.user);
-      console.log('연결');
-      console.log(res.data.user); // 사용자 닉네임
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  });
 
   return (
     <ThemeProvider theme={theme}>
@@ -161,6 +144,7 @@ const TopAppBar = () => {
                     onClick={() => {
                       logout();
                       initStatus();
+                      initProfileData();
                     }}
                   >
                     로그아웃
