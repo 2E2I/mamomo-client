@@ -11,8 +11,8 @@ import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
 import axios from 'axios';
 
-import { SignInStore } from '../../../store/SignInPageStore';
 import { authHeader } from '../../authenticationFunc';
+import { UserProfileStore } from '../../../store/UserProfileStore';
 
 // 닉네임 입력란
 const Nickname = () => {
@@ -33,31 +33,13 @@ const Nickname = () => {
     },
   });
 
-  const [ nickname, setNickname ] = useState('');
-  const { email } = SignInStore();
+  const { nickname, setNickname } = UserProfileStore();
 
   const isNickname = (nickname) => {
     const nicknameRegex = RegExp("^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{2,10}\$")
 
     return nicknameRegex.test(nickname);
   };
-
-  useEffect(() => {
-    axios
-    .get(
-      `http://localhost:8080/api/user/${email}`, {
-        headers: authHeader()
-      }
-    )
-    .then((res) => {
-      setNickname(res.data.user.nickname);
-      console.log('연결');
-      console.log(res.data.user.nickname); // 사용자 생일
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  }, [email]);
 
   return (
     <ThemeProvider theme={theme}>

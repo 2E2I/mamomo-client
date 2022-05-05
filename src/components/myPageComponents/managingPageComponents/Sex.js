@@ -18,6 +18,7 @@ import axios from 'axios';
 
 import { authHeader } from '../../authenticationFunc';
 import { SignInStore } from '../../../store/SignInPageStore';
+import { UserProfileStore } from '../../../store/UserProfileStore';
 
 // 성별 선택
 const Sex = () => {
@@ -36,25 +37,7 @@ const Sex = () => {
     },
   });
 
-  const { email } = SignInStore();
-  const [ sex, setSex ] = useState('');
-
-  useEffect(() => {
-    axios
-    .get(
-      `http://localhost:8080/api/user/${email}`, {
-        headers: authHeader()
-      }
-    )
-    .then((res) => {
-      setSex(res.data.user.sex);
-      console.log('연결');
-      console.log(res.data.user.sex); // 사용자 성별
-    })
-    .catch((e) => {
-      console.log(e);
-    })
-  }, [email, setSex]);
+  const { sex, setSex } = UserProfileStore();
 
   return (
     <ThemeProvider theme={theme}>
