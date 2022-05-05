@@ -26,9 +26,19 @@ const UserProfileStore = create(
       },
 
       // 사용자 관심 기부 분야
-      favTopics: [],
+      favTopics: "",
       setFavTopics(favTopics) {
         set(() => ({ favTopics: favTopics }));
+      },
+
+      // 사용자 프로필 데이터 초기화
+      initUserProfileData() {
+        set(() => ({
+          nickname: "",
+          birth: "", 
+          sex: "",
+          favTopics: "",
+        }));
       },
     }),
   ),

@@ -27,6 +27,8 @@ const SignIn = () => {
   const { setNickname, setSex, setBirth, setFavTopics } = UserProfileStore();
   const history = useHistory();
 
+  const userFavTopics = [];
+
   const onClick = async () => {
     const data = await axios
       .post("http://localhost:8080/api/user/authenticate", {
@@ -36,14 +38,17 @@ const SignIn = () => {
       .then((res) => {
         setError(false);
         setStatus(true);
-        //console.log(res.data.profile);
+
+        for (var i = 0; i < (Object.values(res.data.profile.favTopics).length); i++) {
+          userFavTopics.push(Object.values(res.data.profile.favTopics)[i].topic.id)
+        }
 
         if (res.status === 200) {
           localStorage.setItem('user', res.data.token);
           setNickname(res.data.profile.nickname);
           setBirth(res.data.profile.sex);
           setSex(res.data.profile.birth);
-          setFavTopics(res.data.profile.favTopics);
+          setFavTopics(userFavTopics);
           console.log('로그인 성공');
           history.push('/');
         }
