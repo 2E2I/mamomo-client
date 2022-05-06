@@ -5,6 +5,7 @@ import ArrowForwardIosIcon from '@mui/icons-material/ArrowForwardIos';
 import { useEffect } from 'react';
 import axios from 'axios';
 import { useState } from 'react';
+import { HeartCheckStore } from '../store/HeartCheckStore';
 
 const CardList = ({category}) => {
 

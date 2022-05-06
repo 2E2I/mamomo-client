@@ -6,6 +6,7 @@ import ImageIcon from '@mui/icons-material/Image';
 import DonationModal from './DonationModal';
 import { authHeader } from './authenticationFunc';
 import { SignInStore } from '../store/SignInPageStore';
+import { HeartCheckStore } from '../store/HeartCheckStore'; //flag개선??
 
 import {
   Box,
@@ -54,13 +55,10 @@ const Card = ({ campaign }) => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
-  const [flag, setFlag] = React.useState(true);
-  const handleClick = () => {
-    setFlag(!flag);
-  };
-
   const { email, status, setStatus, initStatus, user, userInfo } =
     SignInStore();
+
+  // const { setFlag } = HeartCheckStore();
 
   useEffect(() => {
     setId(campaign !== undefined && campaign.id);
@@ -76,7 +74,19 @@ const Card = ({ campaign }) => {
     setsiteType(campaign !== undefined && campaign.siteType);
 
     return () => {};
-  }, [campaign], );
+  }, [campaign]);
+
+  const [flag, setFlag] = useState(isHeart); //flag로직 개선 필요할듯
+  const reFresh = () => {
+    setFlag(!flag);
+  };
+  useEffect(() => {
+    isHeart
+      ? setheartCount((prevHeartCount) => prevHeartCount - 1)
+      : setheartCount((prevHeartCount) => prevHeartCount + 1);
+    setIsHeart(!isHeart);
+    return () => {};
+  }, [flag]);
 
   const customImgUrl = () => {
     const modifyUrEnd = String(img).substring(String(img).indexOf(')') + 1);
@@ -152,23 +162,50 @@ const Card = ({ campaign }) => {
                   //       console.log('로그인이 필요합니다.');
                   //   });
                   await console.log(userInfo.id); // 사용자 닉네임
-                  await axios
-                    .post(
-                      `http://localhost:8080/api/heart`,
-                      {
-                        campaignId: `${id}`,
-                        //userId: userID,
-                        userId: userInfo.id,
-                      },
-                      {
-                        headers: authHeader(),
-                      },
-                    )
-                    .catch((error) => {
-                      console.log(error.message);
-                      console.log(error.response.status);
-                      error.response.status == 409 && alert('이미 좋아요를 눌렀습니다.');
-                    });
+                  isHeart
+                    ? await axios
+                        .delete(
+                          `http://localhost:8080/api/heart`,
+                          {
+                            campaignId: `${id}`,
+                            //userId: userID,
+                            userId: userInfo.id,
+                          },
+                          {
+                            headers: authHeader(),
+                          },
+                        )
+                        .then(reFresh)
+
+                        .catch((error) => {
+                          // console.log(error.message);
+                          // console.log(error.response.status);
+                          // error.response.status == 409 &&
+                          alert('down' + error);
+                        })
+                    : await axios
+                        .post(
+                          `http://localhost:8080/api/heart`,
+                          {
+                            campaignId: `${id}`,
+                            //userId: userID,
+                            userId: userInfo.id,
+                          },
+                          {
+                            headers: authHeader(),
+                          },
+                        )
+                        .then(reFresh)
+
+                        .catch((error) => {
+                          // console.log(error.message);
+                          // console.log(error.response.status);
+                          // error.response.status == 409 &&
+                          //   alert('이미 좋아요를 눌렀습니다.');
+                          alert('up' + error);
+                        });
+                  // setFlag();
+                  // reFresh();
                 };
                 status == false && c2s();
                 status == true && a();
@@ -234,7 +271,6 @@ const Card = ({ campaign }) => {
           </ModalBox>
         </Fade>
       </Modal>
-
     </>
   );
 };
