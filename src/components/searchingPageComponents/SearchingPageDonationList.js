@@ -6,6 +6,7 @@ import axios from 'axios';
 import { SearchPageStore } from '../../store/SearchPageStore';
 import { useInView } from 'react-intersection-observer';
 import { CategoryStore } from '../../store/CategoryPageStore';
+import { authHeader } from '../authenticationFunc';
 
 const TagPageDonationList = () => {
   const [campaign, setCampaign] = useState({});
@@ -46,7 +47,9 @@ const TagPageDonationList = () => {
   useEffect(() => {
     let a = `http://localhost:8080/api/campaigns?page=${storePage}&size=20&keyword=${word}&${sortValue}`;
     axios
-      .get(a)
+      .get(a, {
+          headers: authHeader(),
+        },)
       .then((result) => {
         console.log('연결');
         console.log(Object.entries(result.data)[0][1]);
