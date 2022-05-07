@@ -13,6 +13,7 @@ import axios from 'axios';
 
 import { authHeader } from '../../authenticationFunc';
 import { UserProfileStore } from '../../../store/UserProfileStore';
+import { ModifyProfileStore } from '../../../store/ModifyProfileStore';
 
 // 닉네임 입력란
 const Nickname = () => {
@@ -33,13 +34,18 @@ const Nickname = () => {
     },
   });
 
-  const { nickname, setNickname } = UserProfileStore();
+  const { nickname } = UserProfileStore();
+  const { mNickname, setMNickname } = ModifyProfileStore();
 
   const isNickname = (nickname) => {
     const nicknameRegex = RegExp("^[가-힣ㄱ-ㅎa-zA-Z0-9._-]{2,10}\$")
 
     return nicknameRegex.test(nickname);
   };
+
+  useEffect(() => {
+    setMNickname(nickname);
+  }, [nickname, setMNickname])
 
   return (
     <ThemeProvider theme={theme}>
@@ -63,7 +69,7 @@ const Nickname = () => {
               <Box component="span" sx={{ color: "#ff0000" }}>*</Box> 닉네임
             </Box>
             <TextField
-              value={nickname}
+              value={mNickname}
               variant="standard"
               placeholder="특수문자, 공백 제외 2~10자"
               color="gray"
@@ -72,13 +78,14 @@ const Nickname = () => {
                 width: "700px"
               }}
               onChange={ (e) => {
-                setNickname(e.target.value)
+                setMNickname(e.target.value)
+                console.log(mNickname);
               }}
             >
             </TextField>
           </Box>
           {
-            isNickname(nickname) === true ?
+            isNickname(mNickname) === true ?
             (
               <CheckCircleIcon
                 sx={{
