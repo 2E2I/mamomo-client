@@ -20,8 +20,12 @@ import ManagingPage from './pages/MyPage/ManagingPage';
 import LikePage from './pages/MyPage/LikePage';
 import MyBannerPage from './pages/MyPage/MyBannerPage';
 
-import { authHeader, logout, getCurrentUser } from '../src/components/authenticationFunc';
-import { SignInStore } from '../src/store/SignInPageStore'
+import {
+  authHeader,
+  logout,
+  getCurrentUser,
+} from '../src/components/authenticationFunc';
+import { SignInStore } from '../src/store/SignInPageStore';
 import axios from 'axios';
 
 import boogie01 from './assets/images/boogie01.png';
@@ -73,16 +77,14 @@ function App() {
       })
       .then((res) => {
         // setUserID(res.data.user.id);
-        setUserInfo(res.data.user)
+        setUserInfo(res.data.user);
         console.log('연결~~~~');
         console.log(res.data.user); // 사용자 닉네임
         console.log(userInfo); // 사용자 닉네임
-
       })
       .catch((error) => {
         console.log(error.message);
-        error.response.status == 400 &&
-          console.log('로그인이 필요합니다.');
+        error.response.status == 400 && console.log('로그인이 필요합니다.');
       });
   }, [status]);
 
@@ -143,7 +145,11 @@ function App() {
         <Route path="/searching" exact={true} component={SearchingPage} />
         <Route path="/signin" exact={true} component={SignInPage} />
         <Route path="/signup" exact={true} component={SignUpPage} />
-        <Route path="/banner" exact={true} component={MakeBannerPage} />
+        <Route
+          path="/banner"
+          exact={true}
+          component={status ? MakeBannerPage : SignInPage}
+        />
         <Route path="/bannerList" exact={true} component={BannerListPage} />
         <Route path="/my/manage" exact={true} component={ManagingPage} />
         <Route path="/my/like" exact={true} component={LikePage} />
