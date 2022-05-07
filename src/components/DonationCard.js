@@ -78,15 +78,18 @@ const Card = ({ campaign }) => {
 
   const [flag, setFlag] = useState(isHeart); //flag로직 개선 필요할듯
   const reFresh = () => {
-    setFlag(!flag);
-  };
-  useEffect(() => {
     isHeart
       ? setheartCount((prevHeartCount) => prevHeartCount - 1)
       : setheartCount((prevHeartCount) => prevHeartCount + 1);
     setIsHeart(!isHeart);
-    return () => {};
-  }, [flag]);
+  };
+  // useEffect(() => {
+  //   isHeart
+  //     ? setheartCount((prevHeartCount) => prevHeartCount - 1)
+  //     : setheartCount((prevHeartCount) => prevHeartCount + 1);
+  //   setIsHeart(!isHeart);
+  //   return () => {};
+  // }, [flag]);
 
   const customImgUrl = () => {
     const modifyUrEnd = String(img).substring(String(img).indexOf(')') + 1);
@@ -136,6 +139,7 @@ const Card = ({ campaign }) => {
           <IconGrid item xs={3}>
             <InnerPriceBox
               onClick={() => {
+                console.log(id);
                 console.log(isHeart);
               }}
             >
@@ -161,26 +165,19 @@ const Card = ({ campaign }) => {
                   //     error.response.status == 400 &&
                   //       console.log('로그인이 필요합니다.');
                   //   });
-                  await console.log(userInfo.id); // 사용자 닉네임
+                  await console.log(id); // 사용자 닉네임
+                  await console.log(userInfo.id);
                   isHeart
                     ? await axios
-                        .delete(
-                          `http://localhost:8080/api/heart`,
-                          {
+                        .delete(`http://localhost:8080/api/heart`, {
+                          headers: authHeader(),
+                          data: {
                             campaignId: `${id}`,
-                            //userId: userID,
                             userId: userInfo.id,
                           },
-                          {
-                            headers: authHeader(),
-                          },
-                        )
+                        })
                         .then(reFresh)
-
                         .catch((error) => {
-                          // console.log(error.message);
-                          // console.log(error.response.status);
-                          // error.response.status == 409 &&
                           alert('down' + error);
                         })
                     : await axios
@@ -188,7 +185,6 @@ const Card = ({ campaign }) => {
                           `http://localhost:8080/api/heart`,
                           {
                             campaignId: `${id}`,
-                            //userId: userID,
                             userId: userInfo.id,
                           },
                           {
@@ -196,7 +192,6 @@ const Card = ({ campaign }) => {
                           },
                         )
                         .then(reFresh)
-
                         .catch((error) => {
                           // console.log(error.message);
                           // console.log(error.response.status);
