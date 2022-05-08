@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import {
   Grid,
   Box,
@@ -14,11 +14,8 @@ import {
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import axios from 'axios';
-
-import { authHeader } from '../../authenticationFunc';
-import { SignInStore } from '../../../store/SignInPageStore';
 import { UserProfileStore } from '../../../store/UserProfileStore';
+import { ModifyProfileStore } from '../../../store/ModifyProfileStore';
 
 // 성별 선택
 const Sex = () => {
@@ -38,6 +35,11 @@ const Sex = () => {
   });
 
   const { sex, setSex } = UserProfileStore();
+  const { mSex, setMSex } = ModifyProfileStore();
+
+  useEffect(() => {
+    setMSex(sex);
+  }, [sex, setMSex])
 
   return (
     <ThemeProvider theme={theme}>
@@ -70,18 +72,18 @@ const Sex = () => {
                   value="M"
                   control={<Radio color='pink'/>}
                   label="남성"
-                  checked={sex === "M"? true : false}
+                  checked={mSex === "M"? true : false}
                   onClick={ (e) => {
-                    setSex(e.target.value);
+                    setMSex(e.target.value);
                   }}
                 />
                 <FormControlLabel
                   value="F"
                   control={<Radio color='pink'/>}
                   label="여성"
-                  checked={sex === "F"? true : false}
+                  checked={mSex === "F"? true : false}
                   onClick={ (e) => {
-                    setSex(e.target.value);
+                    setMSex(e.target.value);
                   }}
                 />
             </RadioGroup>
@@ -106,7 +108,6 @@ const Sex = () => {
             />
           )
         }
-
       </Grid>
     </ThemeProvider>
   )
