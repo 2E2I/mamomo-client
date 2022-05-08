@@ -56,7 +56,7 @@ const EditForm = () => {
   useEffect(() => {
     console.log({ siteType });
     console.log(title);
-    console.log('info'+info);
+    console.log('info' + info);
   }, []);
 
   useEffect(() => {
@@ -66,13 +66,9 @@ const EditForm = () => {
 
   const preview = () => {
     if (!files) return false;
-    console.log('확인1');
     const reader = new FileReader();
-    console.log('확인2');
     reader.readAsDataURL(files[0]);
-    console.log('확인3');
-    reader.onload = () => setImgData(reader.result);
-    console.log('확인4');
+    reader.onload = () => setImgData2(reader.result);
     console.log('reader' + reader.result);
   };
 
