@@ -10,7 +10,7 @@ import {
 import axios from 'axios';
 import { useHistory } from 'react-router-dom/cjs/react-router-dom.min';
 
-// 로그인 버튼
+// 취소 버튼
 const CancelButton = () => {
 
   const history = useHistory();

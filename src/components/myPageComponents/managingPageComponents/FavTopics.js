@@ -10,8 +10,8 @@ import {
 
 import axios from 'axios';
 
-import { authHeader } from '../../authenticationFunc';
 import { UserProfileStore } from '../../../store/UserProfileStore';
+import { ModifyProfileStore } from '../../../store/ModifyProfileStore';
 
 
 // 관심 기부 분야 checkBox
@@ -29,6 +29,7 @@ const FavTopics = () => {
   });
 
   const { favTopics, setFavTopics } = UserProfileStore();
+  const { mFavTopics, setMFavTopics } = ModifyProfileStore();
   
   const [tag, setTag] = useState('');
   const categories = Object.values(tag);
@@ -54,36 +55,40 @@ const FavTopics = () => {
             control={
               <Checkbox
                 color='pink'
-                defaultChecked={ favTopics.includes(index + 1) ? true : null }
+                defaultChecked={ mFavTopics.includes(index + 1) ? true : null }
               />
             }
             label={tag}
             onChange={ (e) => {
               if (e.target.checked) {
-                favTopics.push(index + 1)
-                favTopics.sort(function(a, b) { return a - b });
-                console.log(favTopics);
+                mFavTopics.push(index + 1)
+                mFavTopics.sort(function(a, b) { return a - b });
+                console.log(mFavTopics);
               } else {
-                favTopics.pop()
-                console.log(favTopics);
+                mFavTopics.pop()
+                console.log(mFavTopics);
               }
             }}
           />
         </Box>
     ));
 
-    useEffect(() => {
-      axios
-        .get(`http://localhost:8080/api/categories`)
-        .then((result) => {
-          console.log('연결');
-          setTag(result.data);
-        })
-        .catch(() => {
-          console.log('연결실패');
-        });
-      return () => {};
-    }, []);
+  useEffect(() => {
+    axios
+      .get(`http://localhost:8080/api/categories`)
+      .then((result) => {
+        console.log('연결');
+        setTag(result.data);
+      })
+      .catch(() => {
+        console.log('연결실패');
+      });
+    return () => {};
+  }, []);
+
+  useEffect(() => {
+    setMFavTopics(favTopics);
+  }, [favTopics, setMFavTopics])
 
   return (
     <ThemeProvider theme={theme}>

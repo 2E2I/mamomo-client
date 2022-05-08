@@ -12,10 +12,8 @@ import {
 
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
 
-import axios from 'axios';
-
-import { authHeader } from '../../authenticationFunc';
 import { UserProfileStore } from '../../../store/UserProfileStore';
+import { ModifyProfileStore } from '../../../store/ModifyProfileStore';
 
 // 생년월일
 const Birth = () => {
@@ -32,6 +30,7 @@ const Birth = () => {
   });
 
   const { birthday, setBirthday } = UserProfileStore();
+  const { mBirthday, setMBirthday } = ModifyProfileStore();
 
   const [ birth, setBirth ] = useState('');
 
@@ -57,6 +56,9 @@ const Birth = () => {
     return () => {};
   }, [year, month, day, birth]);
 
+  useEffect(() => {
+    setMBirthday(birth);
+  }, [birth, setMBirthday])
 
   for (var i = nowYear; i >= 1900; i--) {
     yyyy.push(i);
