@@ -23,14 +23,14 @@ const SaveButton = () => {
           nickname : mNickname,
           birth: mBirthday,
           sex: mSex,
-          // favTopics: mFavTopics,
+          favTopics: mFavTopics,
         },
         {
           headers: authHeader()
         },
       )
       .then((res) => {
-        console.log(res.data.favTopics);
+        console.log(res.data);
       })
       .catch((e) => {
         console.log(e);
