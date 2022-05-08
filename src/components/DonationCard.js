@@ -1,6 +1,9 @@
 import * as React from 'react';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import kakaoicon from '../assets/images/icon-kakao.png';
+import happybean from '../assets/images/hb2.PNG';
+import kakao from '../assets/images/zzo.jpg';
+import goat from '../assets/images/goat_logo.png';
+import cherry from '../assets/images/cherry.PNG';
 import ShareIcon from '@mui/icons-material/Share';
 import ImageIcon from '@mui/icons-material/Image';
 import DonationModal from './DonationModal';
@@ -49,6 +52,9 @@ const Card = ({ campaign }) => {
   const [heartCount, setheartCount] = useState('');
   const [siteType, setsiteType] = useState('');
 
+  const [logoImg, setLogoImg] = useState('');
+  const [logoSize, setLogoSize] = useState('');
+
   const [anchorElNav, setAnchorElNav] = useState(null);
   const [open, setOpen] = useState(false);
 
@@ -75,6 +81,11 @@ const Card = ({ campaign }) => {
 
     return () => {};
   }, [campaign]);
+
+  useEffect(() => {
+    siteTypeImg();
+    return () => {};
+  }, [siteType]);
 
   const [flag, setFlag] = useState(isHeart); //flag로직 개선 필요할듯
   const reFresh = () => {
@@ -118,11 +129,32 @@ const Card = ({ campaign }) => {
     }
   };
 
+  const siteTypeImg = () => {
+    
+    if (siteType == 'happybean') {
+      setLogoImg(happybean);
+      setLogoSize('110%');
+    } else if (siteType == 'kakao') {
+      setLogoImg(kakao);
+      setLogoSize('150%');
+    } else if (siteType == 'thedirectdonation') {
+      setLogoImg(goat);
+      setLogoSize('95%');
+    } else if (siteType == 'cherry') {
+      setLogoImg(cherry);
+      setLogoSize('105%');
+    }
+  };
+
   return (
     <>
       <Root elevation={0}>
         <InnerImage img={customImgUrl()} onClick={handleOpen}>
-          <SiteTypeBox>{siteType}</SiteTypeBox>
+          {/* <SiteTypeBox>{siteType}</SiteTypeBox> */}
+          <SiteTypeBox
+            logoImg={logoImg}
+            logoSize={logoSize}
+          ></SiteTypeBox>
         </InnerImage>
         <InnerTitleBox component="div" onClick={handleOpen}>
           {title}
@@ -141,6 +173,7 @@ const Card = ({ campaign }) => {
               onClick={() => {
                 console.log(id);
                 console.log(isHeart);
+                console.log(siteType);
               }}
             >
               {heartCount}
@@ -386,16 +419,32 @@ const IconGrid = styled(Grid)(() => ({
   direction: 'rtl',
 }));
 
-const SiteTypeBox = styled(Box)(() => ({
-  width: 60,
-  fontWeight: 400,
-  fontFamily: 'Noto Sans KR',
-  mx: 0.5,
-  fontSize: 10,
-  textOverflow: 'ellipsis',
-  overflow: 'hidden',
-  color: '#fafafa',
-  backgroundColor: '#4caf50',
-  borderRadius: 4,
-  textAlign: 'center',
-}));
+const SiteTypeBox = styled(Box)(
+  ({ logoImg, logoSize }) => ({
+    // width: 80,
+    // height: 15,
+    // backgroundImage: `url(${goat})`,
+    // backgroundSize: 'cover',
+    // width: 80,
+    // height: 18,
+    // backgroundImage: `url(${kakao})`,
+    // backgroundSize: '150%',
+    width: 80,
+    height: 20,
+    backgroundImage: `url(${logoImg})`,
+    backgroundSize: logoSize,
+    backgroundRepeat: 'no-repeat',
+    fontWeight: 400,
+    fontFamily: 'Noto Sans KR',
+    mx: 0.5,
+    fontSize: 10,
+    textOverflow: 'ellipsis',
+    overflow: 'hidden',
+    color: '#fafafa',
+    backgroundColor: '#fff',
+    borderRadius: 2,
+    textAlign: 'center',
+    // backgroundSize: 'cover',
+    backgroundPosition: 'center',
+  }),
+);
