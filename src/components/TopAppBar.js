@@ -23,8 +23,8 @@ import { SignInStore } from '../store/SignInPageStore';
 import { authHeader, logout } from './authenticationFunc';
 import { UserProfileStore } from '../store/UserProfileStore';
 
-const pages = ['기부모아', '배너모아', '배너제작', '도움말'];
-const links = ['/category', '/bannerList', '/banner', '/'];
+const pages = ['기부모아', '배너모아', '배너제작', '기부추천', '도움말'];
+const links = ['/category', '/bannerList', '/banner', '/textMining', '/'];
 
 const TopAppBar = () => {
 
