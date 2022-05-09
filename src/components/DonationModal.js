@@ -7,9 +7,11 @@ import twittericon from '../assets/images/icon-twitter.png';
 import { BannerPageStore } from '../store/BannerPageStore';
 import axios from 'axios';
 import boogie04 from '../assets/images/boogie01.png';
-
+import { useHistory } from 'react-router-dom/';
 
 const DonationModal = (img, title, body, url, siteType, id) => {
+  const history = useHistory();
+
   const {
     setSiteType,
     setTitle,
@@ -22,18 +24,20 @@ const DonationModal = (img, title, body, url, siteType, id) => {
   } = BannerPageStore();
 
   const m2b = async () => {
-    await axios.get(`http://localhost:8080/api/campaign/${id}`).then((result)=>{
-      console.log('연결');
-      console.log(result.data.thumbnail);
-      setImgData(result.data.thumbnail);
-    });
+    await axios
+      .get(`http://localhost:8080/api/campaign/${id}`)
+      .then((result) => {
+        console.log('연결');
+        setImgData(result.data.thumbnail);
+      });
     let str = body.slice(0, 120);
     setSiteType(siteType);
     setTitle(title);
     setInfo(str + '...');
     setUrl(url);
     console.log('ImgData= ' + imgData);
-    window.location.href = '/banner';
+    // window.location.href = '/banner';
+    history.push('/banner');
   };
 
   return (
