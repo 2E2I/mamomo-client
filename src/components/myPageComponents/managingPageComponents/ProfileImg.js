@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Grid,
   Box,
@@ -11,10 +11,8 @@ import {
 
 import CameraAltIcon from '@mui/icons-material/CameraAlt';
 
-import axios from 'axios';
-
-import { SignInStore } from '../../../store/SignInPageStore';
-import { authHeader } from '../../authenticationFunc';
+import { UserProfileStore } from '../../../store/UserProfileStore';
+import { ModifyProfileStore } from '../../../store/ModifyProfileStore';
 
 // 프로필 이미지
 const ProfileImg = () => {
@@ -41,6 +39,36 @@ const ProfileImg = () => {
     border: `1px solid #000000`,
   }));
 
+  const { img } = UserProfileStore();
+  const { mImg, setMImg } = ModifyProfileStore();
+
+  const fileInput = useRef(null);
+
+  const onChange = (e) => {
+    if (e.target.files[0]) {
+      setMImg(e.target.files[0]);
+    } else {
+      setMImg(mImg)
+      return
+    }
+
+    const reader = new FileReader();
+    reader.onload = () => {
+      if (reader.readyState === 2) {
+        setMImg(reader.result)
+      }
+    }
+    reader.readAsDataURL(e.target.files[0])
+
+    const formData = new FormData();
+    formData.append('uploadImage', reader);
+    setMImg(formData);
+  }
+
+  useEffect(() => {
+    setMImg(img);
+  }, [img, setMImg])
+
   return (
     <ThemeProvider theme={theme}>
         <Grid container justifyContent="center">
@@ -62,18 +90,26 @@ const ProfileImg = () => {
                   color: "#000000",
                   bgcolor: "#ffffff"
                 }}
+                onClick={() => { fileInput.current.click() }}
               >
                 <CameraAltIcon />
               </SmallAvatar>
             }
             >
             <Avatar
-              // alt="Travis Howard"
-              // src="/static/images/avatar/2.jpg"
+              src={mImg}
               sx={{
-                width: "120px",
-                height: "120px"
+                width: "150px",
+                height: "150px",
               }}
+            />
+            <input
+              type='file'
+              style={{ display: 'none' }}
+              accept='image/jpg,impge/png,image/jpeg' 
+              name='profile_img'
+              onChange={onChange}
+              ref={fileInput}
             />
           </Badge>
         </Box>

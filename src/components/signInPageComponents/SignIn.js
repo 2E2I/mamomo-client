@@ -1,16 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import {
   Grid,
   Button,
   createTheme,
   ThemeProvider,
-  Box
 } from '@mui/material';
 
 import axios from 'axios';
+import { useHistory } from "react-router-dom"; // <Route>로 감싸지지 않은 컴포넌트에서 history 사용
+
 import { SignInStore } from '../../store/SignInPageStore';
 import { UserProfileStore } from '../../store/UserProfileStore';
-import { useHistory } from "react-router-dom"; // <Route>로 감싸지지 않은 컴포넌트에서 history 사용
 
 // 로그인 버튼
 const SignIn = () => {
@@ -23,8 +23,8 @@ const SignIn = () => {
     },
   });
   
-  const { email, password, keepingSignIn, status, setStatus, error, setError } = SignInStore();
-  const { setNickname, setSex, setBirthday, setFavTopics } = UserProfileStore();
+  const { email, password, setStatus, error, setError } = SignInStore();
+  const { setImg, setNickname, setSex, setBirthday, setFavTopics } = UserProfileStore();
   const history = useHistory();
 
   const userFavTopics = [];
@@ -47,6 +47,7 @@ const SignIn = () => {
 
         if (res.status === 200) {
           localStorage.setItem('user', res.data.token);
+          setImg(res.data.profile.profile);
           setNickname(res.data.profile.nickname);
           setBirthday(res.data.profile.birth);
           setSex(res.data.profile.sex);

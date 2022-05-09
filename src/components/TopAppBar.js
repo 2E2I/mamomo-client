@@ -12,6 +12,7 @@ import {
   ThemeProvider,
   createTheme,
   Grid,
+  Avatar,
 } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
 
@@ -37,7 +38,7 @@ const TopAppBar = () => {
   });
 
   const { status, setStatus, initStatus, setUser } = SignInStore();
-  const { nickname, initProfileData } = UserProfileStore();
+  const { img, nickname, initProfileData } = UserProfileStore();
   const history = useHistory()
 
   return (
@@ -115,9 +116,22 @@ const TopAppBar = () => {
                 }}
               >
                 <Box>
+                  <Avatar
+                    src={img}
+                    sx={{
+                      mt: 0.5,
+                      width: '35px',
+                      height: '35px',
+                    }}
+                    onClick={() => {
+                      history.push('/my/manage');
+                    }}
+                  />
+                </Box>
+                <Box>
                   <Button
                     sx={{
-                      mr: 1,
+                      //mr: 0.5,
                       color: '#424242',
                       display: 'block',
                       fontSize: 16,

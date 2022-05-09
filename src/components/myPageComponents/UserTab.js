@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import {
   Grid,
   Avatar,
@@ -7,10 +7,8 @@ import {
   ListItemText,
 } from '@mui/material';
 
-import axios from 'axios';
 import { useHistory } from 'react-router-dom';
 
-import { authHeader } from '../authenticationFunc';
 import { MyPageStore } from '../../store/MyPageStore';
 import { UserProfileStore } from '../../store/UserProfileStore';
 
@@ -22,7 +20,7 @@ const UserTab = () => {
     bgcolor: 'background.paper',
   };
 
-  const { nickname, setNickname } = UserProfileStore();
+  const { img, nickname } = UserProfileStore();
   const { setTitle, index, setIndex } = MyPageStore();
 
   const title = ['프로필 관리', '좋아요한 기부', '내가 만든 배너']
@@ -58,8 +56,7 @@ const UserTab = () => {
           }}
         >
           <Avatar
-            //alt='MaMoMo'
-            //src='../../src/assets/images/profileImg.png'
+            src={img}
             sx={{
               width: 120,
               height: 120,
@@ -73,7 +70,7 @@ const UserTab = () => {
             fontFamily: 'Noto Sans KR',
           }}
         >
-          {nickname}님
+          {nickname}
         </Grid>
       </Grid>
 
@@ -113,13 +110,13 @@ const UserTab = () => {
               handleListItemClick(event, 2);
               setTitle(title[2])
               history.push('/my/mybanner')
-            }}          >
+            }}
+          >
             <ListItemText>{title[2]}</ListItemText>
           </ListItem>
         </List>
-
       </Grid>
-
+      
     </Grid>
   )
 }

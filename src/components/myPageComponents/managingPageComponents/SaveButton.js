@@ -3,18 +3,19 @@ import {
   Button,
 } from '@mui/material';
 
+import axios from 'axios';
+
+import { authHeader } from '../../authenticationFunc';
 import { SignInStore } from '../../../store/SignInPageStore';
 import { ModifyProfileStore } from '../../../store/ModifyProfileStore';
-import { authHeader } from '../../authenticationFunc';
-import axios from 'axios';
 import { UserProfileStore } from '../../../store/UserProfileStore';
 
 // 저장 버튼
 const SaveButton = () => {
 
   const { email } = SignInStore();
-  const { mNickname, mBirthday, mSex, mFavTopics } = ModifyProfileStore();
-  const { nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics } = UserProfileStore();
+  const { mImg, mNickname, mBirthday, mSex, mFavTopics } = ModifyProfileStore();
+  const { img, setImg, nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics } = UserProfileStore();
   
   const onClick = async () => {
     const data = await axios
@@ -31,6 +32,11 @@ const SaveButton = () => {
       )
       .then((res) => {
         console.log(res.data);
+        setImg(mImg);
+        setNickname(mNickname);
+        setBirthday(mBirthday);
+        setSex(mSex);
+        setFavTopics(mFavTopics);
       })
       .catch((e) => {
         console.log(e);
@@ -38,11 +44,12 @@ const SaveButton = () => {
   };
 
   useEffect(() => {
+    setImg(img);
     setNickname(nickname);
     setBirthday(birthday);
     setSex(sex);
     setFavTopics(favTopics);
-  }, [nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics]);
+  }, [img, setImg, nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics]);
 
   return (
     <Button

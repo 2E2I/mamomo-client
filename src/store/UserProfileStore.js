@@ -6,7 +6,14 @@ const UserProfileStore = create(
     {
       key: "User",
     },
+    
     (set) => ({
+      // 사용자 프로필 이미지
+      img: "",
+      setImg(img) {
+        set(() => ({ img: img }))
+      },
+
       // 사용자 닉네임
       nickname: "",
       setNickname(nickname) {
@@ -34,6 +41,7 @@ const UserProfileStore = create(
       // 사용자 프로필 데이터 초기화
       initUserProfileData() {
         set(() => ({
+          img: "",
           nickname: "",
           birthday: "", 
           sex: "",
