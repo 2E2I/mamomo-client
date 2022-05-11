@@ -20,7 +20,7 @@ import ManagingPage from './pages/MyPage/ManagingPage';
 import LikePage from './pages/MyPage/LikePage';
 import MyBannerPage from './pages/MyPage/MyBannerPage';
 
-import TextMiningPage from './pages/textMiningPage/TextMiningPage';
+import TextMiningPage from './pages/TextMiningPage/TextMiningPage';
 
 import {
   authHeader,
@@ -156,7 +156,11 @@ function App() {
         <Route path="/my/manage" exact={true} component={ManagingPage} />
         <Route path="/my/like" exact={true} component={LikePage} />
         <Route path="/my/mybanner" exact={true} component={MyBannerPage} />
-        <Route path="/textMining" exact={true} component={TextMiningPage} />
+        <Route
+          path="/textmining"
+          exact={true}
+          component={status ? TextMiningPage : SignInPage}
+        />
       </BrowserRouter>
     </>
   );

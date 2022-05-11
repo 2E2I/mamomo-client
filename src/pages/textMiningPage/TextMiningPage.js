@@ -1,9 +1,15 @@
 import React from 'react';
-import { Container, Grid } from '@mui/material';
+import { Container } from '@mui/material';
 
 import TopAppBar from '../../components/TopAppBar';
+import TextMiningPageBanner from '../../components/textMiningPageComponents/TextMiningPageBanner';
+import TextMiningField from '../../components/textMiningPageComponents/TextMiningField';
+import SaveButton from '../../components/textMiningPageComponents/SaveButton';
+import TextMiningPageDonationList from '../../components/textMiningPageComponents/TextMiningPageDonationList';
+import Paging from '../../components/Paging';
 
-const TagPage = () => {
+// 텍스트마이닝 페이지
+const TextMiningPage = () => {
 
   return (
     <Container
@@ -15,11 +21,15 @@ const TagPage = () => {
       justify="center"
     >
       <TopAppBar />
-      <Grid container justifyContent="center">
-        텍스트마이닝 페이지입니다.
-      </Grid>
+
+      <TextMiningPageBanner />
+      <TextMiningField />
+      {/* <SaveButton /> */}
+      <TextMiningPageDonationList />
+      <Paging />
+
     </Container>
   );
 }
 
-export default TagPage;
+export default TextMiningPage;
