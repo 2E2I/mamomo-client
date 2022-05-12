@@ -17,7 +17,7 @@ const TextminingField = () => {
       component="form"
       sx={{
         '& .MuiTextField-root': {
-          marginTop: '30px', 
+          marginTop: '50px', 
           width: '100%'
         },
       }}
@@ -25,9 +25,9 @@ const TextminingField = () => {
       autoComplete="off"
     >
       <TextField
-        label="텍스트를 입력하세요"
+        label="텍스트를 입력하세요."
         multiline
-        //rows={10}
+        rows={12}
         value={text}
         onChange={handleChange}
       />
