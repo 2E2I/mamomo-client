@@ -17,15 +17,18 @@ const SaveButton = () => {
   const { mImg, mNickname, mBirthday, mSex, mFavTopics } = ModifyProfileStore();
   const { img, setImg, nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics } = UserProfileStore();
   
+  const formData = new FormData();
+
+  //formData.append('profileImg', mImg);
+  formData.append('nickname', mNickname);
+  formData.append('birth', mBirthday);
+  formData.append('sex', mSex);
+  formData.append('favTopics', mFavTopics);
+
   const onClick = async () => {
     const data = await axios
-      .patch(`http://localhost:8080/api/user/profile/${email}`,
-        {
-          nickname : mNickname,
-          birth: mBirthday,
-          sex: mSex,
-          favTopics: mFavTopics,
-        },
+      .post(`http://localhost:8080/api/user/profile/${email}`,
+        formData,
         {
           headers: authHeader()
         },

@@ -9,7 +9,7 @@ const UserProfileStore = create(
     
     (set) => ({
       // 사용자 프로필 이미지
-      img: "",
+      img: "https://storage.googleapis.com/mamomo-profile-storage/default.png",
       setImg(img) {
         set(() => ({ img: img }))
       },
