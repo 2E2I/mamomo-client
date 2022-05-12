@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   Grid,
   Box,
@@ -60,9 +60,9 @@ const ProfileImg = () => {
     }
     reader.readAsDataURL(e.target.files[0])
 
-    const formData = new FormData();
-    formData.append('uploadImage', reader);
-    setMImg(formData);
+    // const formData = new FormData();
+    // formData.append('profileImg', reader.result);
+    // setMImg(formData);
   }
 
   useEffect(() => {
