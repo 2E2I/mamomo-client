@@ -9,6 +9,12 @@ const ModifyProfileStore = create((set) => ({
     set(() => ({ mImg: mImg }));
   },
 
+  // 프로필 이미지 url
+  mImgURL: "",
+  setMImgURL(mImgURL) {
+    set(() => ({ mImgURL: mImgURL }));
+  },
+
   // 닉네임
   mNickname: "",
   setMNickname(mNickname) {
