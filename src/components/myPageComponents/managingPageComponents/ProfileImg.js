@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useEffect, useRef } from 'react';
 import {
   Grid,
   Box,
@@ -40,13 +40,15 @@ const ProfileImg = () => {
   }));
 
   const { img } = UserProfileStore();
-  const { mImg, setMImg } = ModifyProfileStore();
+  const { mImg, setMImg, setMImgURL } = ModifyProfileStore();
+  var imgURL;
 
   const fileInput = useRef(null);
 
-  const onChange = (e) => {
+  const onChange = async (e) => {
     if (e.target.files[0]) {
       setMImg(e.target.files[0]);
+      imgURL = e.target.files[0];
     } else {
       setMImg(mImg)
       return
@@ -60,9 +62,10 @@ const ProfileImg = () => {
     }
     reader.readAsDataURL(e.target.files[0])
 
-    // const formData = new FormData();
-    // formData.append('profileImg', reader.result);
-    // setMImg(formData);
+    imgURL.arrayBuffer().then((arrayBuffer) => {
+      const blob = new Blob([new Uint8Array(arrayBuffer)], { type: imgURL.type });
+      setMImgURL(blob);
+    });
   }
 
   useEffect(() => {
@@ -106,7 +109,7 @@ const ProfileImg = () => {
             <input
               type='file'
               style={{ display: 'none' }}
-              accept='image/jpg,impge/png,image/jpeg' 
+              accept='image/jpg,image/png,image/jpeg' 
               name='profile_img'
               onChange={onChange}
               ref={fileInput}

@@ -47,7 +47,7 @@ const SignIn = () => {
 
         if (res.status === 200) {
           localStorage.setItem('user', res.data.token);
-          setImg(res.data.profile.profile);
+          setImg(res.data.profile.profileImgUrl);
           setNickname(res.data.profile.nickname);
           setBirthday(res.data.profile.birth);
           setSex(res.data.profile.sex);
