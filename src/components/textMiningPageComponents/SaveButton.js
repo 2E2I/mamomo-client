@@ -4,7 +4,8 @@ import {
   Box,
   styled,
   Divider,
-  Alert,
+  CircularProgress,
+  LinearProgress,
 } from '@mui/material';
 
 import axios from 'axios';
@@ -30,9 +31,11 @@ const SaveButton = () => {
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
+  const [progress, setProgress] = useState(null);
+
   const [ref, inView] = useInView();
 
-  const { setTotlaPage, setPageSize, storePage } =
+  const { setTotlaPage, setPageSize, storePage, setStorePage } =
     CategoryStore(); //zustand
 
   const fetchMoreData = async () => {
@@ -57,8 +60,13 @@ const SaveButton = () => {
       fetchMoreData();
     }
   }, [inView, loading]);
+
+  useEffect(() => {
+    console.log(progress);
+  }, [progress]);
   
   const onClick = async () => {
+    setProgress(true)
     text.length < 1 ? (
       console.log('텍스트를 입력하세요')
     ) : (
@@ -75,6 +83,7 @@ const SaveButton = () => {
       .then((res) => {
         console.log(res.data);
         console.log(Object.entries(res.data)[0][1]);
+
         setClick(true);
         setNum(Object.entries(res.data)[0][1].totalElements);
         setCampaign(res.data);
@@ -84,6 +93,8 @@ const SaveButton = () => {
         let response = Object.entries(res.data)[0][1].content;
         setResult(response);
         setLoading(false);
+
+        setProgress(false);
       })
       .catch((e) => {
         console.log(e);
@@ -105,6 +116,7 @@ const SaveButton = () => {
       .then((res) => {
         console.log('연결');
         console.log(Object.entries(res.data)[0][1]);
+
         setClick(true);
         setNum(Object.entries(res.data)[0][1].totalElements);
         setCampaign(res.data);
@@ -124,25 +136,76 @@ const SaveButton = () => {
 
   return (
     <Box>
-      <Button
-        variant="contained"
-        sx={{
-          m: "50px 0 0 440px",
-          width: "120px",
-          backgroundColor: "#f27777",
-          boxShadow: "0",
-          ":hover": {
-            backgroundColor: "#f27777",
-            boxShadow: "0",
-          },
-          fontFamily: "Noto Sans KR",
-          fontSize: "15px",
-          fontWeight: 400,
-        }}
-        onClick={ onClick }
-      >
-        텍스트마이닝
-      </Button>
+      {
+        text.length > 0 ?
+        (
+          progress === true ?
+          (
+            <Box>
+              <Button
+                variant="contained"
+                sx={{
+                  m: "50px 0 0 440px",
+                  width: "120px",
+                  backgroundColor: "#f27777",
+                  boxShadow: "0",
+                  ":hover": {
+                    backgroundColor: "#f27777",
+                    boxShadow: "0",
+                  },
+                  fontFamily: "Noto Sans KR",
+                  fontSize: "15px",
+                  fontWeight: 400,
+                }}
+                onClick={ onClick }
+              >
+                <CircularProgress
+                  size={26}
+                  color="inherit"
+                />
+              </Button>
+            </Box>
+          ) : (
+            <Box>
+              <Button
+                variant="contained"
+                sx={{
+                  m: "50px 0 0 440px",
+                  width: "120px",
+                  backgroundColor: "#f27777",
+                  boxShadow: "0",
+                  ":hover": {
+                    backgroundColor: "#f27777",
+                    boxShadow: "0",
+                  },
+                  fontFamily: "Noto Sans KR",
+                  fontSize: "15px",
+                  fontWeight: 400,
+                }}
+                onClick={ onClick }
+              >
+                텍스트마이닝
+              </Button>
+            </Box>
+          )
+        ) : (
+          <Box>
+            <Button
+              variant="contained"
+              disabled
+              sx={{
+                m: "50px 0 0 440px",
+                width: "120px",
+                fontFamily: "Noto Sans KR",
+                fontSize: "15px",
+                fontWeight: 400,
+              }}
+            >
+              텍스트마이닝
+            </Button>
+        </Box>
+        )
+      }
 
       {
         click === true ?
@@ -158,32 +221,31 @@ const SaveButton = () => {
             >
               마음 <span style={{ color: "#f48fb1", fontWeight: 700 }}>{num}</span>개
             </Box>
+
             <Divider />
+
+            <Box
+              sx={{
+                marginTop: "30px",
+                height: "620px",
+              }}
+            >
+              {Object.keys(campaign) !== undefined &&
+                Object.entries(campaign)[0] !== undefined && (
+                  <>
+                    <ListBox container justifyContent="center">
+                      {menuList}
+                    </ListBox>
+                  </>
+              )}
+            </Box>
+
+            <Paging />
+
           </Box>
         ) : (
           null
         )
-      }
-
-      <Box
-        sx={{
-          marginTop: "30px",
-          height: "620px",
-        }}
-      >
-        {Object.keys(campaign) !== undefined &&
-          Object.entries(campaign)[0] !== undefined && (
-            <>
-              <ListBox container justifyContent="center">
-                {menuList}
-              </ListBox>
-            </>
-          )}
-      </Box>
-      {
-        click === true
-        ? <Paging />
-        : null
       }
     </Box>
   );
