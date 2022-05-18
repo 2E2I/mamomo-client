@@ -40,7 +40,8 @@ const Tag = () => {
         console.log('연결');
         setTag(result.data);
       })
-      .catch(() => {
+      .catch((e) => {
+        console.log(e);
         console.log('연결실패');
       });
     return () => {};
