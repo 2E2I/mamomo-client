@@ -2,8 +2,8 @@ import React from 'react';
 import { Box, styled } from '@mui/material';
 import { useState } from 'react';
 
-const CategoryTagTitle = (props) => {
-  const [title, setTitle] = useState('모든 카테고리');
+const CategoryTagTitle = () => {
+  const [title] = useState('전체 카테고리');
   return (
     <TitleBox>
       <InnerFontBox>
@@ -30,5 +30,6 @@ const TitleBox = styled(Box)(() => ({
 const InnerFontBox = styled(Box)(() => ({
   fontSize: '20px',
   fontWeight: 'bold',
-  padding: '50px 15px 15px 15px'
+  padding: '50px 15px 15px 15px',
+  fontFamily: 'Noto Sans KR',
 }));

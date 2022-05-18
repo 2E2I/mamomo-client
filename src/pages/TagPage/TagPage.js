@@ -7,8 +7,9 @@ import Paging from '../../components/Paging';
 import SortBox from '../../components/SortBox';
 import CategoryTagDonationList from '../../components/tagPageComponents/CategoryTagDonationList'
 import Top10TagDonationList from '../../components/tagPageComponents/Top10TagDonationList';
-import { SearchPageStore } from '../../store/SearchPageStore'
 import AllTagDonationList from '../../components/tagPageComponents/AllTagDonationList';
+
+import { SearchPageStore } from '../../store/SearchPageStore'
 
 const TagPage = () => {
 
