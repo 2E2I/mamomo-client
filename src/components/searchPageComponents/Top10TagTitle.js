@@ -29,6 +29,7 @@ const TitleBox = styled(Box)(() => ({
 
 const InnerFontBox = styled(Box)(() => ({
   fontSize: '20px',
+  fontFamily: 'Noto Sans KR',
   fontWeight: 'bold',
   padding: '50px 15px 15px 15px'
 }));
