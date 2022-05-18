@@ -82,4 +82,5 @@ const TagChip = styled(Chip)(() => ({
 
 const InnerBox = styled(Box)(() => ({
  fontSize: { xs: 13, md: 16 },
+ fontFamily: 'Noto Sans KR',
 }))

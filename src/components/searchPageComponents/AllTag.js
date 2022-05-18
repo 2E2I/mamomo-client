@@ -40,10 +40,10 @@ const AllTag = () => {
 
   useEffect (() => {
     axios
-      .get(`http://localhost:8080/api/search?from=${num}&to=${num + 10}`)
+      .get(`http://localhost:8080/api/search?from=${num}&to=${num + 20}`)
       .then((result) => {
         console.log('연결');
-        setNum(num + 10);
+        setNum(num + 20);
         setTag(result.data);
       })
       .catch((e) => {
@@ -157,6 +157,7 @@ const AllTag = () => {
               <Chip
                 label="▲ 접기"
                 clickable
+                variant="outlined"
                 onClick={ fold }
                 sx={{
                   m: "10px 0 0 5px",
@@ -164,11 +165,10 @@ const AllTag = () => {
                   height: "35px",
                   fontSize: "12px",
                   fontWeight: 600,
-                  color: "#ffffff",
-                  bgcolor: "#b0b0b0",
+                  color: "#979797",
                   ":hover": {
-                    bgcolor: "#979797",
-                    color: "#ffffff",
+                    bgcolor: "#cccccc",
+                    color: "#979797",
                   },
                 }}
               />
@@ -208,4 +208,5 @@ const TagChip = styled(Chip)(() => ({
 
 const InnerBox = styled(Box)(() => ({
  fontSize: { xs: 13, md: 16 },
+ fontFamily: 'Noto Sans KR',
 }))
