@@ -8,6 +8,7 @@ import SortBox from '../../components/SortBox';
 import CategoryTagDonationList from '../../components/tagPageComponents/CategoryTagDonationList'
 import Top10TagDonationList from '../../components/tagPageComponents/Top10TagDonationList';
 import { SearchPageStore } from '../../store/SearchPageStore'
+import AllTagDonationList from '../../components/tagPageComponents/AllTagDonationList';
 
 const TagPage = () => {
 
@@ -26,14 +27,23 @@ const TagPage = () => {
       <Grid container justifyContent="center">
         <TagTitle />
         <SortBox />
+
+        {/* 사용자가 인기태그를 눌렀다면 */}
+        {
+          tagType === '인기태그' && <Top10TagDonationList />
+        }
+        
         {/* 사용자가 카테고리태그를 눌렀다면 */}
         {
           tagType === '카테고리태그' && <CategoryTagDonationList />
         }
-        {/* 사용자가 인기태그를 눌렀다면 */}
+
+        {/* 사용자가 모든태그를 눌렀다면 */}
         {
-          tagType === '인기태그'&& <Top10TagDonationList />
+          tagType === '모든태그' && <AllTagDonationList />
         }
+
+
         <Paging />
       </Grid>
     </Container>
