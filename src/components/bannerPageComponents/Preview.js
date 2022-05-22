@@ -16,7 +16,23 @@ const Preview = () => {
     SignInStore();
   const [bannerW, setBannerW] = useState('1000');
 
-  const { wid } = BannerPageStore();
+  const {
+    siteType,
+    title,
+    info,
+    imgData,
+    wid,
+    hei,
+    BgColor1,
+    BgColor2,
+    textColor1,
+    textColor2,
+    textColor3,
+    textFont1,
+    textFont2,
+    textFont3,
+    url,
+  } = BannerPageStore();
 
   //aaaa
   const [imgBase64, setImgBase64] = useState(''); // 파일 base64
@@ -93,19 +109,48 @@ const Preview = () => {
       type: myBlob.type,
     });
 
+    var today = new Date();
+
+    var year = today.getFullYear();
+    var month = ('0' + (today.getMonth() + 1)).slice(-2);
+    var day = ('0' + today.getDate()).slice(-2);
+
+    var dateString = year + '-' + month + '-' + day;
+
+    var hours = ('0' + today.getHours()).slice(-2);
+    var minutes = ('0' + today.getMinutes()).slice(-2);
+    var seconds = ('0' + today.getSeconds()).slice(-2);
+
+    var timeString = hours + ':' + minutes + ':' + seconds;
+
+    console.log(`${dateString} ${timeString}`);
+
     // var file = new File([uri], 'blobtofile.png');
     var formData = new FormData();
-    await formData.append('bannerImg', file);
+    await formData.append('imgData', file);
     await formData.append('email', userInfo.email);
-    await formData.append('date', '2022-05-11 14:18:06');
-    await console.log({ ...authHeader() });
-    await console.log('uri:' + uri);
-    await console.log('byteString:' + byteString);
-    await console.log(array);
-    await console.log(myBlob);
-    await console.log(file);
-    await console.log('email:' + userInfo.email);
-    await console.log('formdata:' + formData);
+    await formData.append('date', `${dateString} ${timeString}`);
+    await formData.append('siteType', siteType);
+    await formData.append('title', title);
+    await formData.append('info', info);
+    await formData.append('width', wid);
+    await formData.append('height', hei);
+    await formData.append('bgColor1', BgColor1);
+    await formData.append('bgColor2', BgColor2);
+    await formData.append('textColor1', textColor1);
+    await formData.append('textColor2', textColor2);
+    await formData.append('textColor3', textColor3);
+    await formData.append('textFont1', textFont1);
+    await formData.append('textFont2', textFont2);
+    await formData.append('textFont3', textFont3);
+    // await console.log({ ...authHeader() });
+    // await console.log('uri:' + uri);
+    // await console.log('byteString:' + byteString);
+    // await console.log(array);
+    // await console.log(myBlob);
+    // await console.log(file);
+    // await console.log('email:' + userInfo.email);
+    // await console.log('formdata:' + formData);
     var data;
     data = URL.createObjectURL(file);
     console.log(data);
@@ -128,72 +173,9 @@ const Preview = () => {
       });
   };
 
-  const convertBase64IntoFile = (image, fileName) => {
-    const mimeType = image?.match(/[^:]\w+\/[\w-+\d.]+(?=;|,)/)[0]; // image/jpeg
-    const realData = image.split(',')[1]; // 이 경우에선 /9j/4AAQSkZJRgABAQAAAQABAAD...
-
-    const blob = b64toBlob(realData, mimeType);
-    var image = new Image();
-    image.src = window.URL.createObjectURL(blob);
-    console.log(image);
-
-    const raw = new File([blob], fileName, { type: mimeType });
-
-    const fileList = [{ name: raw.name, size: raw.size, uid: 1, raw }];
-    return fileList;
-  };
-
-  const b64toBlob = (b64Data, contentType = '', sliceSize = 512) => {
-    if (b64Data === '' || b64Data === undefined) return;
-
-    const byteCharacters = atob(b64Data);
-    const byteArrays = [];
-
-    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
-      const slice = byteCharacters.slice(offset, offset + sliceSize);
-      const byteNumbers = new Array(slice.length);
-      for (let i = 0; i < slice.length; i++) {
-        byteNumbers[i] = slice.charCodeAt(i);
-      }
-      const byteArray = new Uint8Array(byteNumbers);
-      byteArrays.push(byteArray);
-    }
-
-    const blob = new Blob(byteArrays, { type: contentType });
-    return blob;
-  };
-
-  const downloadFild = () => {
-    // 서버에서 URL 을 내려주는 경우
-    const downloadLocation = `${process.env.VUE_APP_ZULE_URL}/api/example/file/download_location}`;
-    return window.location.assign(downloadLocation);
-  };
-
-  //  임의로 a 태그를 만들어 실행시킵니다.
-  const downloadURI = (uri, name) => {
-    var link = document.createElement('a');
-    link.download = name;
-    link.href = uri;
-    document.body.appendChild(link);
-    link.click();
-    document.body.removeChild(link);
-    link.remove();
-  };
 
   return (
     <div>
-      <div className="App">
-        <div
-          style={{
-            backgroundColor: '#efefef',
-            width: '150px',
-            height: '150px',
-          }}
-        ></div>
-        <div>
-          <input type="file" name="imgFile" id="imgFile" />
-        </div>
-      </div>
       <Grid container spacing={1} sx={{ mb: 1 }}>
         <Grid item xs={6}>
           <TitleBox>이미지 미리보기</TitleBox>
