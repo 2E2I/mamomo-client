@@ -241,7 +241,13 @@ const EditForm = () => {
               placeholder=""
               value={wid}
               onChange={(e) => {
-                setWid(e.target.value);
+                let onlyNumber = e.target.value.replace(/[^0-9]/g, '');
+                console.log(typeof Number(onlyNumber));
+                if (Number(onlyNumber) < 0 || Number(onlyNumber) > 1000) {
+                  alert('0~1000 범위로 입력해 주십시오.');
+                  onlyNumber = '1000'; //수정필요
+                }
+                setWid(onlyNumber);
               }}
             />
           </Paper>
@@ -275,7 +281,13 @@ const EditForm = () => {
               placeholder=""
               value={hei}
               onChange={(e) => {
-                setHei(e.target.value);
+                let onlyNumber = e.target.value.replace(/[^0-9]/g, '');
+                console.log(typeof Number(onlyNumber));
+                if (Number(onlyNumber) < 0 || Number(onlyNumber) > 500) {
+                  alert('0~500 범위로 입력해 주십시오.');
+                  onlyNumber = '500'; //수정필요
+                }
+                setHei(onlyNumber);
               }}
             />
           </Paper>
@@ -307,6 +319,7 @@ const EditForm = () => {
                 fontSize: 14,
                 color: '#212121',
               }}
+              inputProps={{ maxLength: 100 }} //100자 이내
               placeholder="소제목을 입력하세요."
               value={siteType}
               onChange={(e) => {
@@ -344,7 +357,13 @@ const EditForm = () => {
               placeholder=""
               value={textFont1}
               onChange={(e) => {
-                setTextFont1(e.target.value);
+                let onlyNumber = e.target.value.replace(/[^0-9]/g, '');
+                console.log(typeof Number(onlyNumber));
+                if (Number(onlyNumber) < 0 || Number(onlyNumber) > 50) {
+                  alert('0~50 범위로 입력해 주십시오.');
+                  onlyNumber = '50'; //수정필요
+                }
+                setTextFont1(onlyNumber);
               }}
             />
           </Paper>
@@ -369,6 +388,7 @@ const EditForm = () => {
             }}
           >
             <InputBase
+              inputProps={{ maxLength: 100 }} //100자 이내
               sx={{
                 ml: 1,
                 flex: 1,
@@ -416,7 +436,13 @@ const EditForm = () => {
               placeholder=""
               value={textFont2}
               onChange={(e) => {
-                setTextFont2(e.target.value);
+                let onlyNumber = e.target.value.replace(/[^0-9]/g, '');
+                console.log(typeof Number(onlyNumber));
+                if (Number(onlyNumber) < 0 || Number(onlyNumber) > 50) {
+                  alert('0~50 범위로 입력해 주십시오.');
+                  onlyNumber = '50'; //수정필요
+                }
+                setTextFont2(onlyNumber);
               }}
             />
           </Paper>
@@ -451,6 +477,7 @@ const EditForm = () => {
                 fontSize: 14,
                 color: '#212121',
               }}
+              inputProps={{ maxLength: 100 }} //500자 이내
               placeholder="내용을 입력하세요."
               //multiline={true}
               minRows={3}
@@ -492,7 +519,13 @@ const EditForm = () => {
               placeholder=""
               value={textFont3}
               onChange={(e) => {
-                setTextFont3(e.target.value);
+                let onlyNumber = e.target.value.replace(/[^0-9]/g, '');
+                console.log(typeof Number(onlyNumber));
+                if (Number(onlyNumber) < 0 || Number(onlyNumber) > 50) {
+                  alert('0~50 범위로 입력해 주십시오.');
+                  onlyNumber = '50'; //수정필요
+                }
+                setTextFont3(onlyNumber);
               }}
             />
           </Paper>
