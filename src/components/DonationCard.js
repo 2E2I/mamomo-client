@@ -145,7 +145,7 @@ const Card = ({ campaign }) => {
       setLogoSize('105%');
     }
   };
-
+  var debounce = null;
   return (
     <>
       <Root elevation={0}>
@@ -182,26 +182,17 @@ const Card = ({ campaign }) => {
               aria-label="add to favorites"
               onClick={() => {
                 const a = async () => {
-                  // let userid;
-                  // await axios
-                  //   .get(`http://localhost:8080/api/user/${email}`, {
-                  //     headers: authHeader(),
-                  //   })
-                  //   .then((res) => {
-                  //     // setUserID(res.data.user.id);
-                  //     userid = res.data.user.id;
-                  //     console.log('연결');
-                  //     console.log(res.data.user.id); // 사용자 닉네임
-                  //   })
-                  //   .catch((error) => {
-                  //     console.log(error.message);
-                  //     error.response.status == 400 &&
-                  //       console.log('로그인이 필요합니다.');
-                  //   });
-                  await console.log(id); // 사용자 닉네임
-                  await console.log(userInfo.id);
-                  isHeart
-                    ? await axios
+                  // debounce
+                  clearTimeout(debounce);
+                  debounce = await setTimeout(() => {
+                    console.log(
+                      'debounce',
+                      new Date().getTime(),
+                    );
+                    console.log(id); // 사용자 닉네임
+                    console.log(userInfo.id);
+                    isHeart
+                    ? axios
                         .delete(`http://localhost:8080/api/heart`, {
                           headers: authHeader(),
                           data: {
@@ -209,11 +200,11 @@ const Card = ({ campaign }) => {
                             userId: userInfo.id,
                           },
                         })
-                        .then(reFresh)
+                        .then( reFresh)
                         .catch((error) => {
                           alert('down' + error);
                         })
-                    : await axios
+                    : axios
                         .post(
                           `http://localhost:8080/api/heart`,
                           {
@@ -232,12 +223,11 @@ const Card = ({ campaign }) => {
                           //   alert('이미 좋아요를 눌렀습니다.');
                           alert('up' + error);
                         });
-                  // setFlag();
-                  // reFresh();
+                  }, 500);
+
                 };
                 status == false && c2s();
                 status == true && a();
-                console.log(isHeart);
               }}
             >
               <FavoriteIc icColor={isHeart === true ? '#e91e63' : '#bdbdbd'} />
