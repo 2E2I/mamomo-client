@@ -2,7 +2,7 @@ import React from 'react';
 import Box from '@mui/material/Box';
 import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
-import {Modal, styled} from '@mui/material';
+import { Modal, styled } from '@mui/material';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
 
 import sq1 from '../../assets/images/ex1.jpg';
@@ -10,7 +10,7 @@ import sq2 from '../../assets/images/cat.jpg';
 import ex1 from '../../assets/images/earth.PNG';
 import ex2 from '../../assets/images/fire.PNG';
 import i from '../../assets/images/i.jpg';
-import i2 from '../../assets/images/ex5.jpg';
+import ex3 from '../../assets/images/ex5.jpg';
 import ex4 from '../../assets/images/ex4.jpg';
 import ex5 from '../../assets/images/1.PNG';
 import ex6 from '../../assets/images/2.PNG';
@@ -18,20 +18,42 @@ import ex7 from '../../assets/images/3.PNG';
 import ex8 from '../../assets/images/earth.PNG';
 import ex9 from '../../assets/images/sak.jpg';
 import ex10 from '../../assets/images/spb.jpg';
+import ex11 from '../../assets/images/l1.png';
+import ex12 from '../../assets/images/l2.png';
+import ex13 from '../../assets/images/l3.png';
+import ex14 from '../../assets/images/l4.png';
+import ex15 from '../../assets/images/l5.png';
+import ex16 from '../../assets/images/l6.png';
+
+import { useEffect } from 'react';
+import axios from 'axios';
 
 const MasonryImageList = () => {
   const [open, setOpen] = React.useState(false);
   const [modalImg, setModalImg] = React.useState('');
+  const [bannerList, setBannerList] = React.useState([]);
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
+
+  useEffect(() => {
+    const get = async () => {
+      const res = await axios
+        .get(`http://localhost:8080/api/banner`)
+        .then(console.log('완료'))
+        .catch((error) => {
+          console.log('실패' + error);
+        });
+      console.log(res.data.bannerList.content);
+      setBannerList(res.data.bannerList.content);
+    };
+    get()
+    return () => {};
+  }, []);
+
   return (
     <Box sx={{ width: 'full', height: 1000 }}>
-      <ImageList
-        variant="masonry"
-        cols={2}
-        gap={20}
-      >
-        {itemData.map((item) => (
+      <ImageList variant="masonry" cols={2} gap={20}>
+        {bannerList.map((item) => (
           <ImageListItem key={item.img}>
             <img
               src={`${item.img}?w=248&fit=crop&auto=format`}
@@ -79,26 +101,6 @@ const MasonryImageList = () => {
 
 export default MasonryImageList;
 
-const itemData = [
-  { img: sq1, author: 'Ben Kolde' },
-  { img: sq2, author: 'Ben Kolde' },
-  { img: ex1, author: 'Ben Kolde' },
-  { img: ex2, author: 'Ben Kolde' },
-  { img: i, author: 'Ben Kolde' },
-  { img: i2, author: 'Ben Kolde' },
-  { img: ex4, author: 'Ben Kolde' },
-  { img: ex5, author: 'Ben Kolde' },
-  { img: ex6, author: 'Ben Kolde' },
-  { img: ex7, author: 'Ben Kolde' },
-  { img: i, author: 'Ben Kolde' },
-  { img: i2, author: 'Ben Kolde' },
-  { img: ex4, author: 'Ben Kolde' },
-  { img: ex5, author: 'Ben Kolde' },
-  { img: ex10, author: 'Ben Kolde' },
-  { img: ex10, author: 'Ben Kolde' },
-  { img: ex10, author: 'Ben Kolde' },
-];
-
 const ModalBox = styled(Box)(() => ({
   fontSize: 16,
   fontWeight: 500,
@@ -109,10 +111,10 @@ const ModalBox = styled(Box)(() => ({
   top: '50%',
   left: '50%',
   transform: 'translate(-50%, -50%)',
-//   width: 600,
-//   height: 700,
-//   maxHeight: 600,
-//   maxWidth: 1400,
+  //   width: 600,
+  //   height: 700,
+  //   maxHeight: 600,
+  //   maxWidth: 1400,
   backgroundColor: '#FFF',
   boxShadow: 24,
   outline: 'none',
