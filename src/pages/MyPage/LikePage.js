@@ -43,13 +43,13 @@ const LikePage = () => {
         <Title />
         <Box
           sx={{
-            m: "60px 0 0 40px",
+            m: "50px 0 0 40px",
             //border: 1,
           }}
         >
           <LikePageDonationList />
         </Box>
-        <Paging />
+        {/* <Paging /> */}
       </Box>
     </Grid>
     </Container>
