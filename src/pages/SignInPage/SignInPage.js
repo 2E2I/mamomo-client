@@ -8,7 +8,6 @@ import SignIn from '../../components/signInPageComponents/SignIn';
 import KeepingSignIn from '../../components/signInPageComponents/KeepingSignIn';
 import SplitedLine from '../../components/SplitedLine';
 import SignUp from '../../components/signInPageComponents/SignUp';
-import FindingPassword from '../../components/signInPageComponents/FindingPassword';
 
 import { SignInStore } from '../../store/SignInPageStore';
 
@@ -42,7 +41,7 @@ const SignInPage = () => {
         <KeepingSignIn />
         <SplitedLine />
         <SignUp />
-        <FindingPassword />
+        {/* <FindingPassword /> */}
       </Grid>
     </Container>
   );

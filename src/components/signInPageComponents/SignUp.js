@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import {
   Box,
   Button,
@@ -6,7 +6,10 @@ import {
   ThemeProvider,
   Grid,
 } from '@mui/material';
+
 import { Link } from 'react-router-dom';
+
+import { SignUpStore } from '../../store/SignUpPageStore';
 
 // 회원가입 버튼
 const SignUp = () => {
@@ -19,12 +22,21 @@ const SignUp = () => {
     },
   });
 
+  const { setPassword, setCheckingPassword, setNickname, setSex, setBirth} = SignUpStore();
+
+  useEffect(() => {
+    setPassword('');
+    setCheckingPassword('');
+    setNickname('');
+    setSex('');
+    setBirth('');
+  }, []);
+
   return (
     <ThemeProvider theme={theme}>
       <Box
         sx={{
-          margin: "5px",
-          width: "200px",
+          margin: "5px 330px 0 0",
         }}
       >
         <Grid container justifyContent="left">
