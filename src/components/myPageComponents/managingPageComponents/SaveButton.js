@@ -14,16 +14,19 @@ import { UserProfileStore } from '../../../store/UserProfileStore';
 const SaveButton = () => {
 
   const { email } = SignInStore();
-  const { mImg, mNickname, mBirthday, mSex, mFavTopics, mImgURL } = ModifyProfileStore();
+  const { mImg, mNickname, mBirthday, mSex, mFavTopics, mImgURL, setMImgURL } = ModifyProfileStore();
   const { img, setImg, nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics } = UserProfileStore();
   
   const formData = new FormData();
 
-  formData.append('profileImg', mImgURL);
+  if (mImgURL !== "") {
+    formData.append('profileImg', mImgURL);
+  }
   formData.append('nickname', mNickname);
   formData.append('birth', mBirthday);
   formData.append('sex', mSex);
   formData.append('favTopics', mFavTopics);
+
 
   const onClick = async () => {
     const data = await axios
