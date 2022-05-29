@@ -18,12 +18,12 @@ import ex7 from '../../assets/images/3.PNG';
 import ex8 from '../../assets/images/earth.PNG';
 import ex9 from '../../assets/images/sak.jpg';
 import ex10 from '../../assets/images/spb.jpg';
-import ex11 from '../../assets/images/l1.png';
-import ex12 from '../../assets/images/l2.png';
-import ex13 from '../../assets/images/l3.png';
-import ex14 from '../../assets/images/l4.png';
-import ex15 from '../../assets/images/l5.png';
-import ex16 from '../../assets/images/l6.png';
+// import ex11 from '../../assets/images/l1.png';
+// import ex12 from '../../assets/images/l2.png';
+// import ex13 from '../../assets/images/l3.png';
+// import ex14 from '../../assets/images/l4.png';
+// import ex15 from '../../assets/images/l5.png';
+// import ex16 from '../../assets/images/l6.png';
 
 import { useEffect } from 'react';
 import axios from 'axios';
