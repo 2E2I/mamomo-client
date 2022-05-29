@@ -47,8 +47,16 @@ const Birth = () => {
 
   useEffect(() => {
     setYear(birthday.substring(0, 4));
-    setMonth(birthday.substring(6, 7));
-    setDay(birthday.substring(8, 10));
+    if (birthday.substring(5, 6) === '0') {
+      setMonth(birthday.substring(6, 7));
+    } else {
+      setMonth(birthday.substring(5, 7));
+    }
+
+    if (birthday.substring(8, 9) === '0')
+      setDay(birthday.substring(9, 10));
+    else
+      setDay(birthday.substring(8, 10));
   }, [birthday]);
 
   useEffect(() => {
@@ -141,16 +149,7 @@ const Birth = () => {
               id="year"
               value={year}
               onChange={ (e) => {
-                // const a = async () => {
-                //   await setYear(e.target.value);
-                //   await year != '' && console.log('e.year' + year);
-                //   await setBirthDay(year, month, day);
-                // };
-                // a();
                 setYear(e.target.value);
-                // console.log('e.year'+ e.target.value);
-                // year!=''&& console.log('e.year'+ year);
-                // setBirthDay(year, month, day);
               }}
               label="년도"
             >
