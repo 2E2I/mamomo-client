@@ -62,9 +62,10 @@ const Preview = () => {
 
   const onCapture = () => {
     console.log('onCapute');
-    html2canvas(document.getElementById('aa')).then((canvas) => {
+    html2canvas(document.getElementById('aa')).then(async (canvas) => {
       console.log('onCaputeMiddle');
-      onSaveAs(canvas.toDataURL('image/png'), 'imgae-download.png');
+      await saveOnServer(canvas.toDataURL('image/png'));
+      await onSaveAs(canvas.toDataURL('image/png'), 'imgae-download.png');
       //document.body.appendChild(canvas)
       console.log('onCaputeEnd');
     });
@@ -109,6 +110,28 @@ const Preview = () => {
       type: myBlob.type,
     });
 
+    
+    //썸네일 코드변환 (나중에 로직 수정필요할듯)
+    try{
+    var byteString1 = window.atob(imgData.split(',')[1]);
+    var array1 = [];
+    // i 에 해당하는 string을 unicode로 변환
+    for (var i = 0; i < byteString1.length; i++) {
+      array1.push(byteString1.charCodeAt(i));
+    }
+    // console.log(array)
+    // (2486) [137, 80, 78, 71, ...]
+    // Blob 생성
+    var myBlob1 = new Blob([new Uint8Array(array1)], { type: 'image/png' });
+
+    // ** Blob -> File 로 변환**
+    var file1 = new File([myBlob1], 'blobtofile/png', {
+      type: myBlob.type,
+    });
+  } catch {
+    file1 = imgData
+  }
+
     var today = new Date();
 
     var year = today.getFullYear();
@@ -143,6 +166,8 @@ const Preview = () => {
     await formData.append('textFont1', textFont1);
     await formData.append('textFont2', textFont2);
     await formData.append('textFont3', textFont3);
+    await formData.append('url', url);
+    await formData.append('originalImgData', file1);
     // await console.log({ ...authHeader() });
     // await console.log('uri:' + uri);
     // await console.log('byteString:' + byteString);
@@ -150,7 +175,7 @@ const Preview = () => {
     // await console.log(myBlob);
     // await console.log(file);
     // await console.log('email:' + userInfo.email);
-    // await console.log('formdata:' + formData);
+    await console.log(textFont3);
     var data;
     data = URL.createObjectURL(file);
     console.log(data);
@@ -184,9 +209,9 @@ const Preview = () => {
           <CopyButton id="saveImg" sx={{ border: 2 }} onClick={onCapture}>
             저장하기
           </CopyButton>
-          <CopyButton id="saveImg" sx={{ border: 2 }} onClick={onCapture2}>
+          {/* <CopyButton id="saveImg" sx={{ border: 2 }} onClick={onCapture2}>
             서버저장
-          </CopyButton>
+          </CopyButton> */}
         </Grid>
       </Grid>
       <div id="aa" style={{ width: `${bannerW}px` }}>
