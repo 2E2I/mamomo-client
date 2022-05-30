@@ -12,6 +12,7 @@ const TagPageDonationList = () => {
   const [campaign, setCampaign] = useState({});
 
   const [result, setResult] = useState([]);
+  const [num, setNum] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -54,14 +55,12 @@ const TagPageDonationList = () => {
         console.log('연결');
         console.log(Object.entries(result.data)[0][1]);
         setCampaign(result.data);
+        setNum(Object.entries(result.data)[0][1].totalElements);
         setTotlaPage(Object.entries(result.data)[0][1].totalElements);
         setPageSize(Object.entries(result.data)[0][1].pageable.pageSize);
 
         let response = Object.entries(result.data)[0][1].content;
         setResult(response);
-        //setResult(response.slice(0, 20));
-        //response = response.slice(20);
-        //setItems(response);
         setLoading(false);
       })
       .catch((error) => {
@@ -74,15 +73,31 @@ const TagPageDonationList = () => {
 
   return (
     <>
-      {Object.keys(campaign) !== undefined &&
-        Object.entries(campaign)[0] !== undefined && (
-          <>
-            <ListBox>
-              {menuList}
-            </ListBox>
-            {/* <div ref={ref}>로딩중... {inView.toString()}</div> */}
-          </>
-        )}
+      <Box
+        sx={{
+          m: "10px 0 10px 15px",
+          fontWeight: 500,
+          fontFamily: "Noto Sans KR",
+          fontSize: "20px",
+        }}
+      >
+        마음 <span style={{ color: "#f48fb1", fontWeight: 700 }}>{num}</span>개
+      </Box>
+
+      <Box
+        sx={{
+          marginTop: "20px",
+        }}
+      >
+        {Object.keys(campaign) !== undefined &&
+          Object.entries(campaign)[0] !== undefined && (
+            <>
+              <ListBox>
+                {menuList}
+              </ListBox>
+            </>
+          )}
+      </Box>
     </>
   );
 };
@@ -93,13 +108,3 @@ const ListBox = styled(Box)(() => ({
   display: 'flex',
   flexWrap: 'wrap',
 }));
-
-const ListTitle = styled(Box)(() => ({
-  display: 'flex',
-  fontWeight: '500',
-  fontFamily: 'Noto Sans KR',
-  fontSize: 20,
-  flexWrap: 'nowrap',
-  marginLeft: '10px',
-}));
-

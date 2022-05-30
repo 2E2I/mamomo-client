@@ -25,28 +25,26 @@ const TagPage = () => {
       justify="center"
     >
       <TopAppBar />
-      <Grid container justifyContent="center">
-        <TagTitle />
-        <SortBox />
 
-        {/* 사용자가 인기태그를 눌렀다면 */}
-        {
-          tagType === '인기태그' && <Top10TagDonationList />
-        }
-        
-        {/* 사용자가 카테고리태그를 눌렀다면 */}
-        {
-          tagType === '카테고리태그' && <CategoryTagDonationList />
-        }
+      <TagTitle />
+      <SortBox />
 
-        {/* 사용자가 모든태그를 눌렀다면 */}
-        {
-          tagType === '모든태그' && <AllTagDonationList />
-        }
+      {/* 사용자가 인기태그를 눌렀다면 */}
+      {
+        tagType === '인기태그' && <Top10TagDonationList />
+      }
+      
+      {/* 사용자가 카테고리태그를 눌렀다면 */}
+      {
+        tagType === '카테고리태그' && <CategoryTagDonationList />
+      }
 
+      {/* 사용자가 모든태그를 눌렀다면 */}
+      {
+        tagType === '모든태그' && <AllTagDonationList />
+      }
 
-        <Paging />
-      </Grid>
+      <Paging />
     </Container>
   );
 }
