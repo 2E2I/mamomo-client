@@ -45,6 +45,7 @@ const MyBannerList = () => {
     setWid,
     setHei,
     setUrl,
+    textFont3,
   } = BannerPageStore();
 
   const history = useHistory();
@@ -96,11 +97,9 @@ const MyBannerList = () => {
 
   useEffect(() => {
     axios
-      .get(
-        `http://localhost:8080/api/banner/${email}`, {
-          headers: authHeader()
-        }
-      )
+      .get(`http://localhost:8080/api/banner/${email}?size=5`, {
+        headers: authHeader(),
+      })
       .then((result) => {
         console.log('연결');
         console.log(result.data.bannerList.content);
@@ -141,7 +140,7 @@ const MyBannerList = () => {
                       setSiteType(item.siteType)
                       setTitle(item.title)
                       setInfo(item.info)
-                      // setImgData(campaignImg)
+                      setImgData(item.originalImg);
                       setBgColor1(item.bgColor1)
                       setBgColor2(item.bgColor2)
                       setTextColor1(item.textColor1)
@@ -152,8 +151,12 @@ const MyBannerList = () => {
                       setTextFont3(item.textFont3)
                       setWid(item.width)
                       setHei(item.height)
-                      setUrl('')
+                      setUrl(item.url)
                       console.log(item.img);
+                      console.log(item.originalImg);
+                      console.log(imgData);
+
+                      
                       history.push('/banner')
                     }}
                   />
