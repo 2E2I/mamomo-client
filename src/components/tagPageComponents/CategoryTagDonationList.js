@@ -84,7 +84,7 @@ const CategoryTagDonationList = () => {
                 <ArrowForwardIosIc /> */}
               </ListTitle>
             </Box>
-            <ListBox container justifyContent="center">
+            <ListBox>
               {menuList}
             </ListBox>
           </>

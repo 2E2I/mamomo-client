@@ -84,7 +84,7 @@ const Top10TagDonationList = () => {
                 <ArrowForwardIosIc /> */}
               </ListTitle>
             </Box>
-            <ListBox container justifyContent="center">
+            <ListBox>
               {menuList}
             </ListBox>
           </>
