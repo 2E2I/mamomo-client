@@ -43,7 +43,7 @@ const TopAppBar = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <AppBar position="static" color="primary" elevation={0}>
+      <AppBar position="fixed" color="primary" elevation={0}>
         <Container maxWidth="lg">
           <Toolbar disableGutters>
             <Typography
