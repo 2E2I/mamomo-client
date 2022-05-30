@@ -32,6 +32,10 @@ const SearchPageStore = createStore(
         set(() => ({ word: "" }));
       },
 
+      num: 0,
+      setNum: (num) => {
+        set(() => ({ num: num }))
+      },
     }),
   ),
 );

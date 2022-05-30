@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, styled } from '@mui/material';
+import { Box, styled, Grid } from '@mui/material';
 
 import Card from '../DonationCard';
 import axios from 'axios';
@@ -12,13 +12,12 @@ const TagPageDonationList = () => {
   const [campaign, setCampaign] = useState({});
 
   const [result, setResult] = useState([]);
-  const [num, setNum] = useState(0);
   const [items, setItems] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const [ref, inView] = useInView();
 
-  const { categoryIndex, word } = SearchPageStore(); //zustand
+  const { categoryIndex, word, num, setNum } = SearchPageStore(); //zustand
   const { setTotlaPage, setPageSize, sortValue, storePage } =
     CategoryStore(); //zustand
 
@@ -73,31 +72,51 @@ const TagPageDonationList = () => {
 
   return (
     <>
-      <Box
-        sx={{
-          m: "10px 0 10px 15px",
-          fontWeight: 500,
-          fontFamily: "Noto Sans KR",
-          fontSize: "20px",
-        }}
-      >
-        마음 <span style={{ color: "#f48fb1", fontWeight: 700 }}>{num}</span>개
-      </Box>
+      {
+        num ?
+        (
+          <>
+            <Box
+              sx={{
+                m: "10px 0 10px 15px",
+                fontWeight: 500,
+                fontFamily: "Noto Sans KR",
+                fontSize: "20px",
+              }}
+            >
+              마음 <span style={{ color: "#f48fb1", fontWeight: 700 }}>{num}</span>개
+            </Box>
 
-      <Box
-        sx={{
-          marginTop: "20px",
-        }}
-      >
-        {Object.keys(campaign) !== undefined &&
-          Object.entries(campaign)[0] !== undefined && (
-            <>
-              <ListBox>
-                {menuList}
-              </ListBox>
-            </>
-          )}
-      </Box>
+            <Box
+              sx={{
+                marginTop: "20px",
+              }}
+            >
+              {Object.keys(campaign) !== undefined &&
+                Object.entries(campaign)[0] !== undefined && (
+                  <>
+                    <ListBox>
+                      {menuList}
+                    </ListBox>
+                  </>
+                )}
+            </Box>
+          </>
+        ) : (
+          <Grid container justifyContent="center"
+            sx={{
+              margin: "50px 0 1000px 0",
+              fontWeight: 400,
+              fontFamily: "Noto Sans KR",
+              fontSize: "20px",
+              color: "#696969"
+            }}
+          >
+            검색결과가 없습니다.
+          </Grid>
+        )
+      }
+
     </>
   );
 };

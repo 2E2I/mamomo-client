@@ -103,7 +103,6 @@ export const RoundSearchBar = () => {
             inputProps={{ 'aria-label': '검색어를 입력하세요' }}
             onChange={ (e) => {
               setWord(e.target.value)
-              console.log(e.target.value);
             }}
           />
         </Paper>
