@@ -6,16 +6,18 @@ import reportWebVitals from './reportWebVitals';
 import { BrowserRouter } from 'react-router-dom';
 import './assets/fonts/fonts.css';
 import axios from 'axios';
+import ScrollTop from './components/ScrollTop';
 
 //axios.defaults.withCredentials = true;
 
-ReactDOM.render(
+https: ReactDOM.render(
   <React.StrictMode>
     <BrowserRouter>
+      <ScrollTop />
       <App />
     </BrowserRouter>
   </React.StrictMode>,
-  document.getElementById('root')
+  document.getElementById('root'),
 );
 
 // If you want to start measuring performance in your app, pass a function

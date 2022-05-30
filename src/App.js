@@ -92,7 +92,7 @@ function App() {
 
   return (
     <>
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           top: '400px',
@@ -106,7 +106,7 @@ function App() {
           opacity: 0.4,
           backgroundSize: '80%',
         }}
-      ></Box>
+      ></Box> */}
       {/* <Box
         sx={{
           position: 'absolute',
@@ -122,7 +122,7 @@ function App() {
           backgroundSize: '80%',
         }}
       ></Box> */}
-      <Box
+      {/* <Box
         sx={{
           position: 'absolute',
           top: '1100px',
@@ -136,7 +136,7 @@ function App() {
           opacity: 0.5,
           backgroundSize: '80%',
         }}
-      ></Box>
+      ></Box> */}
       <BrowserRouter history={history}>
         <Route path="/" exact={true} component={MainPage} />
         <Route path="/search" exact={true} component={SearchPage} />
