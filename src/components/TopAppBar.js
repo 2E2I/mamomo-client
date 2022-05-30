@@ -56,7 +56,7 @@ const TopAppBar = () => {
                 color: 'black',
               }}
             >
-              <Link to="/" style={{ textDecoration: 'none' }}>
+              {/* <Link to="/" style={{ textDecoration: 'none' }}>
                 <Box
                   sx={{
                     display: 'inline',
@@ -80,6 +80,80 @@ const TopAppBar = () => {
                   }}
                 >
                   모두모아
+                </Box>
+              </Link> */}
+              <Link to="/" style={{ textDecoration: 'none' }}>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 700,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  마
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 300,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  음을
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 700,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  모
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 300,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  두
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 700,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  모
+                </Box>
+                <Box
+                  sx={{
+                    display: 'inline',
+                    fontWeight: 300,
+                    fontFamily: 'Noto Sans KR',
+                    mx: 0,
+                    fontSize: 24,
+                    color: '#f48fb1',
+                  }}
+                >
+                  아
                 </Box>
               </Link>
             </Typography>
