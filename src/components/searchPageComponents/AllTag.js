@@ -15,7 +15,9 @@ const AllTag = () => {
   const { setCategoryIndex, setTagName } = SearchPageStore();
   const { tagType, setTagType } = SearchPageStore();
 
-  const [num, setNum] = useState(0);
+  var result = [];
+  const [num1, setNum1] = useState(0);
+  const [num2, setNum2] = useState(25);
   const [moreClick, setMoreClick] = useState(false);
   const [foldClick, setFoldClick] = useState(false);
 
@@ -40,10 +42,9 @@ const AllTag = () => {
 
   useEffect (() => {
     axios
-      .get(`http://localhost:8080/api/search?from=${num}&to=${num + 20}`)
+      .get("http://localhost:8080/api/search")
       .then((result) => {
         console.log('연결');
-        setNum(num + 20);
         setTag(result.data);
       })
       .catch((e) => {
@@ -53,107 +54,106 @@ const AllTag = () => {
     return () => {};
   }, []);
 
-  const loadMore = async () => {
-    setNum(num + 10);
-    axios
-      .get(`http://localhost:8080/api/search?from=${0}&to=${num + 10}`)
-      .then((result) => {
-        console.log('연결');
-        setNum(num + 10);
-        setTag(result.data);
-        setMoreClick(true);
-      })
-      .catch((e) => {
-        console.log(e);
-        console.log('연결실패');
-      });
+  const loadMore = () => {
+    setNum2(num2 + 10);
+    rendering(num2, num2 + 10);
+    setMoreClick(true);
   }
   
   const fold = () => {
     setFoldClick(true);
-    axios
-    .get(`http://localhost:8080/api/search?from=${0}&to=${10}`)
-    .then((result) => {
-      console.log('연결');
-      setTag(result.data);
-      setNum(num);
-    })
-    .catch((e) => {
-      console.log(e);
-      console.log('연결실패');
-    });
   }
 
   const open = () => {
     setFoldClick(false);
-    axios
-    .get(`http://localhost:8080/api/search?from=${0}&to=${num}`)
-    .then((result) => {
-      console.log('연결');
-      setTag(result.data);
-    })
-    .catch((e) => {
-      console.log(e);
-      console.log('연결실패');
-    });
+  }
+
+  const rendering  = (m, n) => {
+    for (let i = m; i < n; i++) {
+      result.push(<span key={i}>{categoryList[i]}</span>)
+    }
+    return result;
+  }
+
+  const foldRendering  = () => {
+    var arr= [];
+    for (let i = num1; i < 25; i++) {
+      arr.push(<span key={i}>{categoryList[i]}</span>)
+    }
+    return arr;
   }
 
   return (
     <Grid container justifyContent="center">
-      <TagBox>
-        {categoryList}
-      </TagBox>
-
-        {
-          foldClick ? 
-          (
-            null
-          ) : (
-              <Chip
-                label="더보기"
-                clickable
-                onClick={ loadMore }
-                sx={{
-                  marginTop: "10px",
-                  width: "80px",
-                  height: "35px",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  color: "#ffffff",
-                  bgcolor: "#6376d2",
-                  ":hover": {
-                    bgcolor: "#495695",
-                    color: "#ffffff",
-                  },
-                }}
-              />
-          )
-        }
-        
-        {
-          moreClick ?
-          (
-            foldClick ?
+      {
+        categoryList ?
+        (
+          foldClick ?
             (
-              <Chip
-                label="▼ 열기"
-                clickable
-                variant="outlined"
-                onClick={ open }
-                sx={{
-                  m: "10px 0 0 5px",
-                  width: "70px",
-                  height: "35px",
-                  fontSize: "12px",
-                  fontWeight: 600,
-                  color: "#979797",
-                  ":hover": {
-                    bgcolor: "#cccccc",
-                    color: "#979797",
-                  },
-                }}
-              />
+              <TagBox>
+                { foldRendering(num1, 25) }
+              </TagBox>
             ) : (
+              <TagBox>
+                { rendering(num1, num2) }
+              </TagBox>
+            )
+        ) : (
+          null
+        )
+      }
+
+      {
+        foldClick ? 
+        (
+          null
+        ) : (
+            <Chip
+              label="더보기"
+              clickable
+              onClick={ loadMore }
+              sx={{
+                m: "10px 0 50px 0",
+                width: "80px",
+                height: "35px",
+                fontSize: "12px",
+                fontWeight: 600,
+                color: "#ffffff",
+                bgcolor: "#6376d2",
+                ":hover": {
+                  bgcolor: "#495695",
+                  color: "#ffffff",
+                },
+              }}
+            />
+        )
+      }
+      
+      {
+        moreClick ?
+        (
+          foldClick ?
+          (
+            <Chip
+              label="▼ 열기"
+              clickable
+              variant="outlined"
+              onClick={ open }
+              sx={{
+                m: "10px 0 50px 5px",
+                width: "70px",
+                height: "35px",
+                fontSize: "12px",
+                fontWeight: 600,
+                color: "#979797",
+                ":hover": {
+                  bgcolor: "#cccccc",
+                  color: "#979797",
+                },
+              }}
+            />
+          ) : (
+            <>
               <Chip
                 label="▲ 접기"
                 clickable
@@ -172,11 +172,12 @@ const AllTag = () => {
                   },
                 }}
               />
-            )
-          ) : (
-            null
+            </>
           )
-        }
+        ) : (
+          null
+        )
+      }
     </Grid>
   )
 }
