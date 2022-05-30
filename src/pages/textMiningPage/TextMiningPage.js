@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Container } from '@mui/material';
 
 import TopAppBar from '../../components/TopAppBar';
@@ -7,8 +7,16 @@ import TextMiningField from '../../components/textMiningPageComponents/TextMinin
 import SaveButton from '../../components/textMiningPageComponents/SaveButton';
 import Intro from '../../components/textMiningPageComponents/Intro';
 
+import { CategoryStore } from '../../store/CategoryPageStore';
+
 // 텍스트마이닝 페이지
 const TextMiningPage = () => {
+
+  const { initializeSortIndex } = CategoryStore();
+
+  useEffect(() => {
+    initializeSortIndex()
+  }, [])
 
   return (
     <Container
