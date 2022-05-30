@@ -1,5 +1,5 @@
 import React from 'react';
-import { Grid, Container, Divider } from '@mui/material';
+import { Grid, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import TopAppBar from '../../components/TopAppBar';
@@ -7,8 +7,6 @@ import RoundSearchBar from '../../components/RoundSearchBar';
 
 import CategoryTagTitle from '../../components/searchPageComponents/CategoryTagTitle';
 import CategoryTags from '../../components/searchPageComponents/CategoryTag'
-import Top10TagTitle from '../../components/searchPageComponents/Top10TagTitle';
-import Top10Tag from '../../components/searchPageComponents/Top10Tag';
 import AllTagTitle from '../../components/searchPageComponents/AllTagTitle';
 import AllTag from '../../components/searchPageComponents/AllTag';
 
@@ -42,12 +40,6 @@ const SearchPage = () => {
 
       <TopAppBar />
       <RoundSearchBar onKeyDown={onKeyPress} />
-
-      {/* 인기태그 top10 */}
-      <Grid container justifyContent="center">
-        <Top10TagTitle />
-        <Top10Tag />
-      </Grid>
 
       {/* 모든 카테고리 */}
       <Grid container justifyContent="center">
