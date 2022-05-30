@@ -35,7 +35,7 @@ const SaveButton = () => {
 
   const [ref, inView] = useInView();
 
-  const { setTotlaPage, setPageSize, storePage, setStorePage } =
+  const { setTotlaPage, setPageSize, storePage, setStorePage, setSortIndex } =
     CategoryStore(); //zustand
 
   const fetchMoreData = async () => {
@@ -64,6 +64,10 @@ const SaveButton = () => {
   useEffect(() => {
     console.log(progress);
   }, [progress]);
+
+  useEffect(() => {
+    setSortIndex(1)
+  }, [])
   
   const onClick = async () => {
     setProgress(true)
