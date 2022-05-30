@@ -233,7 +233,7 @@ const SaveButton = () => {
               {Object.keys(campaign) !== undefined &&
                 Object.entries(campaign)[0] !== undefined && (
                   <>
-                    <ListBox container justifyContent="center">
+                    <ListBox>
                       {menuList}
                     </ListBox>
                   </>
