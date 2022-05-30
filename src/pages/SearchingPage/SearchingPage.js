@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container } from '@mui/material';
+import React, { useEffect } from 'react';
+import { Container, Grid } from '@mui/material';
 import { Link } from 'react-router-dom';
 
 import TopAppBar from '../../components/TopAppBar';
@@ -12,7 +12,7 @@ import { SearchPageStore } from '../../store/SearchPageStore';
 
 const SearchingPage = () => {
 
-  let { word } = SearchPageStore();
+  let { word, num } = SearchPageStore();
 
   const onClick = () => {
     <Link to='/searching'></Link>
@@ -25,6 +25,10 @@ const SearchingPage = () => {
       }
     }
   }
+
+  useEffect(() => {
+    
+  })
 
   return (
     <Container
@@ -44,6 +48,7 @@ const SearchingPage = () => {
       <SortBox />
       <SearchingPageDonationList />
       <Paging />
+      
     </Container>
   )
 }

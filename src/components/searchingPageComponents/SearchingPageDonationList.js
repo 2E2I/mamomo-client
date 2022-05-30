@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Box, styled } from '@mui/material';
+import { Box, styled, Grid } from '@mui/material';
 
 import Card from '../DonationCard';
 import axios from 'axios';
@@ -17,7 +17,7 @@ const TagPageDonationList = () => {
 
   const [ref, inView] = useInView();
 
-  const { categoryIndex, word } = SearchPageStore(); //zustand
+  const { categoryIndex, word, num, setNum } = SearchPageStore(); //zustand
   const { setTotlaPage, setPageSize, sortValue, storePage } =
     CategoryStore(); //zustand
 
@@ -54,14 +54,12 @@ const TagPageDonationList = () => {
         console.log('연결');
         console.log(Object.entries(result.data)[0][1]);
         setCampaign(result.data);
+        setNum(Object.entries(result.data)[0][1].totalElements);
         setTotlaPage(Object.entries(result.data)[0][1].totalElements);
         setPageSize(Object.entries(result.data)[0][1].pageable.pageSize);
 
         let response = Object.entries(result.data)[0][1].content;
         setResult(response);
-        //setResult(response.slice(0, 20));
-        //response = response.slice(20);
-        //setItems(response);
         setLoading(false);
       })
       .catch((error) => {
@@ -74,15 +72,51 @@ const TagPageDonationList = () => {
 
   return (
     <>
-      {Object.keys(campaign) !== undefined &&
-        Object.entries(campaign)[0] !== undefined && (
+      {
+        num ?
+        (
           <>
-            <ListBox>
-              {menuList}
-            </ListBox>
-            {/* <div ref={ref}>로딩중... {inView.toString()}</div> */}
+            <Box
+              sx={{
+                m: "10px 0 10px 15px",
+                fontWeight: 500,
+                fontFamily: "Noto Sans KR",
+                fontSize: "20px",
+              }}
+            >
+              마음 <span style={{ color: "#f48fb1", fontWeight: 700 }}>{num}</span>개
+            </Box>
+
+            <Box
+              sx={{
+                marginTop: "20px",
+              }}
+            >
+              {Object.keys(campaign) !== undefined &&
+                Object.entries(campaign)[0] !== undefined && (
+                  <>
+                    <ListBox>
+                      {menuList}
+                    </ListBox>
+                  </>
+                )}
+            </Box>
           </>
-        )}
+        ) : (
+          <Grid container justifyContent="center"
+            sx={{
+              margin: "50px 0 1000px 0",
+              fontWeight: 400,
+              fontFamily: "Noto Sans KR",
+              fontSize: "20px",
+              color: "#696969"
+            }}
+          >
+            검색결과가 없습니다.
+          </Grid>
+        )
+      }
+
     </>
   );
 };
@@ -93,13 +127,3 @@ const ListBox = styled(Box)(() => ({
   display: 'flex',
   flexWrap: 'wrap',
 }));
-
-const ListTitle = styled(Box)(() => ({
-  display: 'flex',
-  fontWeight: '500',
-  fontFamily: 'Noto Sans KR',
-  fontSize: 20,
-  flexWrap: 'nowrap',
-  marginLeft: '10px',
-}));
-

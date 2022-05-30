@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Grid, Container } from '@mui/material';
 import { Link } from 'react-router-dom';
 
@@ -14,19 +14,11 @@ import { SearchPageStore } from '../../store/SearchPageStore';
 
 const SearchPage = () => {
 
-  let { word } = SearchPageStore();
+  const { initWord } = SearchPageStore();
 
-  const onClick = () => {
-    <Link to='/searching'></Link>
-  }
-
-  const onKeyPress = (e) => {
-    if (word.length >= 2) {
-      if (e.key === 'Enter') {
-        onClick();
-      }
-    }
-  }
+  useEffect(() => {
+    initWord();
+  }, []);
 
   return (
     <Container
@@ -39,7 +31,7 @@ const SearchPage = () => {
     >
 
       <TopAppBar />
-      <RoundSearchBar onKeyDown={onKeyPress} />
+      <RoundSearchBar />
 
       {/* 모든 카테고리 */}
       <Grid container justifyContent="center">

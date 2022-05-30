@@ -35,26 +35,53 @@ export const RoundSearchBar = () => {
             boxShadow: '0',
           }}
         >
-          <IconButton
-            type="submit"
-            sx={{
-              "&:hover": {
-                backgroundColor: "transparent",
-                cursor: "default"
-                },
-              p: '10px',
-            }}
-            aria-label="search"
-          >
-            <SearchIcon
-              sx={{
-                width: '35px',
-                height: '35px',
-                color: '#424242',
-              }}
-            >
-            </SearchIcon>
-          </IconButton>
+          {
+            word ?
+            (
+              <IconButton
+                type="submit"
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    cursor: "default"
+                    },
+                  p: '10px',
+                }}
+                aria-label="search"
+              >
+                <SearchIcon
+                  sx={{
+                    width: '35px',
+                    height: '35px',
+                    color: '#424242',
+                  }}
+                >
+                </SearchIcon>
+              </IconButton>
+            ) : (
+              <IconButton
+                disabled
+                type="submit"
+                sx={{
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    cursor: "default"
+                    },
+                  p: '10px',
+                }}
+                aria-label="search"
+              >
+                <SearchIcon
+                  sx={{
+                    width: '35px',
+                    height: '35px',
+                    color: '#424242',
+                  }}
+                >
+                </SearchIcon>
+              </IconButton>
+            )
+          }
 
           <InputBase
             sx={{

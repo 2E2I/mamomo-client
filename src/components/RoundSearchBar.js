@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 
 import { Box, Grid, Paper, InputBase, IconButton  } from '@mui/material';
 import SearchIcon from '@mui/icons-material/Search';
@@ -8,7 +8,11 @@ import { SearchPageStore } from '../store/SearchPageStore';
 
 export const RoundSearchBar = () => {
 
-  let { word, setWord } = SearchPageStore();
+  let { word, setWord, initWord } = SearchPageStore();
+
+  useEffect(() => {
+    initWord()
+  }, [])
 
   return (
     <Grid container justifyContent="center">
@@ -36,28 +40,54 @@ export const RoundSearchBar = () => {
             boxShadow: '0',
           }}
         >
-          <Link to='/searching'>
-            <IconButton
-              type="submit"
-              sx={{
-                "&:hover": {
-                  backgroundColor: "transparent",
-                  cursor: "default"
-                  },
-                p: '10px',
-              }}
-              aria-label="search"
-            >
-              <SearchIcon
+          {
+            word ? (
+              <Link to='/searching'>
+                <IconButton
+                  type="submit"
+                  sx={{
+                    "&:hover": {
+                      backgroundColor: "transparent",
+                      cursor: "default"
+                      },
+                    p: '10px',
+                  }}
+                  aria-label="search"
+                >
+                  <SearchIcon
+                    sx={{
+                      width: '35px',
+                      height: '35px',
+                      color: '#424242',
+                    }}
+                  >
+                  </SearchIcon>
+                </IconButton>
+              </Link>
+            ) : (
+              <IconButton
+                disabled
+                type="submit"
                 sx={{
-                  width: '35px',
-                  height: '35px',
-                  color: '#424242',
+                  "&:hover": {
+                    backgroundColor: "transparent",
+                    cursor: "default"
+                    },
+                  p: '10px',
                 }}
+                aria-label="search"
               >
-              </SearchIcon>
-            </IconButton>
-          </Link>
+                <SearchIcon
+                  sx={{
+                    width: '35px',
+                    height: '35px',
+                    color: '#424242',
+                  }}
+                >
+                </SearchIcon>
+              </IconButton>
+            )
+          }
 
           <InputBase
             sx={{
