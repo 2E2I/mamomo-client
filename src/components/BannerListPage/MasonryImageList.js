@@ -4,6 +4,7 @@ import ImageList from '@mui/material/ImageList';
 import ImageListItem from '@mui/material/ImageListItem';
 import { Modal, styled } from '@mui/material';
 import ImageListItemBar from '@mui/material/ImageListItemBar';
+import { useInView } from 'react-intersection-observer';
 
 import sq1 from '../../assets/images/ex1.jpg';
 import sq2 from '../../assets/images/cat.jpg';
@@ -25,7 +26,7 @@ import ex10 from '../../assets/images/spb.jpg';
 // import ex15 from '../../assets/images/l5.png';
 // import ex16 from '../../assets/images/l6.png';
 
-import { useEffect } from 'react';
+import { useState, useRef, useEffect, useCallback } from 'react';
 import axios from 'axios';
 
 const MasonryImageList = () => {
@@ -35,20 +36,55 @@ const MasonryImageList = () => {
   const handleOpen = () => setOpen(true);
   const handleClose = () => setOpen(false);
 
+  const [items, setItems] = useState([]);
+  const [page, setPage] = useState(0);
+  const [loading, setLoading] = useState(false);
+
+  const [ref, inView] = useInView();
+
+  // useEffect(() => {
+  //   const get = async () => {
+  //     const res = await axios
+  //       .get(`http://localhost:8080/api/banner`)
+  //       .then(console.log('완료'))
+  //       .catch((error) => {
+  //         console.log('실패' + error);
+  //       });
+  //     console.log(res.data.bannerList.content);
+  //     setBannerList((prevState) => [
+  //       ...prevState,
+  //       ...res.data.bannerList.content,
+  //     ]);
+  //   };
+  //   get();
+  //   return () => {};
+  // }, []);
+
+  const getItems = useCallback(async () => {
+    setLoading(true);
+    await axios
+      .get(`http://localhost:8080/api/banner?page=${page}&size=10`)
+      .then((res) => {
+        setBannerList((prevState) => [
+          ...prevState,
+          ...res.data.bannerList.content,
+        ]);
+        console.log('확인');
+        console.log(bannerList);
+      });
+    setLoading(false);
+  }, [page]);
+
   useEffect(() => {
-    const get = async () => {
-      const res = await axios
-        .get(`http://localhost:8080/api/banner`)
-        .then(console.log('완료'))
-        .catch((error) => {
-          console.log('실패' + error);
-        });
-      console.log(res.data.bannerList.content);
-      setBannerList(res.data.bannerList.content);
-    };
-    get()
-    return () => {};
-  }, []);
+    getItems();
+  }, [getItems]);
+
+  useEffect(() => {
+    // 사용자가 마지막 요소를 보고 있고, 로딩 중이 아니라면
+    if (inView && !loading) {
+      setPage((prevState) => prevState + 1);
+    }
+  }, [inView, loading]);
 
   return (
     <Box sx={{ width: 'full', height: 1000 }}>
@@ -95,6 +131,9 @@ const MasonryImageList = () => {
           </Box>
         </ModalBox>
       </Modal>
+      <div className="list-item" ref={ref}>
+        .
+      </div>
     </Box>
   );
 };
