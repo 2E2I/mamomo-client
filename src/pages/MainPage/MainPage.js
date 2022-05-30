@@ -5,26 +5,38 @@ import RoundSearchBar from '../../components/mainPageComponents/MainPageSearchBa
 import CardList2 from '../../components/mainPageComponents/MainPageDonationList';
 import MainCarousel from '../../components/mainPageComponents/Carousel2';
 import Categories from '../../components/Tags';
+import MainTestComponent from '../../components/mainPageComponents/MainTestComponent';
 
 const MainPage = () => {
 
     return (
+      <>
       <Container
         maxWidth={false}
         sx={{
-          //minWidth: { xs: '100%', md: '1200px' },
-          //maxWidth: { xs: '100%', md: '2560px' },
-          width:"1000px"
+          //width: '1000px',
         }}
         disableGutters={true}
         justify="center"
       >
         <TopAppBar />
+        <MainTestComponent />
+        </Container>
+        <Container
+        maxWidth={false}
+        sx={{
+          width: '1000px',
+        }}
+        disableGutters={true}
+        justify="center"
+      >
         <MainCarousel />
+        
         <br />
         <CardList2 />
         <hr />
       </Container>
+      </>
     );
 };
 
