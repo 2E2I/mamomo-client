@@ -77,7 +77,7 @@ const TagPageDonationList = () => {
       {Object.keys(campaign) !== undefined &&
         Object.entries(campaign)[0] !== undefined && (
           <>
-            <ListBox container justifyContent="center">
+            <ListBox>
               {menuList}
             </ListBox>
             {/* <div ref={ref}>로딩중... {inView.toString()}</div> */}

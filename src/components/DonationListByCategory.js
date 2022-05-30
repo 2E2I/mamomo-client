@@ -29,7 +29,8 @@ const DonationListByCategory = () => {
   const menuList = result.map(
     (menu, index) =>
       Object.keys(result) !== undefined && (
-        <Box sx={{ mb: 6 }}>
+        <Box sx={{ mb: 6,
+              }}>
           <Card2 key={index} campaign={menu} />
         </Box>
       ),
@@ -79,7 +80,7 @@ const DonationListByCategory = () => {
                 <ArrowForwardIosIc /> */}
               </ListTitle>
             </Box>
-            <ListBox container justifyContent="center">
+            <ListBox>
               {menuList}
             </ListBox>
           </>
