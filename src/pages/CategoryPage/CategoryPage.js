@@ -20,6 +20,10 @@ const CategoryPage = () => {
       justify="center"
     >
       <TopAppBar />
+      <br />
+      <br />
+      <br />
+      <br />
       <CategoryPageTest />
       <br />
       <Categories />
