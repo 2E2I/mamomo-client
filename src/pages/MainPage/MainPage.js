@@ -11,31 +11,45 @@ const MainPage = () => {
 
     return (
       <>
-      <Container
-        maxWidth={false}
-        sx={{
-          //width: '1000px',
-        }}
-        disableGutters={true}
-        justify="center"
-      >
-        <TopAppBar />
-        <MainTestComponent />
+        <Container
+          maxWidth={false}
+          sx={
+            {
+              maxWidth: '500px',
+            }
+          }
+          disableGutters={true}
+          justify="center"
+        >
+          <TopAppBar />
         </Container>
         <Container
-        maxWidth={false}
-        sx={{
-          width: '1000px',
-        }}
-        disableGutters={true}
-        justify="center"
-      >
-        <MainCarousel />
-        
-        <br />
-        <CardList2 />
-        <hr />
-      </Container>
+          maxWidth={false}
+          sx={
+            {
+              //width: '1000px',
+              //minWidth: '1920px',
+            }
+          }
+          disableGutters={true}
+          justify="center"
+        >
+          <MainTestComponent />
+        </Container>
+        <Container
+          maxWidth={false}
+          sx={{
+            width: '1000px',
+          }}
+          disableGutters={true}
+          justify="center"
+        >
+          <MainCarousel />
+
+          <br />
+          <CardList2 />
+          <hr />
+        </Container>
       </>
     );
 };

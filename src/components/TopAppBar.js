@@ -44,7 +44,7 @@ const TopAppBar = () => {
   return (
     <ThemeProvider theme={theme}>
       <AppBar position="fixed" color="primary" elevation={0}>
-        <Container maxWidth="lg">
+        <Container sx={{width:1050}}>
           <Toolbar disableGutters>
             <Typography
               variant="h6"
@@ -171,9 +171,9 @@ const TopAppBar = () => {
                       my: 2,
                       color: '#424242',
                       display: 'block',
-                      fontWeight: 700,
+                      fontWeight: 500,
                       fontFamily: 'Noto Sans KR',
-                      fontSize: 16,
+                      fontSize: 15,
                     }}
                   >
                     {page}
