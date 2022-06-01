@@ -12,22 +12,20 @@ const MyPage = () => {
     <Container
       maxWidth={false}
       sx={{
-        width:"1000px",
-      }} 
+        width: '1000px',
+      }}
       disableGutters={true}
       justify="center"
     >
-
       <TopAppBar />
-
-      <Grid container justifycontent='center'>
+      <br />
+      <br />
+      <Grid container justifycontent="center">
         <UserTab />
         <Title />
       </Grid>
-
-
     </Container>
-  )
+  );
 }
 
 export default MyPage;

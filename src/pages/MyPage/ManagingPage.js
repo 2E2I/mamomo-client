@@ -28,37 +28,34 @@ const ManagingPage = () => {
 
   return (
     <Container
-    maxWidth={false}
-    sx={{
-      width:"1000px",
-    }} 
-    disableGutters={true}
-    justify="center"
+      maxWidth={false}
+      sx={{
+        width: '1000px',
+      }}
+      disableGutters={true}
+      justify="center"
     >
+      <TopAppBar />
+      <br />
+      <br />
 
-    <TopAppBar />
+      <Grid container justifycontent="center">
+        <UserTab />
+        <Box span>
+          <Title />
 
-    <Grid container justifycontent='center'>
-      <UserTab />
-      <Box span>
-        <Title />
+          <ProfileImg />
+          <Nickname />
+          <Birth />
+          <Sex />
+          <FavTopics />
 
-        <ProfileImg />
-        <Nickname />
-        <Birth />
-        <Sex />
-        <FavTopics />
-
-        
-        <SaveButton />
-        <CancelButton />
-
-      </Box>
-
-    </Grid>
-
+          <SaveButton />
+          <CancelButton />
+        </Box>
+      </Grid>
     </Container>
-  )
+  );
 }
 
 export default ManagingPage;

@@ -34,23 +34,26 @@ const SearchingPage = () => {
     <Container
       maxWidth={false}
       sx={{
-        width:"1000px",
-      }} 
+        width: '1000px',
+      }}
       disableGutters={true}
       justify="center"
     >
-
       <TopAppBar />
+      <br />
+      <br />
+      <br />
+      <br />
       <RoundSearchBar onKeyDown={onKeyPress} />
 
-      <br /><br />
-      
+      <br />
+      <br />
+
       <SortBox />
       <SearchingPageDonationList />
       <Paging />
-      
     </Container>
-  )
+  );
 }
 
 export default SearchingPage;

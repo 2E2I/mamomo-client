@@ -20,12 +20,13 @@ const TextMiningPage = () => {
       justify="center"
     >
       <TopAppBar />
-
+      <br />
+      <br />
+      <br />
       <TextMiningPageBanner />
       <Intro />
       <TextMiningField />
       <SaveButton />
-
     </Container>
   );
 }
