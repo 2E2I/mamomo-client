@@ -21,38 +21,38 @@ const MyBannerPage = () => {
 
   return (
     <Container
-    maxWidth={false}
-    sx={{
-      width:"1000px",
-    }} 
-    disableGutters={true}
-    justify="center"
+      maxWidth={false}
+      sx={{
+        width: '1000px',
+      }}
+      disableGutters={true}
+      justify="center"
     >
+      <TopAppBar />
+      <br />
+      <br />
 
-    <TopAppBar />
-
-    <Grid container justifycontent='center'>
-      <UserTab />
-      <Box
-        sx={{
-          width: "800px",
-          // border: 1,
-        }}
-      >
-        <Title />
+      <Grid container justifycontent="center">
+        <UserTab />
         <Box
           sx={{
-            m: "0 0 0 40px",
+            width: '800px',
             // border: 1,
           }}
         >
-          <MyBannerList />
+          <Title />
+          <Box
+            sx={{
+              m: '0 0 0 40px',
+              // border: 1,
+            }}
+          >
+            <MyBannerList />
+          </Box>
         </Box>
-      </Box>
-    </Grid>
-
+      </Grid>
     </Container>
-  )
+  );
 }
 
 export default MyBannerPage;

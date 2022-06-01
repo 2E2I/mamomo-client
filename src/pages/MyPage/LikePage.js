@@ -22,38 +22,39 @@ const LikePage = () => {
 
   return (
     <Container
-    maxWidth={false}
-    sx={{
-      width:"1000px",
-    }} 
-    disableGutters={true}
-    justify="center"
+      maxWidth={false}
+      sx={{
+        width: '1000px',
+      }}
+      disableGutters={true}
+      justify="center"
     >
+      <TopAppBar />
+      <br />
+      <br />
 
-    <TopAppBar />
-
-    <Grid container justifycontent='center'>
-      <UserTab />
-      <Box
-        sx={{
-          width: "800px",
-          // border: 1,
-        }}
-      >
-        <Title />
+      <Grid container justifycontent="center">
+        <UserTab />
         <Box
           sx={{
-            m: "50px 0 0 40px",
-            //border: 1,
+            width: '800px',
+            // border: 1,
           }}
         >
-          <LikePageDonationList />
+          <Title />
+          <Box
+            sx={{
+              m: '50px 0 0 40px',
+              //border: 1,
+            }}
+          >
+            <LikePageDonationList />
+          </Box>
+          {/* <Paging /> */}
         </Box>
-        {/* <Paging /> */}
-      </Box>
-    </Grid>
+      </Grid>
     </Container>
-  )
+  );
 }
 
 export default LikePage;

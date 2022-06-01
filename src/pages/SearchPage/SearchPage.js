@@ -24,13 +24,16 @@ const SearchPage = () => {
     <Container
       maxWidth={false}
       sx={{
-        width:"1000px",
-      }} 
+        width: '1000px',
+      }}
       disableGutters={true}
       justify="center"
     >
-
       <TopAppBar />
+      <br />
+      <br />
+      <br />
+      <br />
       <RoundSearchBar />
 
       {/* 모든 카테고리 */}
@@ -44,9 +47,8 @@ const SearchPage = () => {
         <AllTagTitle />
         <AllTag />
       </Grid>
-
     </Container>
-  )
+  );
 };
 
 export default SearchPage;

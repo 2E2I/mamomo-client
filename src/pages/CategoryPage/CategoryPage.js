@@ -23,7 +23,6 @@ const CategoryPage = () => {
       <br />
       <br />
       <br />
-      <br />
       <CategoryPageTest />
       <br />
       <Categories />
