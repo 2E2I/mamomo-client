@@ -55,7 +55,7 @@ const SaveButton = () => {
     setBirthday(birthday);
     setSex(sex);
     setFavTopics(favTopics);
-  }, [img, setImg, nickname, setNickname, birthday, setBirthday, sex, setSex, favTopics, setFavTopics]);
+  }, []);
 
   return (
     <Button
