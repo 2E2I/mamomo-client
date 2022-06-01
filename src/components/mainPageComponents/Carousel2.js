@@ -36,11 +36,44 @@ const MainCarousel = (props) => {
   ];
 
   return (
-    <Carousel>
-      {items.map((item, i) => (
-        <Item key={i} item={item} />
-      ))}
-    </Carousel>
+    <Box sx={{ boxShadow: 24, width: '95%', height: '300px', borderRadius: 8 }}>
+      <Carousel
+        indicatorContainerProps={{
+          style: {
+            marginTop: '0', // 5
+            textAlign: 'left', // 4
+          },
+          indicators: {
+            width: '100%',
+            marginTop: '10px',
+            textAlign: 'center',
+          },
+          indicator: {
+            cursor: 'pointer',
+            transition: '200ms',
+            padding: 0,
+            color: '#afafaf',
+            '&:hover': {
+              color: '#1f1f1f',
+            },
+            '&:active': {
+              color: '#1f1f1f',
+            },
+          },
+          indicatorIcon: {
+            fontSize: '15px',
+          },
+          // Applies to the active indicator
+          active: {
+            color: '#494949',
+          },
+        }}
+      >
+        {items.map((item, i) => (
+          <Item key={i} item={item} />
+        ))}
+      </Carousel>
+    </Box>
   );
 }
 
@@ -63,8 +96,9 @@ const Root = styled(Box)(({ theme, img }) => ({
   backgroundSize: 'cover',
   backgroundPosition: 'center',
   color: '#fff',
-  height: '320px',
-  borderRadius: '12px'
+  height: '300px',
+  boxShadow: 24,
+  borderRadius: 8,
 }));
 
 const Root2 = styled(Typography)(({ theme }) => ({
