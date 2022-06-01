@@ -13,16 +13,17 @@ const MainPage = () => {
       <>
         <Container
           maxWidth={false}
-          sx={
-            {
-              maxWidth: '500px',
-            }
-          }
+          sx={{
+            maxWidth: '1050px',
+          }}
           disableGutters={true}
           justify="center"
         >
           <TopAppBar />
         </Container>
+        <br />
+        <br />
+        <br />
         <Container
           maxWidth={false}
           sx={
@@ -36,20 +37,7 @@ const MainPage = () => {
         >
           <MainTestComponent />
         </Container>
-        <Container
-          maxWidth={false}
-          sx={{
-            width: '1000px',
-          }}
-          disableGutters={true}
-          justify="center"
-        >
-          <MainCarousel />
 
-          <br />
-          <CardList2 />
-          <hr />
-        </Container>
       </>
     );
 };
