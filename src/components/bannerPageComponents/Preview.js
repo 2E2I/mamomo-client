@@ -78,8 +78,9 @@ const Preview = () => {
     link.href = uri;
     link.download = filename;
     link.click();
-    document.body.remove(link);
-    window.location.replace('/banner');
+    document.body.removeChild(link);
+    // document.body.remove(link);
+    // window.location.replace('/banner');
   };
 
   const onCapture2 = () => {
