@@ -151,10 +151,7 @@ const Card = ({ campaign }) => {
       <Root elevation={0}>
         <InnerImage img={customImgUrl()} onClick={handleOpen}>
           {/* <SiteTypeBox>{siteType}</SiteTypeBox> */}
-          <SiteTypeBox
-            logoImg={logoImg}
-            logoSize={logoSize}
-          ></SiteTypeBox>
+          <SiteTypeBox logoImg={logoImg} logoSize={logoSize}></SiteTypeBox>
         </InnerImage>
         <InnerTitleBox component="div" onClick={handleOpen}>
           {title}
@@ -185,46 +182,42 @@ const Card = ({ campaign }) => {
                   // debounce
                   clearTimeout(debounce);
                   debounce = await setTimeout(() => {
-                    console.log(
-                      'debounce',
-                      new Date().getTime(),
-                    );
+                    console.log('debounce', new Date().getTime());
                     console.log(id); // 사용자 닉네임
                     console.log(userInfo.id);
                     isHeart
-                    ? axios
-                        .delete(`http://localhost:8080/api/heart`, {
-                          headers: authHeader(),
-                          data: {
-                            campaignId: `${id}`,
-                            userId: userInfo.id,
-                          },
-                        })
-                        .then( reFresh)
-                        .catch((error) => {
-                          alert('down' + error);
-                        })
-                    : axios
-                        .post(
-                          `http://localhost:8080/api/heart`,
-                          {
-                            campaignId: `${id}`,
-                            userId: userInfo.id,
-                          },
-                          {
+                      ? axios
+                          .delete(`http://localhost:8080/api/heart`, {
                             headers: authHeader(),
-                          },
-                        )
-                        .then(reFresh)
-                        .catch((error) => {
-                          // console.log(error.message);
-                          // console.log(error.response.status);
-                          // error.response.status == 409 &&
-                          //   alert('이미 좋아요를 눌렀습니다.');
-                          alert('up' + error);
-                        });
+                            data: {
+                              campaignId: `${id}`,
+                              userId: userInfo.id,
+                            },
+                          })
+                          .then(reFresh)
+                          .catch((error) => {
+                            alert('down' + error);
+                          })
+                      : axios
+                          .post(
+                            `http://localhost:8080/api/heart`,
+                            {
+                              campaignId: `${id}`,
+                              userId: userInfo.id,
+                            },
+                            {
+                              headers: authHeader(),
+                            },
+                          )
+                          .then(reFresh)
+                          .catch((error) => {
+                            // console.log(error.message);
+                            // console.log(error.response.status);
+                            // error.response.status == 409 &&
+                            //   alert('이미 좋아요를 눌렀습니다.');
+                            alert('up' + error);
+                          });
                   }, 500);
-
                 };
                 status == false && c2s();
                 status == true && a();
@@ -285,7 +278,19 @@ const Card = ({ campaign }) => {
       >
         <Fade in={open}>
           <ModalBox>
-            {DonationModal(img, title, body, url, siteType, id)}
+            {DonationModal(
+              img,
+              title,
+              body,
+              url,
+              siteType,
+              id,
+              statusPrice,
+              targetPrice,
+              organizationName,
+              logoImg,
+              logoSize,
+            )}
           </ModalBox>
         </Fade>
       </Modal>

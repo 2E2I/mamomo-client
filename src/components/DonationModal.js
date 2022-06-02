@@ -1,5 +1,5 @@
 import React from 'react';
-import { Box, Container, styled } from '@mui/material';
+import { Box, Container, styled, Grid } from '@mui/material';
 import { Link, Route } from 'react-router-dom';
 import kakaoicon from '../assets/images/icon-kakao.png';
 import facebookicon from '../assets/images/icon-facebook.png';
@@ -9,7 +9,27 @@ import axios from 'axios';
 import boogie04 from '../assets/images/boogie01.png';
 import { useHistory } from 'react-router-dom/';
 
-const DonationModal = (img, title, body, url, siteType, id) => {
+import happybean from '../assets/images/hb2.PNG';
+import kakao from '../assets/images/zzo.jpg';
+import goat from '../assets/images/goat_logo.png';
+import cherry from '../assets/images/cherry.PNG';
+
+import LinearProgress, {
+  linearProgressClasses,
+} from '@mui/material/LinearProgress';
+const DonationModal = (
+  img,
+  title,
+  body,
+  url,
+  siteType,
+  id,
+  statusPrice,
+  targetPrice,
+  organizationName,
+  logoImg,
+  logoSize,
+) => {
   const history = useHistory();
 
   const {
@@ -44,20 +64,6 @@ const DonationModal = (img, title, body, url, siteType, id) => {
     <Box>
       <Box
         sx={{
-          position: 'absolute',
-          top: '395px',
-          left: '340px',
-          backgroundImage: `url(${boogie04})`,
-          backgroundPosition: 'center',
-          //backgroundRepeat: 'no-repeat',
-          width: 230,
-          height: 230,
-          backgroundSize: '120%',
-          //opacity: 0.6,
-        }}
-      ></Box>
-      <Box
-        sx={{
           fontSize: 24,
           textOverflow: 'ellipsis',
           overflow: 'hidden',
@@ -78,7 +84,7 @@ const DonationModal = (img, title, body, url, siteType, id) => {
           fontWeight: 200,
           textOverflow: 'ellipsis',
           overflow: 'auto',
-          height: 240,
+          height: 294,
           width: 600,
           padding: 5,
           paddingTop: 2,
@@ -87,61 +93,115 @@ const DonationModal = (img, title, body, url, siteType, id) => {
         {body}
       </Box>
       <hr />
-      <Box
-        onClick={() => {
-          window.open(`${url}`, '_blank');
-        }}
-        sx={{
-          background: `linear-gradient(to right, #f8bbd0,#ff80ab)`,
-          color: '#f5f5f5',
-          fontWeight: 400,
-          fontSize: 18,
-          fontFamily: 'Noto Sans KR',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          borderRadius: 2,
-          height: 30,
-          width: 120,
-          ml: 5,
-          mt: 4,
-          textAlign: 'center',
-          '&:hover': {
-            cursor: 'pointer',
-            color: '#ec407a',
-          },
-        }}
-      >
-        바로가기
-      </Box>
-      {/* <Link to="/banner"> */}
-      <Box
-        onClick={() => {
-          m2b();
-        }}
-        sx={{
-          background: `linear-gradient(to right, #f8bbd0,#ff80ab)`,
-          color: '#f5f5f5',
-          fontWeight: 400,
-          fontSize: 18,
-          fontFamily: 'Noto Sans KR',
-          textOverflow: 'ellipsis',
-          overflow: 'hidden',
-          borderRadius: 2,
-          height: 30,
-          width: 120,
-          ml: 5,
-          mt: 3,
-          textAlign: 'center',
-          '&:hover': {
-            cursor: 'pointer',
-            color: '#ec407a',
-          },
-        }}
-      >
-        배너만들기
-      </Box>
-      {/* </Link> */}
-      <Box
+      <Grid container spacing={0}>
+        <Grid
+          item
+          xs={12}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex', mt: 2 }}
+        >
+          <Box
+            sx={{
+              display: 'inline',
+              fontWeight: 700,
+              fontFamily: 'Noto Sans KR',
+              mx: 0,
+              fontSize: 40,
+              color: '#f48fb1',
+            }}
+          >
+            {priceToString(statusPrice)}
+          </Box>
+          <Box
+            sx={{
+              display: 'inline',
+              fontWeight: 500,
+              fontFamily: 'Noto Sans KR',
+              mx: 0,
+              fontSize: 20,
+              color: '#f48fb1',
+              ml: 0.5,
+              mt: 1.5,
+            }}
+          >
+            원
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={12}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex', mb: 4 }}
+        >
+          <Box
+            sx={{
+              display: 'inline',
+              fontWeight: 400,
+              fontFamily: 'Noto Sans KR',
+              mx: 0,
+              fontSize: 18,
+              color: '#424242',
+            }}
+          >
+            {priceToString(targetPrice)}원 목표
+          </Box>
+        </Grid>
+        <Grid xs={1.5}></Grid>
+        <Grid
+          item
+          xs={3}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex' }}
+        >
+          <SiteTypeBox logoImg={logoImg} logoSize={logoSize}></SiteTypeBox>
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex' }}
+        >
+          <Box
+            sx={{
+              fontSize: 24,
+              fontWeight: 700,
+              textOverflow: 'ellipsis',
+              overflow: 'auto',
+              height: 40,
+              display: 'flex',
+              color: '#f48fb1',
+            }}
+          >
+            <Box sx={{ margin: 'auto', marginBottom: 0 }}>MAMOMO</Box>
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={3}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex' }}
+        >
+          <Box
+            sx={{
+              display: 'inline',
+              fontWeight: 400,
+              fontFamily: 'Noto Sans KR',
+              mx: 0,
+              fontSize: 12,
+              color: '#424242',
+            }}
+          >
+            {organizationName}
+          </Box>
+        </Grid>
+
+        {/* </Link> */}
+        {/* <Box
         sx={{
           fontSize: 17,
           textOverflow: 'ellipsis',
@@ -208,22 +268,115 @@ const DonationModal = (img, title, body, url, siteType, id) => {
             <Box>페이스북</Box>
           </Box>
         </Container>
-      </Box>
-      <Box
-        sx={{
-          fontSize: 24,
-          fontWeight: 700,
-          textOverflow: 'ellipsis',
-          overflow: 'auto',
-          height: 40,
-          display: 'flex',
-          color: '#f48fb1',
-        }}
-      >
-        <Box sx={{ margin: 'auto', marginBottom: 0 }}>MAMOMO</Box>
-      </Box>
+      </Box> */}
+        <Grid item xs={12}>
+          <BorderLinearProgress
+            variant="determinate"
+            value={(statusPrice / targetPrice) * 100}
+            sx={{ mt: 2 }}
+          />
+        </Grid>
+        <Grid
+          item
+          xs={6}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex' }}
+        >
+          <Box
+            onClick={() => {
+              window.open(`${url}`, '_blank');
+            }}
+            sx={{
+              background: `linear-gradient(to right, #f8bbd0,#ff80ab)`,
+              color: '#f5f5f5',
+              fontWeight: 400,
+              fontSize: 18,
+              fontFamily: 'Noto Sans KR',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              borderRadius: 2,
+              height: 30,
+              width: '100%',
+              textAlign: 'center',
+              '&:hover': {
+                cursor: 'pointer',
+                color: '#ec407a',
+              },
+            }}
+          >
+            바로가기
+          </Box>
+        </Grid>
+        <Grid
+          item
+          xs={6}
+          alignItems="center"
+          justifyContent="center"
+          sx={{ textAlign: 'center', display: 'flex' }}
+        >
+          <Box
+            onClick={() => {
+              m2b();
+            }}
+            sx={{
+              background: `linear-gradient(to right, #f8bbd0,#ff80ab)`,
+              color: '#f5f5f5',
+              fontWeight: 400,
+              fontSize: 18,
+              fontFamily: 'Noto Sans KR',
+              textOverflow: 'ellipsis',
+              overflow: 'hidden',
+              borderRadius: 2,
+              height: 30,
+              width: '100%',
+              textAlign: 'center',
+              '&:hover': {
+                cursor: 'pointer',
+                color: '#ec407a',
+              },
+            }}
+          >
+            배너만들기
+          </Box>
+        </Grid>
+      </Grid>
     </Box>
   );
 };
 
 export default DonationModal;
+
+const priceToString = (price) =>
+  price.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ',');
+
+const BorderLinearProgress = styled(LinearProgress)(({ theme }) => ({
+  height: 10,
+  borderRadius: 4,
+  [`&.${linearProgressClasses.colorPrimary}`]: {
+    backgroundColor:
+      theme.palette.grey[theme.palette.mode === 'light' ? 200 : 800],
+  },
+  [`& .${linearProgressClasses.bar}`]: {
+    borderRadius: 4,
+    backgroundColor: theme.palette.mode === 'light' ? '#f48fb1' : '#308fe8',
+  },
+}));
+
+const SiteTypeBox = styled(Box)(({ logoImg, logoSize }) => ({
+  width: 100,
+  height: 20,
+  backgroundImage: `url(${logoImg})`,
+  backgroundSize: logoSize,
+  backgroundRepeat: 'no-repeat',
+  fontWeight: 400,
+  fontFamily: 'Noto Sans KR',
+  fontSize: 10,
+  textOverflow: 'ellipsis',
+  overflow: 'hidden',
+  color: '#fafafa',
+  backgroundColor: '#fff',
+  borderRadius: 2,
+  backgroundPosition: 'center',
+}));
+
