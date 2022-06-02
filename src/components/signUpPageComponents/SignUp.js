@@ -38,7 +38,7 @@ const SignUp = () => {
         .then((res) => {
           console.log(res.data);
 
-          if (res.status === 200) {
+          if (res.status === 201) {
             console.log('회원가입 성공');
             history.push('/signin');
           }
