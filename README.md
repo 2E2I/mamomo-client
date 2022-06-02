@@ -1,70 +1,151 @@
-# Getting Started with Create React App
+<h1 align="center"><strong>마</strong>음을 <strong>모</strong>두 <strong>모</strong>아, MaMoMo</h1>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  :heartpulse::heartpulse::heartpulse::heartpulse::heartpulse:
+</div>
 
-## Available Scripts
+<div align="center">
+  <strong>HSU 2022 Capstone Project</strong>
+</div>
 
-In the project directory, you can run:
+<div align="center">
+  따뜻한 세상을 위한 통합 기부 플랫폼
+</div>
 
-### `npm start`
+<div align="center">
+  <h3>
+    <a href="https://flossy-thursday-5ea.notion.site/2022-2195650e0c2d4c589aa8a32016fae4ea">
+      📖 Wiki
+    </a>
+    <span> | </span>
+    <a href="https://github.com/2E2I/mamomo-server">
+      🌏 Backend
+    </a>
+    <span> | </span>
+    <a href="https://2e2i.github.io/mamomo-server/">
+      📜 REST API Doucment
+    </a>
+  </h3>
+</div>
+<br>
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## 🔖 목차
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+- [개요](https://github.com/2E2I/mamomo-client#-개요)
+- [실행 및 설치 방법](https://github.com/2E2I/mamomo-client#-실행-및-설치-방법)
+- [핵심 기능](https://github.com/2E2I/mamomo-client#-핵심-기능)
+  * [기부 통합 검색 엔진](https://github.com/2E2I/mamomo-client#기부-통합-검색-엔진)
+  * [배너 생성기](https://github.com/2E2I/mamomo-client#배너-생성기)
+  * [텍스트 분석 기반 기부 추천](https://github.com/2E2I/mamomo-client#텍스트-분석-기반-기부-추천)
+- [기술 스택](https://github.com/2E2I/mamomo-client#-기술-스택)
+- [시스템 구조도](https://github.com/2E2I/mamomo-client#시스템-구조도)
+- [주요 화면](https://github.com/2E2I/mamomo-client#-주요-화면)
+- [팀 정보](https://github.com/2E2I/mamomo-client#-팀-정보)
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## 📍 개요
+최근 국내 온라인 기부가 증가하고 있는 추세이다. 하지만 기부 캠페인들이 해피빈, 카카오같이가치, 체리 등 많은 사이트에 흩어져 있어 원하는 기부를 찾기 번거롭다.
+본 프로젝트는 이를 해결하기 위해 다양한 플랫폼의 기부 글을 크롤링 해 한곳에 모아 볼 수 있는 검색 엔진을 제공한다. 이와 더불어 기부 글 홍보를 효과적으로 할 수 있는 자동 배너 제작 기능과 텍스트 마이닝 기반 기부 추천 기능을 제공하는 통합 기부 플랫폼이다.
 
-### `npm run build`
+## 🏃 실행 및 설치 방법
+1. 마모모 원격 저장소를 클론합니다.
+   ```shell
+   git clone https://github.com/2E2I/mamomo-server.git
+   ```
+2. 생성된 로컬 저장소로 이동 후 빌드
+    ```shell
+    /* windows */
+    $ gradlew build
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+    /* linux */
+    $ ./gradlew build
+    ```
+3. ./build/libs 에서 .jar파일 실행
+   ```shell
+   java -jar mamomo-0.0.1-SNAPSHOT.jar
+   ```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## ✨ 핵심 기능
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### 기부 통합 검색 엔진
 
-### `npm run eject`
+- 기부 사이트들에서 크롤링 해 와 Elasticsearch에 인덱싱 합니다.
+- 여러 사이트들을 방문할 필요 없이, 마모모에서 기부 관련 검색이 가능합니다.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+### 배너 생성기
+  
+- 캠페인에서 배너 생성 버튼을 누르거나, 배너제작 페이지로 들어가 배너를 제작할 수 있습니다.
+- 블로그, 기사에 관련 기부를 첨부해 보세요!
+- 자유롭게 커스터마이징이 가능해 기부 관련 컨텐츠가 아니라도 배너를 만들 수 있습니다.
+- 로그인 상태에서 만든 배너는 저장되며, 수정도 가능합니다.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+### 텍스트 분석 기반 기부 추천
+  - 텍스트를 삽입하면 주요 단어가 추출됩니다.
+  - 그 중요도에 따라 가중치를 부여해 Elasticsearch에서 기부를 검색하고, 반환합니다.
+  - 본인의 컨텐츠와 밀접한 기부캠페인을 추천 받을 수 있습니다.
 
-## Learn More
+## 📌 기술 스택
+- Language:`Java` `JavaScript` `Python`
+- Library & Framework: `Spring` `React` `Spring Data JPA` `Spring Data Elasticsearch` `Flask` `scikit-learn` `material UI`
+- Database: `MySQL` `Elasticsearch`
+- Target: `Web Browser`
+- Tool: `IntelliJ` `VSCode`
+- etc: `Spring Security` `Spring REST Docs` `Figma` `Notion` `Slack`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+## 시스템 구조도
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+![시스템 구조도 최종](/src/assets/images/readMe/시스템구조도.png)
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## 📸 주요 화면
 
-### Analyzing the Bundle Size
+<div style="overflow:hidden">
+<table style="border:0">
+  <tr>
+    <td align="center">
+    <img src="src/assets/images/readMe/메인화면.png" width="100%;" alt="메인화면"/><br />
+    </td>
+     <td align="center">
+        <img src="src/assets/images/readMe/기부모아.png" width="100%;" alt="기부모아"/><br />
+     </td>
+  </tr>
+  <tr>
+     <td align="center">
+        <img src="src/assets/images/readMe/배너제작.png" width="100%;" alt="배너제작"/><br />
+     </td>
+     <td align="center">
+        <img src="src/assets/images/readMe/기부추천.png" width="100%;" alt="기부추천"/><br />
+     </td>
+  </tr>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+</table>
+</div>
 
-### Making a Progressive Web App
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+## 👩‍👩‍👧‍👦 팀 정보
 
-### Advanced Configuration
+<div sytle="overflow:hidden;">
+<table>
+   <tr>
+      <td colspan="2" align="center"><strong>Front-End Developer</strong></td>
+      <td colspan="2" align="center"><strong>Back-End Developer</strong></td>
+   </tr>
+  <tr>
+    <td align="center">
+    <a href="https://github.com/ssw6750"><img src="https://avatars.githubusercontent.com/u/73629761?v=4" width="150px;" alt="서석원"/><br /><sub><b>서석원</b></sub></a><br />
+    </td>
+     <td align="center">
+        <a href="https://github.com/bobaej1n"><img src="https://avatars.githubusercontent.com/u/97930219?v=4" width="150px" alt="이혜진"/><br /><sub><b>이혜진</b></sub></a>
+     </td>
+     <td align="center">
+        <a href="https://github.com/im-shung"><img src="https://avatars.githubusercontent.com/u/67851738?v=4" width="150px" alt="임서영"/><br /><sub><b>임서영</b></sub></a>
+     </td>
+     <td align="center">
+        <a href="https://github.com/devyuseon"><img src="https://avatars.githubusercontent.com/u/67352902?v=4" width="150px" alt="임유선"/><br /><sub><b>임유선</b></sub></a>
+     </td>
+  <tr>
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+</table>
+</div>
