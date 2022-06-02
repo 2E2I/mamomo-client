@@ -48,22 +48,15 @@
 본 프로젝트는 이를 해결하기 위해 다양한 플랫폼의 기부 글을 크롤링 해 한곳에 모아 볼 수 있는 검색 엔진을 제공한다. 이와 더불어 기부 글 홍보를 효과적으로 할 수 있는 자동 배너 제작 기능과 텍스트 마이닝 기반 기부 추천 기능을 제공하는 통합 기부 플랫폼이다.
 
 ## 🏃 실행 및 설치 방법
-1. 마모모 원격 저장소를 클론합니다.
+1. Clone the repository
    ```shell
-   git clone https://github.com/2E2I/mamomo-server.git
+   git clone https://github.com/2E2I/mamomo-client.git
    ```
-2. 생성된 로컬 저장소로 이동 후 빌드
+2. Install NPM packages and run
     ```shell
-    /* windows */
-    $ gradlew build
-
-    /* linux */
-    $ ./gradlew build
+    $ npm install
+    $ yarn start
     ```
-3. ./build/libs 에서 .jar파일 실행
-   ```shell
-   java -jar mamomo-0.0.1-SNAPSHOT.jar
-   ```
 
 ## ✨ 핵심 기능
 
