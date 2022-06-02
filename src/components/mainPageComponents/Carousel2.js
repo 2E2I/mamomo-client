@@ -6,9 +6,10 @@ import sq2 from '../../assets/images/cat.jpg';
 import ex1 from '../../assets/images/earth.PNG';
 import ex2 from '../../assets/images/fire.PNG';
 import i from '../../assets/images/i.jpg';
-import i2 from '../../assets/images/ex5.jpg';
+import i2 from '../../assets/images/fi.png';
 import ex4 from '../../assets/images/ex4.jpg';
 import ex9 from '../../assets/images/ex9.jpg';
+import a from '../../assets/images/a.png';
 import { styled } from '@mui/system';
 
 const MainCarousel = (props) => {
@@ -26,7 +27,7 @@ const MainCarousel = (props) => {
     {
       name: '',
       description: '',
-      img: i,
+      img: a,
     },
     {
       name: '',

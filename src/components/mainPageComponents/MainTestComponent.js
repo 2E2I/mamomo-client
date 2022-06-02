@@ -5,7 +5,8 @@ import main98 from '../../assets/images/main98.png';
 import donamoa from '../../assets/images/donamoa.png';
 import tu2 from '../../assets/images/tu2.png';
 import tu5 from '../../assets/images/tu5.png';
-import modal from '../../assets/images/modal.PNG';
+import tu7 from '../../assets/images/tu7.png';
+import modal from '../../assets/images/으아.PNG';
 import search from '../../assets/images/search2.PNG';
 import makeB from '../../assets/images/makeB2.PNG';
 import textm from '../../assets/images/textm3.PNG';
@@ -39,7 +40,7 @@ const MainTestComponent = () => {
             //height: `auto ${window.innerHeight}px`,
             //height: `auto !important`,
             height: `100%`,
-            backgroundImage: `url(${tu2})`,
+            backgroundImage: `url(${tu7})`,
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
@@ -132,7 +133,7 @@ const MainTestComponent = () => {
                 color: '#424242',
               }}
             >
-              마모모와 함께라면 당신의 일상이 새로워질 거에요.
+              마모모와 함께라면 당신의 일상이 새로워질 거예요.
             </Box>
           </Grid>
         </Grid>
